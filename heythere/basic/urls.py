@@ -12,6 +12,9 @@ urlpatterns = [
     path('create-post/<str:pk>', views.createPost, name='create-post'),
     path('update-post/<str:pk>', views.updatePost, name='update-post'),
     path('delete-post/<str:pk>', views.deletePost, name='delete-post'),
+    path('upvote/<str:postid>', views.upVote, name='upvote'),
+    path('downvote/<str:postid>', views.downVote, name='downvote'),
+    path('like/<str:pk>', views.likeView, name='like_post'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

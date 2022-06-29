@@ -28,8 +28,10 @@ class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     date_update = models.DateTimeField(auto_now=True, null=True)
-    upvote = models.IntegerField( null=True, blank=True)
-    downvote = models.IntegerField( null=True, blank=True)
+    like = models.ManyToManyField(User, related_name='post_likes', null=True, blank=True)
+
+    def total_like(self):
+        return self.like.count()
 
     class Meta:
         ordering = ['-date_update','-date_create']

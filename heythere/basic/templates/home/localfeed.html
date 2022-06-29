@@ -5,7 +5,7 @@
 
     {% for i in post %}
     <div style="margin-left:50px">
-        
+
         {% if request.user.username == i.creator|safe %}
         <a href="{% url 'update-post' i.id %}">update post</a>
         <a href="{% url 'delete-post' i.id %}">delete post</a>
@@ -21,15 +21,22 @@
         <img src="{{i.image.url}}" alt="" style="width:540px;">
         <br>
         &nbsp; &nbsp;
-        {{i.upvote}}
+        {{total_like}} likes
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         {{i.downvote}}
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         {{i.commentcount}}
         <br>
-        <a href="/upvote/{{i.postid}}">Upvote</a>
-        <a href="/downvote/{{i.postid}}">Downvote</a>
-        <a href="/comments/{{i.postid}}">Comment</a>
+
+        <form action="{% url 'like_post' i.id %}" method="post">
+            {% csrf_token %}
+
+            <button type="submit" name="post_id" value="{{i.id}}" class="btn btn-primary btn-sm" >like</button> - {{total_like}} likes
+        </form>
+
+        <!-- <a href="/upvote/{{i.id}}">Upvote</a>
+        <a href="/downvote/{{i.id}}">Downvote</a>
+        <a href="/comments/{{i.id}}">Comment</a> -->
         <hr>
         
     </div>

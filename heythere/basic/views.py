@@ -1,11 +1,11 @@
-from ast import And, Or
-from operator import and_
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from multiprocessing import context
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import F
 
 # Create your views here.
 
@@ -60,11 +60,11 @@ def home(request):
     post = Post.objects.all()
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
-
+    
     context={
         'post':post,
         'user':user,
-        'u':u
+        'u':u,
     }
     return render(request, 'basic/home.html', context)
 
@@ -124,3 +124,62 @@ def deletePost(request, pk):
         'post':post
     }
     return render(request, 'home/deletepost.html', context)
+
+def upVote(request, postid):
+
+    post = Post.objects.filter(id=postid)
+
+    userid = UserRegister.objects.get(id=request.user.id)
+    pid = Post.objects.get(id=postid)
+
+    votestatus = VoteStatus.objects.all()
+    if votestatus.filter(postid=postid):
+        if votestatus.filter(upvotestatus=False, downvotestatus=True):
+            post.update(downvote=F('downvote')-1)
+            post.update(upvote=F('upvote')+1)
+            votestatus.update(postid=postid,upvotestatus=True)
+            votestatus.update(postid=postid,downvotestatus=False)
+
+        elif votestatus.filter(upvotestatus=True, downvotestatus=False):
+            post.update(upvote=F('upvote')-1)
+            deleteRecord = VoteStatus.objects.get(postid=pid)
+            deleteRecord.delete()
+
+    else:
+        post.update(upvote=F('upvote')+1)
+        vote = VoteStatus(userid=userid,postid=pid,upvotestatus=True)
+        vote.save()
+    return redirect('home')
+
+
+def downVote(request, postid):
+
+    post = Post.objects.filter(id=postid)
+
+    userid = UserRegister.objects.get(id=request.user.id)
+    pid = Post.objects.get(id=postid)
+
+    votestatus = VoteStatus.objects.all()
+    if votestatus.filter(postid=postid):
+        if votestatus.filter(upvotestatus=True, downvotestatus=False):
+            post.update(upvote=F('upvote')-1)
+            post.update(downvote=F('downvote')+1)
+            votestatus.update(postid=postid,downvotestatus=True)
+            votestatus.update(postid=postid,upvotestatus=False)
+        elif votestatus.filter(upvotestatus=False, downvotestatus=True):
+            post.update(downvote=F('downvote')-1)
+            deleteRecord = VoteStatus.objects.get(postid=pid)
+            deleteRecord.delete()
+
+    else:
+        Post.objects.filter(id=postid).update(downvote=F('downvote')+1)
+        vote = VoteStatus(userid=userid,postid=pid,downvotestatus=True)
+        vote.save()
+    return redirect('home')
+
+
+def likeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.like.add(request.user)
+    
+    return redirect('home')
