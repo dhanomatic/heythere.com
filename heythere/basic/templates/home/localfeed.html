@@ -1,0 +1,37 @@
+<div>
+    <h3 style="margin-left:70px">Local Feed</h3>
+
+    <hr>
+
+    {% for i in post %}
+    <div style="margin-left:50px">
+        
+        {% if request.user.username == i.creator|safe %}
+        <a href="{% url 'update-post' i.id %}">update post</a>
+        <a href="{% url 'delete-post' i.id %}">delete post</a>
+        {% endif %}
+        <br>
+        <br>
+        <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>
+        <br>
+        <br>
+        {{i.caption}}
+        <br>
+        <br>
+        <img src="{{i.image.url}}" alt="" style="width:540px;">
+        <br>
+        &nbsp; &nbsp;
+        {{i.upvote}}
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {{i.downvote}}
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {{i.commentcount}}
+        <br>
+        <a href="/upvote/{{i.postid}}">Upvote</a>
+        <a href="/downvote/{{i.postid}}">Downvote</a>
+        <a href="/comments/{{i.postid}}">Comment</a>
+        <hr>
+        
+    </div>
+    {% endfor %}
+</div>

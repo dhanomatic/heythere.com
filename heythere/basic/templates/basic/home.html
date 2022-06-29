@@ -1,0 +1,30 @@
+{% extends 'basic/main.html' %}
+
+
+
+{% block content %}
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns:1.2fr 2.5fr 2fr;
+    }
+</style>
+
+<a href="{% url 'create-post' user.id %}">create post</a>
+
+<div class="home-container">
+    <div>
+        <p>heythere!</p>
+        <a href="{% url 'logout' %}">logout</a>
+    </div>
+
+    <div>
+        {% include 'home/localfeed.html' %}
+    </div>
+
+    <div>
+        {% include 'home/globalfeed.html' %}
+    </div>
+</div>
+{% endblock content %}
+
