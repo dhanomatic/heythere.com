@@ -23,21 +23,35 @@ class UserRegister(models.Model):
         return self.username
 
 class Post(models.Model):
-    creator = models.ForeignKey(UserRegister, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(UserRegister, on_delete=models.CASCADE, null=True, related_name='creator')
     caption = models.TextField(max_length=500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     date_update = models.DateTimeField(auto_now=True, null=True)
-    like = models.ManyToManyField(User, related_name='post_likes', null=True, blank=True)
-
-    def total_like(self):
-        return self.like.count()
+    likes = models.ManyToManyField(User, related_name='liked', null=True, blank=True)
 
     class Meta:
         ordering = ['-date_update','-date_create']
 
     def __str__(self):
         return self.creator.username
+
+    @property
+    def total_like(self):
+        return self.likes.all().count()
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.post)
 
 class VoteStatus(models.Model):
     userid = models.ForeignKey(UserRegister, on_delete=models.CASCADE)

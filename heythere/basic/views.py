@@ -15,10 +15,19 @@ def registerPage(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            neighbourhood = form.cleaned_data.get('neighbourhood')
+            n = str(neighbourhood)
+            print(n)
+            
             UserRegister.objects.create(
                 user = user,
                 username=user.username,
+                password=user.password,
+                # neighbourhood=user.neighbourhood,
             )
+            
+            # user_data = UserRegister(neighbourhood=neighbourhood)
+            # user_data.save()
 
             messages.success(request, 'Account was created for '+ username)
             return redirect('login')
@@ -125,61 +134,26 @@ def deletePost(request, pk):
     }
     return render(request, 'home/deletepost.html', context)
 
-def upVote(request, postid):
-
-    post = Post.objects.filter(id=postid)
-
-    userid = UserRegister.objects.get(id=request.user.id)
-    pid = Post.objects.get(id=postid)
-
-    votestatus = VoteStatus.objects.all()
-    if votestatus.filter(postid=postid):
-        if votestatus.filter(upvotestatus=False, downvotestatus=True):
-            post.update(downvote=F('downvote')-1)
-            post.update(upvote=F('upvote')+1)
-            votestatus.update(postid=postid,upvotestatus=True)
-            votestatus.update(postid=postid,downvotestatus=False)
-
-        elif votestatus.filter(upvotestatus=True, downvotestatus=False):
-            post.update(upvote=F('upvote')-1)
-            deleteRecord = VoteStatus.objects.get(postid=pid)
-            deleteRecord.delete()
-
-    else:
-        post.update(upvote=F('upvote')+1)
-        vote = VoteStatus(userid=userid,postid=pid,upvotestatus=True)
-        vote.save()
-    return redirect('home')
 
 
-def downVote(request, postid):
+def like_post(request):
+    user = request.user
+    if request.method=='POST':
+        post_id=request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
 
-    post = Post.objects.filter(id=postid)
+        if user in post_obj.likes.all():
+            post_obj.likes.remove(user)
+        else:
+            post_obj.likes.add(user)
 
-    userid = UserRegister.objects.get(id=request.user.id)
-    pid = Post.objects.get(id=postid)
+        like, created = Like.objects.get_or_create(user=user, post_id=post_id)
 
-    votestatus = VoteStatus.objects.all()
-    if votestatus.filter(postid=postid):
-        if votestatus.filter(upvotestatus=True, downvotestatus=False):
-            post.update(upvote=F('upvote')-1)
-            post.update(downvote=F('downvote')+1)
-            votestatus.update(postid=postid,downvotestatus=True)
-            votestatus.update(postid=postid,upvotestatus=False)
-        elif votestatus.filter(upvotestatus=False, downvotestatus=True):
-            post.update(downvote=F('downvote')-1)
-            deleteRecord = VoteStatus.objects.get(postid=pid)
-            deleteRecord.delete()
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
 
-    else:
-        Post.objects.filter(id=postid).update(downvote=F('downvote')+1)
-        vote = VoteStatus(userid=userid,postid=pid,downvotestatus=True)
-        vote.save()
-    return redirect('home')
-
-
-def likeView(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.like.add(request.user)
-    
+        like.save()
     return redirect('home')

@@ -20,19 +20,25 @@
         <br>
         <img src="{{i.image.url}}" alt="" style="width:540px;">
         <br>
-        &nbsp; &nbsp;
-        {{total_like}} likes
+        <br>
+        <strong>{{i.likes.all.count}} Likes</strong>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         {{i.downvote}}
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         {{i.commentcount}}
         <br>
 
-        <form action="{% url 'like_post' i.id %}" method="post">
+        <form action="{% url 'like-post' %}" method="post">
             {% csrf_token %}
-
-            <button type="submit" name="post_id" value="{{i.id}}" class="btn btn-primary btn-sm" >like</button> - {{total_like}} likes
+            <input type="hidden" name="post_id" value="{{i.id}}">
+            {% if request.user not in i.likes.all %}
+                <button type="submit" class="btn btn-primary btn-sm">Like</button>
+            {% else %}
+                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
+            {% endif %}
+            
         </form>
+        
 
         <!-- <a href="/upvote/{{i.id}}">Upvote</a>
         <a href="/downvote/{{i.id}}">Downvote</a>

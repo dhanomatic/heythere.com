@@ -9,6 +9,8 @@ class PostForm(forms.ModelForm):
         fields = '__all__'
 
 class CreateUserForm(UserCreationForm):
+    neighbourhood = forms.ModelMultipleChoiceField(queryset=Neighbourhood.objects.all())
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2','neighbourhood']
