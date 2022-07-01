@@ -157,3 +157,26 @@ def like_post(request):
 
         like.save()
     return redirect('home')
+
+
+
+
+def previewPost(request, pk):
+    post = Post.objects.get(id=pk)
+    if request.method=='POST':
+        form = CommentForm(request.POST)
+        form.is_valid()
+        form.save()
+    else:
+        form=CommentForm(initial={'user':request.user,'post':pk})
+
+    comments = Comment.objects.filter(post=pk)
+    context = {
+        'post':post,
+        'form':form,
+        'comments':comments
+    }
+    return render(request, 'post/previewpost.html', context)
+
+
+

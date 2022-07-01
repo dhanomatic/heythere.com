@@ -18,7 +18,7 @@
         {{i.caption}}
         <br>
         <br>
-        <img src="{{i.image.url}}" alt="" style="width:540px;">
+        <a href="{% url 'previewpost' i.id %}"><img src="{{i.image.url}}" alt="" style="width:540px;"></a>
         <br>
         <br>
         <strong>{{i.likes.all.count}} Likes</strong>
@@ -41,8 +41,8 @@
         
 
         <!-- <a href="/upvote/{{i.id}}">Upvote</a>
-        <a href="/downvote/{{i.id}}">Downvote</a>
-        <a href="/comments/{{i.id}}">Comment</a> -->
+        <a href="/downvote/{{i.id}}">Downvote</a> -->
+        <a href="{% url 'previewpost' i.id %}">Comment</a>
         <hr>
         
     </div>

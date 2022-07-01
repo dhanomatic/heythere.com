@@ -1,0 +1,71 @@
+<div>
+    <h3 style="margin-left:70px">Preview Post</h3>
+
+    <hr>
+
+    <div style="margin-left:50px">
+
+        {% if request.user.username == post.creator|safe %}
+        <a href="{% url 'update-post' post.id %}">update post</a>
+        <a href="{% url 'delete-post' post.id %}">delete post</a>
+        {% endif %}
+        <br>
+        <br>
+        <b><span><a href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b>
+        <br>
+        <br>
+        {{post.caption}}
+        <br>
+        <br>
+        <a href="{% url 'previewpost' post.id %}"><img src="{{post.image.url}}" alt="" style="width:740px;"></a>
+        <br>
+        <br>
+        <strong>{{post.likes.all.count}} Likes</strong>
+        
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {{post.commentcount}}
+        <br>
+
+        <form action="{% url 'like-post' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{post.id}}">
+            {% if request.user not in post.likes.all %}
+                <button type="submit" class="btn btn-primary btn-sm">Like</button>
+            {% else %}
+                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
+            {% endif %}
+            
+        </form>
+        
+
+        <!-- <a href="/upvote/{{i.id}}">Upvote</a>
+        <a href="/downvote/{{i.id}}">Downvote</a> -->
+        <!-- <a href="{% url 'previewpost' post.id %}">Comment</a> -->
+
+        {% for comment in comments %}
+            <hr>
+            <small>
+            <strong>
+                @{{comment.user}}
+                <br>
+                {{comment.date_create}}
+                <br>
+                <br>
+            </strong>
+            </small>
+            {{comment.body}}
+            <hr>
+        {% endfor %}
+
+        <br>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+        <hr>
+        
+    </div>
+
+</div>

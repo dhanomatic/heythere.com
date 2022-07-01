@@ -1,4 +1,5 @@
 from email.policy import default
+from pyexpat import model
 from tkinter import CASCADE
 from tkinter.tix import Tree
 from django.db import models
@@ -53,8 +54,14 @@ class Like(models.Model):
     def __str__(self):
         return str(self.post)
 
-class VoteStatus(models.Model):
-    userid = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
-    postid = models.ForeignKey(Post, on_delete=models.CASCADE)
-    upvotestatus = models.BooleanField(default=False)
-    downvotestatus = models.BooleanField(default=False)
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, related_name='user_comment', on_delete=models.CASCADE, null=True)
+    body = models.TextField(null=True, blank=True)
+    date_create = models.DateTimeField(auto_now_add=True, null=True)
+    date_update = models.DateTimeField(auto_now=True, null=True)
+
+    def __str__(self) :
+        return '%s - %s' %(self.post.caption, self.name)
+
