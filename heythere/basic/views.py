@@ -1,11 +1,13 @@
 from multiprocessing import context
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views import View
 from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -177,6 +179,108 @@ def previewPost(request, pk):
         'comments':comments
     }
     return render(request, 'post/previewpost.html', context)
+
+
+
+class AddCommentLike(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        is_dislike = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if is_dislike:
+            comment.dislikes.remove(request.user)
+
+        is_like = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            comment.likes.add(request.user)
+
+        if is_like:
+            comment.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class AddCommentDislike(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if is_like:
+            comment.likes.remove(request.user)
+
+        is_dislike = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if not is_dislike:
+            comment.dislikes.add(request.user)
+
+        if is_dislike:
+            comment.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+
+
+def deleteComment(request, pk, post_pk):
+
+    comment=Comment.objects.get(id=pk)
+
+    user = str(request.user) # this is doing because if we check a condition direclty it may be not works. so we convert the value to string and then compare;
+    creator= str(comment.user)
+
+    print(user)
+    print(creator)
+
+    if user != creator:
+        return HttpResponse('you have no permission to delete')
+
+    if request.method=='POST':
+        comment.delete()
+        return redirect('previewpost', pk=post_pk)
+    
+    context={
+        'comment':comment
+    }
+    return render(request, 'post/deletecomment.html', context)
+
+
+class CommentReplyView(LoginRequiredMixin, View):
+    def post(self, request, post_pk, pk, *args, **kwargs):
+        post = Post.objects.get(pk=post_pk)
+        parent_comment = Comment.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.post = post
+            new_comment.parent = parent_comment
+            new_comment.save()
+
+        return redirect('previewpost', pk=post_pk)
 
 
 

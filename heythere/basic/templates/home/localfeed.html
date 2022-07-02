@@ -12,7 +12,7 @@
         {% endif %}
         <br>
         <br>
-        <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>
+        <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
         <br>
         <br>
         {{i.caption}}
@@ -23,12 +23,12 @@
         <br>
         <strong>{{i.likes.all.count}} Likes</strong>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        {{i.downvote}}
+        <strong>{{i.comments.all.count}} comment</strong>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         {{i.commentcount}}
         <br>
 
-        <form action="{% url 'like-post' %}" method="post">
+        <form style="float: left;" action="{% url 'like-post' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="post_id" value="{{i.id}}">
             {% if request.user not in i.likes.all %}
@@ -38,11 +38,12 @@
             {% endif %}
             
         </form>
-        
+
+        <a style="float: right;" class="btn btn-info btn-sm" href="{% url 'previewpost' i.id %}">Comment</a>
 
         <!-- <a href="/upvote/{{i.id}}">Upvote</a>
         <a href="/downvote/{{i.id}}">Downvote</a> -->
-        <a href="{% url 'previewpost' i.id %}">Comment</a>
+        <br>
         <hr>
         
     </div>

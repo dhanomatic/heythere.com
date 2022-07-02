@@ -30,6 +30,7 @@ class Post(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     date_update = models.DateTimeField(auto_now=True, null=True)
     likes = models.ManyToManyField(User, related_name='liked', null=True, blank=True)
+    commets = models.ManyToManyField(User, related_name='commented', null=True, blank=True)
 
     class Meta:
         ordering = ['-date_update','-date_create']
@@ -40,6 +41,10 @@ class Post(models.Model):
     @property
     def total_like(self):
         return self.likes.all().count()
+
+    @property
+    def total_like(self):
+        return self.commets.all().count()
 
 LIKE_CHOICES = (
     ('Like', 'Like'),
@@ -58,10 +63,27 @@ class Like(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name='user_comment', on_delete=models.CASCADE, null=True)
-    body = models.TextField(null=True, blank=True)
+    body = models.TextField(verbose_name="comment", null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     date_update = models.DateTimeField(auto_now=True, null=True)
+    likes = models.ManyToManyField(User, related_name='comment_likes', blank=True)
+    dislikes = models.ManyToManyField(User, related_name='comment_dislikes', blank=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='+') # '+' take away reverse mapping
+
+    class Meta:
+        ordering = ['-date_create']
 
     def __str__(self) :
         return '%s - %s' %(self.post.caption, self.name)
+
+    @property
+    def children(self):
+        return Comment.objects.filter(parent=self).order_by('-date_create').all()
+
+    @property
+    def is_parent(self):
+        if self.parent is None:
+            return True
+        return False
+
 

@@ -1,0 +1,13 @@
+{% extends 'basic/main.html' %}
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p>Are you sure you want to delete "{{comment.body}}"</p>
+
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}
