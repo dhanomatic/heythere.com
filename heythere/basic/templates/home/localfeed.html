@@ -7,11 +7,12 @@
     <div style="margin-left:50px">
 
         {% if request.user.username == i.creator|safe %}
-        <a href="{% url 'update-post' i.id %}">update post</a>
-        <a href="{% url 'delete-post' i.id %}">delete post</a>
+        <div style="float: right;">
+            <a href="{% url 'update-post' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+            &nbsp;
+            <a href="{% url 'delete-post' i.id %}"><i class="fa-solid fa-trash"></i></a>
+        </div>
         {% endif %}
-        <br>
-        <br>
         <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
         <br>
         <br>
@@ -23,23 +24,23 @@
         <br>
         <strong>{{i.likes.all.count}} Likes</strong>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <strong>{{i.comments.all.count}} comment</strong>
+        <strong  style="float: right;">{{i.comments.all.count}} comment</strong>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        {{i.commentcount}}
+        
         <br>
 
         <form style="float: left;" action="{% url 'like-post' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="post_id" value="{{i.id}}">
             {% if request.user not in i.likes.all %}
-                <button type="submit" class="btn btn-primary btn-sm">Like</button>
+                <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-hand-thumbs-up"></i> like</button>
             {% else %}
-                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
+                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-hand-thumbs-down"></i> unlike</button>
             {% endif %}
             
         </form>
 
-        <a style="float: right;" class="btn btn-info btn-sm" href="{% url 'previewpost' i.id %}">Comment</a>
+        <a style="float: right;" class="btn btn-info btn-sm" href="{% url 'previewpost' i.id %}"><i class="fa-solid fa-comment"></i> comment</a>
 
         <!-- <a href="/upvote/{{i.id}}">Upvote</a>
         <a href="/downvote/{{i.id}}">Downvote</a> -->

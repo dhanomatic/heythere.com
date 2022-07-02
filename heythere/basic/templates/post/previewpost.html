@@ -97,14 +97,14 @@
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
                     <button class="btn" type="submit">
-                        <i class="far fa-thumbs-up"> <span>{{ comment.likes.all.count }}</span></i>
+                        <i class="far fa-thumbs-up"></i> <span>{{ comment.likes.all.count }}</span>
                     </button>
                 </form>
                 <form method="POST" action="{% url 'comment-dislike' post.pk comment.pk %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
                     <button class="btn" type="submit">
-                        <i class="far fa-thumbs-down"> <span>{{ comment.dislikes.all.count }}</span></i>
+                        <i class="far fa-thumbs-down"></i> <span>{{ comment.dislikes.all.count }}</span>
                     </button>
                 </form>
                 <div>
@@ -113,7 +113,7 @@
             </div>
 
             <!-- Replay Comment Box -->
-            <div class="d-none" id="{{comment.id}}">
+            <div class="d-none mt-3" id="{{comment.id}}" >
                 <form action="{% url 'comment-reply' post.pk comment.pk %}" method="post">
                     {% csrf_token %}
                     <div class="d-none">{{form.post}}</div>
@@ -137,7 +137,7 @@
                         <span>{{child_comment.date_create}}</span> 
                     </small>
                         &nbsp;
-                            <a href="{% url 'delete-comment' child_comment.id %}" style="float:right"><i class="bi bi-trash"></i></a>
+                            <a href="{% url 'delete-comment' child_comment.id post.id%}" style="float:right"><i class="bi bi-trash"></i></a>
                             <br>
                         
                         
