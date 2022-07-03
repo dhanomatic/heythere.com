@@ -21,7 +21,7 @@ class CreateUserForm(UserCreationForm):
 
 
 class CommentForm(forms.ModelForm):
-    body = forms.CharField(widget=forms.Textarea(attrs={"rows":3, "cols":60, 'placeholder': 'write a comment...'}))
+    body = forms.CharField(widget=forms.Textarea(attrs={"rows":3, 'placeholder': 'write a comment...'}))
    
     class Meta:
         model = Comment

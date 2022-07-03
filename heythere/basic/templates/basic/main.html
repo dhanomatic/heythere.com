@@ -14,10 +14,10 @@
 </head>
 <body>
 
-    <div>
-        <a href="{% url 'home' %}"><h4 style="float:left">heythere!</h4></a>
+    <div class="navigation-top">
+        <a href="{% url 'home' %}"><h5 style="float:left; margin-left: 1rem;">heythere!</h5></a>
         
-        <h4 style="float:right">{{request.user}}</h4>
+        <h6 style="float:right; margin-right: 1rem;">@{{request.user}}</h6>
     </div>
     <br>
     <hr>

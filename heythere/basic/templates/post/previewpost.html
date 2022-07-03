@@ -11,57 +11,95 @@
         color: black;
         
     }
-    a:hover{
+
+    .update-link:hover{
+        color:rgb(59, 116, 208);
+    }
+    .trash:hover{
         color:rgb(209, 0, 0);
     }
+
+    .btn-custom{
+        width: 10rem;
+    }
+    
 </style>
 
 
-<div>
-    <h3 style="margin-left:70px">Preview Post</h3>
+<div class="row" style="margin:1rem">
 
     <hr>
 
-    <div class="col-lg-6" style="margin-left:50px">
+    <div class="col-lg-7">
 
-        {% if request.user.username == post.creator|safe %}
-        <a href="{% url 'update-post' post.id %}">update post</a>
-        <a href="{% url 'delete-post' post.id %}">delete post</a>
-        {% endif %}
-        <br>
-        <br>
-        <b><span><a href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> <small>{{post.date_create}}</small>
-        <br>
-        <br>
-        {{post.caption}}
-        <br>
-        <br>
-        <a href="{% url 'previewpost' post.id %}"><img src="{{post.image.url}}" alt="" style="width:740px;"></a>
-        <br>
-        <br>
-        <strong>{{post.likes.all.count}} Likes</strong>
-        
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <strong>{{post.comments.all.count}} comment</strong>
-        <br>
-
-        <form action="{% url 'like-post' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="post_id" value="{{post.id}}">
-            {% if request.user not in post.likes.all %}
-                <button type="submit" class="btn btn-primary btn-sm">Like</button>
-            {% else %}
-                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
-            {% endif %}
+            {% if request.user.username == post.creator|safe %}
+            <div style="float: right;">
+                <a class="update-link" href="{% url 'update-post' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                &nbsp;&nbsp;
+                <a class="trash" href="{% url 'delete-post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+            </div>
             
-        </form>
-        
+            {% endif %}
+           
+            <b><span><a href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> <small>{{post.date_create}}</small>
+            <br>
+            
+            <br>
+            <a href="{% url 'previewpost' post.id  %}"><img src="{{post.image.url}}" alt="" style="width: 42rem;"></a>
 
+
+            <div style="margin-left: 8rem; margin-right: 7.5rem;">
+
+                <strong>
+                    {{post.likes.all.count}} Likes
+                </strong>
+                <strong style="float: right;">
+                    {{post.comments.all.count}} comment
+                </strong>
+
+            </div>
+
+            <!-- Like and comment block -->
+            <div style="margin-left:5rem;">
+                <form action="{% url 'like-previewpost' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{post.id}}">
+                    {% if request.user not in post.likes.all %}
+                        <button type="submit" class="btn btn-lg btn-custom">
+                            <i class="far fa-thumbs-up"></i></button>
+                    {% else %}
+                        <button type="submit" class="btn btn-lg btn-custom">
+                            <i class="far fa-thumbs-down" style="color:rgb(159, 30, 30)"></i></button>
+                    {% endif %}
+                </form>
+            </div>
+            
+            <div style="float: right; margin-top: -3.2rem; margin-right:5rem;">
+                <a href="{% url 'previewpost' post.id %}" type="submit" class="btn btn-lg btn-custom" ><i class="far fa-comment-dots"></i></a>
+            </div>
+            <!-- end of Like and comment block -->
+            <hr>
+            <!-- Post caption -->
+            <p style="margin-left: 2rem; margin-right: 2rem;"> &nbsp; - {{post.caption}}</p>
+            <!-- end of Post caption -->
+
+            <hr>
+
+
+            
+            
+                
         <!-- <a href="/upvote/{{i.id}}">Upvote</a>
         <a href="/downvote/{{i.id}}">Downvote</a> -->
         <!-- <a href="{% url 'previewpost' post.id %}">Comment</a> -->
 
-        <br>
+
+
+    </div>
+
+
+    <div class="col-lg-5" style="margin-top: 3rem;">
+
         <!-- Comment Box -->
         <form action="" method="post">
             {% csrf_token %}
@@ -73,6 +111,7 @@
             </div>
         </form>
         <!-- End of Comment Box -->
+
         <hr>
 
 
@@ -86,13 +125,14 @@
             &nbsp; <span>{{comment.date_create}}</span> 
             </small>
             &nbsp;
-                <a href="{% url 'delete-comment' comment.id post.id %}"><i class="bi bi-trash"></i></a>
+                <a class="trash" href="{% url 'delete-comment' comment.id post.id %}"><i class="bi bi-trash"></i></a>
                 <br>
             
             
             {{comment.body}}
             
             <div class="d-flex flex-row">
+
                 <form method="POST" action="{% url 'comment-like' post.id comment.id %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
@@ -100,6 +140,7 @@
                         <i class="far fa-thumbs-up"></i> <span>{{ comment.likes.all.count }}</span>
                     </button>
                 </form>
+
                 <form method="POST" action="{% url 'comment-dislike' post.pk comment.pk %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
@@ -107,9 +148,11 @@
                         <i class="far fa-thumbs-down"></i> <span>{{ comment.dislikes.all.count }}</span>
                     </button>
                 </form>
+
                 <div>
                     <button class="btn"><i class="far fa-comment-dots" onclick="commentReplyToggle('{{ comment.id }}')"></i></button>
                 </div>
+
             </div>
 
             <!-- Replay Comment Box -->
@@ -118,8 +161,8 @@
                     {% csrf_token %}
                     <div class="d-none">{{form.post}}</div>
                     <div class="d-none">{{form.user}}</div>
-                    <div class="col-lg-12" >{{form.body|as_crispy_field}}</div>
-                    <div class="col-lg-12">
+                    <div class=" " >{{form.body|as_crispy_field}}</div>
+                    <div class=" ">
                         <input class="btn btn-info btn-block" type="submit" value="Submit">
                     </div>
                 </form>
@@ -127,19 +170,22 @@
             <!-- End of Replay Comment Box -->
         
             {% for child_comment in comment.children %}
-            <div class="row mt-3 mb-5" style="margin-left: 3rem;">
+            <div class="row mt-3 mb-5" style="margin-left: 2rem;">
                 <div class="col-md-5 col-sm-12 border-bottom">
                     <small>
+                        
                         <strong>
                             @{{child_comment.user}}
                         </strong>
+
                         &nbsp; 
+
                         <span>{{child_comment.date_create}}</span> 
+
                     </small>
                         &nbsp;
-                            <a href="{% url 'delete-comment' child_comment.id post.id%}" style="float:right"><i class="bi bi-trash"></i></a>
+                            <a class="trash" href="{% url 'delete-comment' child_comment.id post.id%}" ><i class="bi bi-trash"></i></a>
                             <br>
-                        
                         
                         {{child_comment.body}}
                 </div>
@@ -151,8 +197,6 @@
 
         <br>
 
-        
-        
     </div>
 
 </div>

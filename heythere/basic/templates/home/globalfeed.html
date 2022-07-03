@@ -1,39 +1,45 @@
-<div>
+
+
+<div class="row global-feed" >
     <h3 style="margin-left:70px">Global Feed</h3>
 
     <hr>
 
     {% for i in post %}
     <div style="margin-left:50px">
-<!--            <a href="/update/{{i.postid}}">Edit</a>-->
-<!--            <a href="/delete/{{i.postid}}">Delete</a>-->
+        <hr>
 
         {% if request.user.username == i.creator|safe %}
-        <a href="{% url 'update-post' i.id %}">update post</a>
-        <a href="{% url 'delete-post' i.id %}">delete post</a>
+        <div style="float: right;">
+            <a href="{% url 'update-post' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+            &nbsp;
+            <a class="trash" href="{% url 'delete-post' i.id %}"><i class="fa-solid fa-trash"></i></a>
+        </div>
         {% endif %}
+        <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
         <br>
-        <br>
-        <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>
-        <br>
-        <br>
-        {{i.caption}}
-        <br>
-        <br>
-        <img src="{{i.image.url}}" alt="" style="width:340px;">
-        {{i.photo.url}}
-        <br>
-        &nbsp; &nbsp;
-        {{i.upvote}}
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        {{i.downvote}}
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        {{i.commentcount}}
-        <br>
-        <a href="/upvote/{{i.postid}}">Upvote</a>
-        <a href="/downvote/{{i.postid}}">Downvote</a>
-        <a href="/comments/{{i.postid}}">Comment</a>
-        <hr>
+        <a href="{% url 'previewpost' i.id %}"><img src="{{i.image.url}}" alt="" style="width:26rem; margin: 0.3rem; margin-top: 1rem;"></a>
+        
     </div>
+    <div>
+        <form class="like-global" action="{% url 'like-post' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{i.id}}">
+            {% if request.user not in i.likes.all %}
+                <button type="submit" class="btn btn-primary btn-sm" id="rotate">
+                    <i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+            {% else %}
+                <button type="submit" class="btn btn-danger btn-sm" id="rotate">
+                    <i class="bi bi-hand-thumbs-down"></i> {{i.likes.all.count}}</button>
+            {% endif %}
+
+
+            <a id="comment-global" class="btn btn-info btn-sm comment-global"  href="{% url 'previewpost' i.id %}">
+                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+        </form>
+    </div>
+
+        
+        <p style="margin-left:4rem; margin-right:-5.5rem; text-align: justify;"> &nbsp; - {{i.caption}}</p>
     {% endfor %}
 </div>

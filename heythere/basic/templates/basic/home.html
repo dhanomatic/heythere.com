@@ -2,26 +2,18 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .home-container{
-        display: grid;
-        grid-template-columns:1.2fr 2.5fr 2fr;
-    }
-</style>
 
-<a href="{% url 'create-post' user.id %}">create post</a>
 
-<div class="home-container">
-    <div>
-        <p>heythere!</p>
-        <a href="{% url 'logout' %}">logout</a>
+<div class="row home-container container" >
+    <div class="col col-lg-2 col-sm-12">
+        {% include 'basic/sidebar.html' %}
     </div>
 
-    <div>
+    <div class="col col-lg-6 col-sm-12">
         {% include 'home/localfeed.html' %}
     </div>
 
-    <div>
+    <div class="col col-lg-4 col-sm-12">
         {% include 'home/globalfeed.html' %}
     </div>
 </div>
