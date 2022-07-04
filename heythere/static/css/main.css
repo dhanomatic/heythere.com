@@ -1,3 +1,9 @@
+
+p{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
 a:link{
     text-decoration: none!important;
     color: black;
@@ -99,6 +105,10 @@ a{
 
 }
 
+.Neighbourhood-warning{
+
+}
+
 @media (max-width:780px){
   .localfeed-img{
     width:30rem;
@@ -149,7 +159,8 @@ a{
   }
 
   .sidebar-element{
-    margin-left: 3.5rem;
+    margin-left: 2.3rem;
+    font-size: large;
   }
 
   .local-feed{
@@ -219,6 +230,11 @@ a{
     margin-right: -2rem;
   }
   
+  .Neighbourhood-warning{
+    margin-top: 6rem;
+    margin-left: 1.7rem;
+    width: 14rem;
+  }
 
 }
 

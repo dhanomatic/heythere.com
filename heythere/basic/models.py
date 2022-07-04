@@ -16,8 +16,8 @@ class Neighbourhood(models.Model):
 class UserRegister(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     username = models.CharField(max_length=100, null=True)
-    password = models.CharField(max_length=100, null=True)
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
+    # neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
+    neighbourhood = models.CharField(max_length=100, null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

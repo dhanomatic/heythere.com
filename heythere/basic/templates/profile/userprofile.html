@@ -1,0 +1,25 @@
+{% extends 'basic/main.html' %}
+
+{% block content %}
+
+<h4>User Profile</h4>
+
+<br><br>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="usename">Username :</label>
+    {{form.username}}
+
+    <br>
+    <br>
+
+    <label for="neighbourhood">Neighbourhood :</label>
+    <input name="neighbourhood" type="text" style="text-transform: capitalize;"></input>
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}

@@ -7,6 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 
+class UpperField(forms.CharField):
+
+    def to_python(self, value):
+        return value.upper()
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -18,6 +23,11 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2','neighbourhood']
+
+class UserRegisterForm(forms.ModelForm):
+    class Meta:
+        model = UserRegister
+        fields = ['username','neighbourhood']
 
 
 class CommentForm(forms.ModelForm):

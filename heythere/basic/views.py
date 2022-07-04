@@ -24,7 +24,6 @@ def registerPage(request):
             UserRegister.objects.create(
                 user = user,
                 username=user.username,
-                password=user.password,
                 # neighbourhood=user.neighbourhood,
             )
             
@@ -68,11 +67,16 @@ def logoutUser(request):
 
 
 def home(request):
+    neighbourhood = request.user.userregister.neighbourhood
+    
+    localpost = Post.objects.filter(creator__neighbourhood=neighbourhood)
+    
     post = Post.objects.all()
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
     
     context={
+        'localpost':localpost,
         'post':post,
         'user':user,
         'u':u,
@@ -303,6 +307,23 @@ class CommentReplyView(LoginRequiredMixin, View):
             new_comment.save()
 
         return redirect('previewpost', pk=post_pk)
+
+
+def userProfile(request, username):
+    user = UserRegister.objects.get(username=username)
+    neighbourhood = request.POST.get('neighbourhood')
+    print(neighbourhood)
+    if request.method=='POST':
+        form = UserRegisterForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserRegisterForm(instance=user)
+    context={
+        'user':user,
+        'form':form,
+    }
+    return render(request, 'profile/userprofile.html', context)
 
 
 
