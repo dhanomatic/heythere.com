@@ -5,16 +5,12 @@
 </style>
 
 <div class="craate-post">
-    <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="fa-solid fa-plus"></i></a>
+    <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="bi bi-plus-circle"></i></a>
 </div>
 
 
-
-<div class="row">
+<div class="row local-feed">
     <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
-    
-
-
     {% for i in post %}
     <div>
     <hr>
@@ -28,7 +24,7 @@
         {% endif %}
         <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
         <br>
-        <a href="{% url 'previewpost' i.id %}" ><img class="localfeed-img" src="{{i.image.url}}" alt="" style=""></a>
+        <a href="{% url 'previewpost' i.id %}" ><img class="localfeed-img" src="{{i.image.url}}" alt="" ></a>
 
     </div>
 
@@ -38,9 +34,9 @@
             {% csrf_token %}
             <input type="hidden" name="post_id" value="{{i.id}}">
             {% if request.user not in i.likes.all %}
-                <button type="submit" class="btn btn-primary btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
             {% else %}
-                <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-down "></i> {{i.likes.all.count}}</button>
+                <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
             {% endif %}
             
         </form>
@@ -50,7 +46,7 @@
     </div>
     
 
-    <p style="margin-left:2rem; text-align: justify;"> &nbsp; - {{i.caption}}</p>
+    <p class="caption-local" style=""> &nbsp; - {{i.caption}}</p>
     
     {% endfor %}
 </div>

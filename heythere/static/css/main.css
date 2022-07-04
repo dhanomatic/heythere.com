@@ -63,7 +63,41 @@ a{
   padding-top: 0.5rem;
 }
 
+.caption-local{
+  margin-left:2rem; 
+  text-align: justify;
+}
 
+.previewpost img{
+  width: 42rem;
+}
+
+.preview-like-comment{
+  margin-left:5rem;
+}
+
+.preview-comment-element{
+  float: right;
+  margin-top: -3.2rem; 
+  margin-right:5rem;
+}
+
+.preview-comment-section{
+  margin-top: 3rem;
+}
+
+.previewpost-creatorname{
+  margin-left: 1rem;
+}
+
+.previewpost-caption{
+  margin-left: 3rem; 
+  margin-right: 2rem;
+}
+
+.local-feed{
+
+}
 
 @media (max-width:780px){
   .localfeed-img{
@@ -103,8 +137,8 @@ a{
   .sidebar{
     background-color: rgb(255, 255, 255);
     width: 100%;
+    margin-top: -0.6rem;
     margin-left: -1rem;
-    margin-top: -3rem;
     padding-top: 1rem;
     font-size: small;
     font-weight: 500;
@@ -115,28 +149,77 @@ a{
   }
 
   .sidebar-element{
-    margin-left: 3.2rem;
+    margin-left: 3.5rem;
   }
+
+  .local-feed{
+    margin-top: 1.5rem;
+  }  
 
   .craate-post{
     position: fixed;
     bottom: 0;
     z-index: 9;
     width: 100%;
-    height: 3rem;
+    height: 3.5rem;
     margin-left: -1rem;
-    padding-top: 0.5rem;
+    padding-top: 0.2rem;
     background-color: rgb(255, 255, 255);
   }
 
   .create-post-element{
     margin-left:15rem;
-    font-size: x-large;
+    font-size: xx-large;
   }
 
   .global-feed{
     display: none;
   }
+
+  .caption-local{
+    margin-left:2rem; 
+    margin-right: -6rem;
+    text-align: justify;
+  }
+
+  .previewpost img{
+    width: 27rem;
+    margin: 0;
+  }
+
+  .preview-like-comment{
+    position: fixed;
+    bottom: 0;
+    z-index: 9;
+    width: 100%;
+    height: 3.5rem;
+    margin-left: -0.1rem;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .preview-like-element{
+    margin-left: 3.5rem;
+    padding-top: 0.2rem;
+  }
+
+  .preview-comment-element{
+    margin-right: 3.5rem;
+    padding-top: 0.25rem;
+  }
+  
+  .preview-comment-section{
+    margin-top: 0rem;
+    margin-left: 2rem;
+    margin-right: -2rem;
+    width: 100%;
+  }
+
+  .previewpost-caption{
+    margin-left: 2.5rem; 
+    margin-right: -2rem;
+  }
+  
+
 }
 
 @media (max-width:780px){
@@ -158,8 +241,13 @@ a{
 
   .craate-post{
     margin-left: 18rem;
-    margin-top: 1rem;
-    font-size: x-large;
+    margin-top: -0.4rem;
+    font-size: xx-large;
+  }
+
+  .previewpost img{
+    width: 42rem;
+    margin-left: 2rem;
   }
   
 }

@@ -26,11 +26,11 @@
             {% csrf_token %}
             <input type="hidden" name="post_id" value="{{i.id}}">
             {% if request.user not in i.likes.all %}
-                <button type="submit" class="btn btn-primary btn-sm" id="rotate">
+                <button type="submit" class="btn btn-danger btn-sm" id="rotate">
                     <i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
             {% else %}
                 <button type="submit" class="btn btn-danger btn-sm" id="rotate">
-                    <i class="bi bi-hand-thumbs-down"></i> {{i.likes.all.count}}</button>
+                    <i class="bi bi-hand-thumbs-up-fill"></i> {{i.likes.all.count}}</button>
             {% endif %}
 
 

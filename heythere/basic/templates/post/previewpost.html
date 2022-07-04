@@ -26,11 +26,11 @@
 </style>
 
 
-<div class="row" style="margin:1rem">
+<div class="row" >
 
     <hr>
 
-    <div class="col-lg-7">
+    <div class="col-lg-7 previewpost">
 
             {% if request.user.username == post.creator|safe %}
             <div style="float: right;">
@@ -41,46 +41,39 @@
             
             {% endif %}
            
-            <b><span><a href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> <small>{{post.date_create}}</small>
+            <b><span><a class="previewpost-creatorname" href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> <small>{{post.date_create}}</small>
             <br>
             
             <br>
-            <a href="{% url 'previewpost' post.id  %}"><img src="{{post.image.url}}" alt="" style="width: 42rem;"></a>
+            <a href="{% url 'previewpost' post.id  %}"><img  src="{{post.image.url}}" alt=""></a>
 
-
-            <div style="margin-left: 8rem; margin-right: 7.5rem;">
-
-                <strong>
-                    {{post.likes.all.count}} Likes
-                </strong>
-                <strong style="float: right;">
-                    {{post.comments.all.count}} comment
-                </strong>
-
-            </div>
 
             <!-- Like and comment block -->
-            <div style="margin-left:5rem;">
-                <form action="{% url 'like-previewpost' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="post_id" value="{{post.id}}">
-                    {% if request.user not in post.likes.all %}
-                        <button type="submit" class="btn btn-lg btn-custom">
-                            <i class="far fa-thumbs-up"></i></button>
-                    {% else %}
-                        <button type="submit" class="btn btn-lg btn-custom">
-                            <i class="far fa-thumbs-down" style="color:rgb(159, 30, 30)"></i></button>
-                    {% endif %}
-                </form>
+            <div class="preview-like-comment">
+                <div style="" class="preview-like-element">
+                    <form action="{% url 'like-previewpost' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{post.id}}">
+                        {% if request.user not in post.likes.all %}
+                            <button type="submit" class="btn btn-lg btn-custom">
+                                <i class="far fa-thumbs-up"> {{post.likes.all.count}}</i></button>
+                        {% else %}
+                            <button type="submit" class="btn btn-lg btn-custom">
+                                <i class="far fa-solid fa-thumbs-up" style="color:rgb(159, 30, 30)"> {{post.likes.all.count}}</i></button>
+                        {% endif %}
+                        
+                    </form>
+                </div>
+                
+                <div class="preview-comment-element">
+                    <a href="{% url 'previewpost' post.id %}" type="submit" class="btn btn-lg btn-custom" ><i class="far fa-comment-dots"> {{post.comments.all.count}}</i></a>
+                </div>
             </div>
             
-            <div style="float: right; margin-top: -3.2rem; margin-right:5rem;">
-                <a href="{% url 'previewpost' post.id %}" type="submit" class="btn btn-lg btn-custom" ><i class="far fa-comment-dots"></i></a>
-            </div>
             <!-- end of Like and comment block -->
             <hr>
             <!-- Post caption -->
-            <p style="margin-left: 2rem; margin-right: 2rem;"> &nbsp; - {{post.caption}}</p>
+            <p class="previewpost-caption" style=""> &nbsp; - {{post.caption}}</p>
             <!-- end of Post caption -->
 
             <hr>
@@ -98,10 +91,10 @@
     </div>
 
 
-    <div class="col-lg-5" style="margin-top: 3rem;">
+    <div class="col-lg-5 preview-comment-section" style="">
 
         <!-- Comment Box -->
-        <form action="" method="post">
+        <form action="" method="post" >
             {% csrf_token %}
             <div class="d-none">{{form.post}}</div>
             <div class="d-none">{{form.user}}</div>
