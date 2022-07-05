@@ -1,3 +1,4 @@
+from dataclasses import fields
 from logging import PlaceHolder
 from tkinter import Widget
 from turtle import width
@@ -7,15 +8,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 
-class UpperField(forms.CharField):
-
-    def to_python(self, value):
-        return value.upper()
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+        # fields = ['creator','caption', 'image', 'local_visibility', 'global_visibility']
 
 class CreateUserForm(UserCreationForm):
     neighbourhood = forms.ModelMultipleChoiceField(queryset=Neighbourhood.objects.all())

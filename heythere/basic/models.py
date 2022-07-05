@@ -4,6 +4,7 @@ from tkinter import CASCADE
 from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import BooleanField
 
 # Create your models here.
 
@@ -27,13 +28,15 @@ class Post(models.Model):
     creator = models.ForeignKey(UserRegister, on_delete=models.CASCADE, null=True, related_name='creator')
     caption = models.TextField(max_length=500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    local_visibility = models.BooleanField(default=True, null=True, blank=True)
+    global_visibility = models.BooleanField(null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     date_update = models.DateTimeField(auto_now=True, null=True)
     likes = models.ManyToManyField(User, related_name='liked', null=True, blank=True)
     commets = models.ManyToManyField(User, related_name='commented', null=True, blank=True)
 
     class Meta:
-        ordering = ['-date_update','-date_create']
+        ordering = ['-date_create']
 
     def __str__(self):
         return self.creator.username
@@ -61,7 +64,7 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, null=True)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, related_name='user_comment', on_delete=models.CASCADE, null=True)
     body = models.TextField(verbose_name="comment", null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
@@ -74,7 +77,7 @@ class Comment(models.Model):
         ordering = ['-date_create']
 
     def __str__(self) :
-        return '%s - %s' %(self.post.caption, self.name)
+        return '%s - %s' %(self.post.caption, self.user.username)
 
     @property
     def children(self):

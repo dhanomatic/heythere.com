@@ -1,0 +1,16 @@
+{% extends 'basic/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row home-container container" >
+    <div class="col col-lg-2 col-sm-12">
+        {% include 'basic/sidebar.html' %}
+    </div>
+
+    <div class="col col-lg-10 col-sm-12">
+        {% include 'global/globalpost.html' %}
+    </div>
+</div>
+{% endblock content %}

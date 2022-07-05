@@ -69,9 +69,9 @@ def logoutUser(request):
 def home(request):
     neighbourhood = request.user.userregister.neighbourhood
     
-    localpost = Post.objects.filter(creator__neighbourhood=neighbourhood)
+    localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
     
-    post = Post.objects.all()
+    post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
     
@@ -202,7 +202,7 @@ def previewPost(request, pk):
     context = {
         'post':post,
         'form':form,
-        'comments':comments
+        'comments':comments,
     }
     return render(request, 'post/previewpost.html', context)
 
@@ -324,6 +324,14 @@ def userProfile(request, username):
         'form':form,
     }
     return render(request, 'profile/userprofile.html', context)
+
+
+def globalPostPage(request):
+    post = Post.objects.filter(global_visibility=True)
+    context = {
+        'post':post,
+    }
+    return render(request, 'global/globalpostpage.html', context)
 
 
 

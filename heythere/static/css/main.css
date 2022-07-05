@@ -47,6 +47,17 @@ a{
   margin-top: 4.8rem;
 }
 
+.global-page-post-like{
+  margin-left: 17.8rem;
+  margin-top: -8rem;
+  width: 5rem !important;
+}
+
+.global-page-post-comment{
+  margin-left: -3rem;
+  margin-top: 4.8rem;
+}
+
 .localfeed-img{
 
   width:35rem;
@@ -109,6 +120,26 @@ a{
 
 }
 
+.global-page-img{
+  width:20rem; 
+  margin: .3rem;
+}
+
+.global-page{
+  
+}  
+
+.global-page-post-comment a{
+  
+}
+
+.global-post-caption{
+  margin-top:1.5rem; 
+  margin-left: 0.5rem;
+  text-align: justify;
+}
+
+
 @media (max-width:780px){
   .localfeed-img{
     width:30rem;
@@ -159,7 +190,7 @@ a{
   }
 
   .sidebar-element{
-    margin-left: 2.3rem;
+    margin-left: 3.2rem;
     font-size: large;
   }
 
@@ -234,6 +265,45 @@ a{
     margin-top: 6rem;
     margin-left: 1.7rem;
     width: 14rem;
+  }
+
+  .global-page{
+    margin-top: 3.5rem;
+    margin-left: -1.5rem;
+  }  
+
+  .global-page-img{
+    width:30rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .global-page h3{
+    margin-left: 11rem;
+  }
+
+  .global-page-post-like{
+    margin-left: 25.3rem;
+    margin-top: -7rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .global-page-post-like button{
+    width: 5rem;
+  }
+
+  .global-page-post-comment{
+    margin-left: 0.01rem;
+    margin-top: 0.5rem;
+    width: 5rem;
+  }  
+
+  .global-page-post-comment a{
+    width: 5rem !important;
+  }
+
+  .global-post-caption{
+    margin-top: 2.5rem !important;
   }
 
 }

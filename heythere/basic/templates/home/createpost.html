@@ -5,7 +5,22 @@
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    {{form.as_p}}
+    <label for="">caption :</label>
+    <div class="">{{form.caption}}</div>
+    <br>
+    <label for="">image :</label>
+    <div class="">{{form.image}}</div>
+    <br>
+    <label for="">local visibility :</label>
+    <div class="">{{form.local_visibility}}</div>
+    <br>
+    <label for="">global visibility :</label>
+    <div class="">{{form.global_visibility}}</div>
+    <br>
+
+    <div class="d-none">{{form.creator}}</div>
+    <div class="d-none">{{form.likes}}</div>
+    <div class="d-none">{{form.commets}}</div>
 
     <input type="submit" value="Submit">
 </form>
