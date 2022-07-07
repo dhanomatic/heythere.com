@@ -38,8 +38,8 @@ class Post(models.Model):
     class Meta:
         ordering = ['-date_create']
 
-    def __str__(self):
-        return self.creator.username
+    # def __str__(self):
+    #     return self.creator.username
 
     @property
     def total_like(self):
@@ -76,8 +76,8 @@ class Comment(models.Model):
     class Meta:
         ordering = ['-date_create']
 
-    def __str__(self) :
-        return '%s - %s' %(self.post.caption, self.user.username)
+    # def __str__(self) :
+    #     return '%s - %s' %(self.post.caption, self.user.username)
 
     @property
     def children(self):
