@@ -6,11 +6,15 @@ from chat.models import *
 # Create your views here.
 
 def chathome(request):
-    return render(request, 'chat/home.html')
+    rooms = Room.objects.all()
+    context={
+        'rooms':rooms,
+    }
+    return render(request, 'chat/home.html', context)
 
 
 def room(request, room):
-    username = request.GET.get('username')
+    username = str(request.user)
     room_details = Room.objects.get(name=room)
 
     context = {
@@ -23,7 +27,7 @@ def room(request, room):
 
 def checkview(request):
     room = request.POST['room_name']
-    username = request.POST['username']
+    username = str(request.user)
 
     if Room.objects.filter(name=room).exists():
         return redirect('/room/'+room+'/?username='+username)

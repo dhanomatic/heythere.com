@@ -7,6 +7,12 @@ body {
   margin: 0 auto;
   max-width: 800px;
   padding: 0 20px;
+  
+}
+
+#display{
+  height: 23rem;
+  overflow:scroll;
 }
 
 .container {
@@ -15,11 +21,14 @@ body {
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
+  
+  
 }
 
 .darker {
   border-color: #ccc;
   background-color: #ddd;
+  
 }
 
 .container::after {
@@ -51,12 +60,63 @@ body {
   float: left;
   color: #999;
 }
+
+.scroll{
+  overflow-y: auto;
+  max-height: 100px;
+}
 </style>
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 </head>
 <body>
 
-<h2>{{room}} - DjChat</h2>
+<h2>{{room}} - heythere</h2>
+
+
+
+<div class="container">
+  <style>
+  input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
+
+  input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+  background-color: #45a049;
+  }
+
+  div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  }
+  </style>
+
+  <form id="post-form">
+      {% csrf_token %}
+      <input type="hidden" name="username" id="username" value="{{username}}"/>
+      <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
+      <input type="text" name="message" id="message" width="100px" />
+      <input type="submit" value="Send">
+  </form>
+</div>
+
 
 <div id="display">
 
@@ -66,6 +126,7 @@ body {
 </div> -->
 
 </div>
+
 
 <script>
 $(document).ready(function(){
@@ -91,49 +152,6 @@ setInterval(function(){
 })
 </script>
 
-
-<div class="container">
-    <style>
-    input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    }
-
-    input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    }
-
-    input[type=submit]:hover {
-    background-color: #45a049;
-    }
-
-    div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    }
-    </style>
-
-    <form id="post-form">
-        {% csrf_token %}
-        <input type="hidden" name="username" id="username" value="{{username}}"/>
-        <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
-        <input type="text" name="message" id="message" width="100px" />
-        <input type="submit" value="Send">
-    </form>
-</div>
 
 
 </body>
