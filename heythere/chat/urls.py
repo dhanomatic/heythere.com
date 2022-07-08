@@ -8,4 +8,6 @@ urlpatterns = [
     path('checkview/', views.checkview, name='checkview'),
     path('send', views.send, name='send'),
     path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+    path('getActiveUsers/<str:room>/', views.getActiveUsers, name='getActiveUsers'),
+    path('leave-chat/<str:room>/', views.leaveChat, name='leave-chat'),
 ]

@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -14,3 +15,14 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['-date']
+
+class ActiveUsers(models.Model):
+    username = models.CharField(max_length=100)
+    room_name = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    class Meta:
+        ordering = ['-date']
+
+    def __str__(self):
+        return self.username

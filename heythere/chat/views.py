@@ -15,12 +15,21 @@ def chathome(request):
 
 def room(request, room):
     username = str(request.user)
+    display_rooms = Room.objects.all()
     room_details = Room.objects.get(name=room)
+    if ActiveUsers.objects.filter(username=username, room_name=room).exists():
+        pass
+    else:
+        add_user = ActiveUsers.objects.create(username=username, room_name=room)
+        add_user.save()
+    user = ActiveUsers.objects.filter(room_name=room)
 
     context = {
         'username':username,
         'room':room,
         'room_details':room_details,
+        'user':user,
+        'display_rooms':display_rooms,
     }
     return render(request, 'chat/room.html', context)
 
@@ -52,3 +61,13 @@ def getMessages(request, room):
 
     messages = Message.objects.filter(room=room_detials.id)
     return JsonResponse({"messages":list(messages.values())})
+
+
+def getActiveUsers(request, room):
+    activeusers = ActiveUsers.objects.filter(room_name=room)
+    return JsonResponse({"activeusers":list(activeusers.values())})
+
+def leaveChat(request, room):
+    username= str(request.user)
+    remove_user = ActiveUsers.objects.filter(room_name=room, username=username).delete()
+    return redirect('chat-home')
