@@ -98,6 +98,16 @@
     background-color: #f2f2f2;
     padding: 20px;
     }
+
+    @media (max-width:780px){
+      .box{
+        margin-left:0rem;
+      }
+
+      .room-li{
+        margin-left: -2rem;
+      }
+    }
     </style>
 
 
@@ -106,10 +116,10 @@
 </div>
 
 
-<div class="row container">
+<div class="row container box">
 
 
-  <div class="col-lg-6 col-md-12 col-12">
+  <div class="col-lg-6 col-md-12 col-12 ">
     <center>
       <h5>Rooms available </h5>
     </center>
@@ -117,7 +127,7 @@
     <div class="rooms">
       {% for room in rooms %}
       <ul>
-        <a href="{% url 'room' room.name %}"><li class="darker">{{room.name}}</li></a>
+        <a href="{% url 'room' room.name %}"><li class="darker room-li">{{room.name}}</li></a>
       </ul>
       {% endfor %}
     </div>
