@@ -28,10 +28,25 @@ body {
   
 }
 
-.darker {
+.darker{
   border-color: #ccc;
   background-color: #ddd;
-  margin-left: 1rem;
+  
+}
+
+.darker-message{
+  border-color: rgb(244, 251, 255);
+  background-color: rgb(255, 255, 255);
+  max-height: auto;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0 2rem 2rem 2rem;
+}
+
+
+.darker-activeusers {
+  border-color: #ccc;
+  background-color: #ddd;
   
 }
 
@@ -57,7 +72,7 @@ body {
 
 .time-right {
   float: right;
-  color: #aaa;
+  color: rgb(90, 90, 90);
 }
 
 .time-left {
@@ -154,6 +169,8 @@ body {
    }
 
 
+
+
   @media (max-width:780px){
     .rooms-available{
       display: none;
@@ -181,7 +198,7 @@ body {
 
     #active{
       font-size: medium;
-      width: 93%;
+      width: 98%;
     }
 
     .dot{
@@ -192,9 +209,9 @@ body {
       background-color: #c43c3c;
       color: white;
       padding-left: 40%;
-      padding-right: 40%;
+      padding-right: 38.5%;
       margin: 0 0rem;
-      margin-left: 0rem;
+      margin-left: rem;
 
       border: none;
       border-radius: 4px;
@@ -321,7 +338,7 @@ body {
               $("#display").empty();
               for (var key in response.messages)
               {
-                  var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].value+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
+                  var temp="<div class='container darker-message'><b>@"+response.messages[key].user+"</b><span class='time-right'><small>"+response.messages[key].date+"</small></span><p>"+response.messages[key].value+"</p></div>";
                   $("#display").append(temp);
               }
           },
@@ -353,7 +370,7 @@ body {
               $("#active").empty();
               for (var key in response.activeusers)
               {
-                  var temp1="<div class='container darker'><b><span class='dot'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+response.activeusers[key].username+"</span></b></div>";
+                  var temp1="<div class='container darker-activeusers'><b><span class='dot'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+response.activeusers[key].username+"</span></b></div>";
                   $("#active").append(temp1);
               }
           },
