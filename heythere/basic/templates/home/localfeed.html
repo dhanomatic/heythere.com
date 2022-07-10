@@ -1,8 +1,4 @@
-<style>
-    
 
-    
-</style>
 
 {% if user.neighbourhood is None %}
 
@@ -18,10 +14,59 @@
 
 
 
-    <div class="row local-feed">
+    <div class=" local-feed">
         <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
         {% for i in localpost %}
-        <div>
+
+
+        <div class="card card-local">
+
+            {% if request.user.username == i.creator|safe %}
+            <div class="local-upandde">
+                <a class="trash float-right" href="{% url 'delete-post' i.id %}" ><i class="fa-solid fa-trash"></i></a>
+                
+                <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
+                
+            </div>
+            {% endif %}
+            <div>
+                <div class="local-creator-and-date">
+                    <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b><small>{{i.date_create}}</small>
+                </div>
+                
+                <img src="{{i.image.url}}" class="card-img-top localfeed-img" alt="...">
+            </div>
+            
+    
+
+
+            <form class="like-local" action="{% url 'like-post' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{i.id}}">
+                {% if request.user not in i.likes.all %}
+                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                {% else %}
+                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                {% endif %}
+                
+            </form>
+            
+
+            <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+            
+            <div class="caption-local">
+                <div class="card-body">
+                    <p class="card-text">{{i.caption}}</p>
+                </div>
+    
+            </div>
+    
+        </div>
+
+
+
+        <!-- <div>
         <hr>
             {% if request.user.username == i.creator|safe %}
             <div style="float: right;">
@@ -55,7 +100,7 @@
         </div>
         
 
-        <p class="caption-local" style=""> &nbsp; - {{i.caption}}</p>
+        <p class="caption-local" style=""> &nbsp; - {{i.caption}}</p> -->
         
         {% endfor %}
     </div>

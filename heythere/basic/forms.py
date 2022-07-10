@@ -25,7 +25,14 @@ class CreateUserForm(UserCreationForm):
 class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = UserRegister
-        fields = ['username','neighbourhood']
+        fields = ['neighbourhood']
+        # fields = '__all__'
+
+class UserRegisterForm2(forms.ModelForm):
+    class Meta:
+        model = UserRegister
+        # fields = ['neighbourhood']
+        fields = '__all__'
 
 
 class CommentForm(forms.ModelForm):

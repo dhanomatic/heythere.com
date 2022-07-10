@@ -20,6 +20,7 @@ urlpatterns = [
     path('delete-comment/<str:pk>/<str:post_pk>', views.deleteComment, name='delete-comment'),
     path('post/<int:post_pk>/comment/<int:pk>/reply', views.CommentReplyView.as_view(), name='comment-reply'),
     path('userprofile/<str:username>', views.userProfile, name='userprofile'),
+    path('updateprofile/<str:username>', views.updateprofile, name='updateprofile'),
     path('globalpage/', views.globalPostPage, name='globalpage'),
 ]
 

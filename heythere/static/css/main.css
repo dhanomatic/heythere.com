@@ -25,15 +25,34 @@ a{
 }
 
 .like-local{
-  margin-left: 33.5rem;
+  margin-left: 32rem;
   margin-top: -7.5rem;
-  width: 5rem !important;
+  width: 2.8rem !important;
 
 }
 
 .comment-local{
-  margin-left: 33.5rem;
+  margin-left: 32rem;
   margin-top: 0.5rem;
+  width: 2.8rem !important;
+}
+
+.local-upandde{
+  position: relative;
+  z-index: 10;
+  margin: 0.5rem;
+  margin-bottom: -1.5rem;
+}
+
+.local-creator-and-date{
+  margin: 0.5rem;
+}
+
+.card-local{
+  width: 36rem; 
+  margin-left: -2rem;
+  margin-top: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .like-global{
@@ -60,8 +79,8 @@ a{
 
 .localfeed-img{
 
-  width:35rem;
-  margin:1rem;
+  width:35.9rem;
+  margin-top:0.5rem;
 
 }
 
@@ -81,7 +100,7 @@ a{
 }
 
 .caption-local{
-  margin-left:2rem; 
+  margin-top: 2rem;
   text-align: justify;
 }
 
@@ -139,10 +158,14 @@ a{
   text-align: justify;
 }
 
+.navigation-top{
+
+}
+
 
 @media (max-width:780px){
   .localfeed-img{
-    width:30rem;
+    width:28.2rem;
     margin-left: 0;
     margin-right: 0;
   }
@@ -151,8 +174,8 @@ a{
 
 @media (max-width:780px){
   .like-local{
-    margin-left: 25.2rem;
-    margin-top: -6.5rem;
+    margin-left: 23.4rem;
+    margin-top: -6.3rem;
     margin-bottom: 0.2rem;
   }
 
@@ -167,9 +190,9 @@ a{
 
 @media (max-width:780px){
   .comment-local{
-    margin-left: 25.2rem;
+    margin-left: 23.4rem;
     margin-top: 0.5rem;
-    width: 5rem;
+    width: 5rem !important;
   }  
 }
 
@@ -210,7 +233,7 @@ a{
   }
 
   .create-post-element{
-    margin-left:15rem;
+    margin-left:14rem;
     font-size: xx-large;
   }
 
@@ -219,7 +242,8 @@ a{
   }
 
   .caption-local{
-    margin-left:2rem; 
+    width: 90%;
+    margin-left:rem; 
     margin-right: -6rem;
     text-align: justify;
   }
@@ -304,6 +328,14 @@ a{
 
   .global-post-caption{
     margin-top: 2.5rem !important;
+  }
+
+  .card-local{
+    border-radius: 1rem;
+    width: 28.6rem; 
+    margin-left: -11px;
+    margin-top: 3rem; 
+    margin-bottom: -1rem;
   }
 
 }

@@ -6,11 +6,14 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .decorators import unauthenticated_user
 
 # Create your views here.
 
+@unauthenticated_user
 def registerPage(request):
     if request.method=='POST':
         form = CreateUserForm(request.POST)
@@ -41,6 +44,7 @@ def registerPage(request):
     }
     return render(request, 'basic/register.html', context)
 
+@unauthenticated_user
 def loginPage(request):
     if request.method=='POST':
         username = request.POST.get('username')
@@ -66,6 +70,8 @@ def logoutUser(request):
     return redirect('login')
 
 
+@login_required(login_url='login')
+
 def home(request):
     neighbourhood = request.user.userregister.neighbourhood
     
@@ -84,6 +90,8 @@ def home(request):
     return render(request, 'basic/home.html', context)
 
 
+@login_required(login_url='login')
+
 def createPost(request, pk):
     if request.method=='POST':
         form = PostForm(request.POST, request.FILES)
@@ -99,6 +107,8 @@ def createPost(request, pk):
     }
     return render(request, 'home/createpost.html', context)
 
+
+@login_required(login_url='login')
 
 def updatePost(request, pk):
     updateform=Post.objects.get(id=pk)
@@ -121,6 +131,9 @@ def updatePost(request, pk):
     return render(request, 'home/createpost.html', context)
 
 
+
+@login_required(login_url='login')
+
 def deletePost(request, pk):
 
     post=Post.objects.get(id=pk)
@@ -141,6 +154,9 @@ def deletePost(request, pk):
     return render(request, 'home/deletepost.html', context)
 
 
+
+
+@login_required(login_url='login')
 
 def like_post(request):
     user = request.user
@@ -164,6 +180,9 @@ def like_post(request):
         like.save()
     return redirect('home')
 
+
+
+@login_required(login_url='login')
 
 def like_previewpost(request):
     user = request.user
@@ -189,6 +208,9 @@ def like_previewpost(request):
 
 
 
+
+@login_required(login_url='login')
+
 def previewPost(request, pk):
     post = Post.objects.get(id=pk)
     if request.method=='POST':
@@ -205,7 +227,6 @@ def previewPost(request, pk):
         'comments':comments,
     }
     return render(request, 'post/previewpost.html', context)
-
 
 
 class AddCommentLike(LoginRequiredMixin, View):
@@ -238,6 +259,7 @@ class AddCommentLike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
 
+
 class AddCommentDislike(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         comment = Comment.objects.get(pk=pk)
@@ -269,6 +291,9 @@ class AddCommentDislike(LoginRequiredMixin, View):
         return HttpResponseRedirect(next)
 
 
+
+
+@login_required(login_url='login')
 
 def deleteComment(request, pk, post_pk):
 
@@ -309,6 +334,9 @@ class CommentReplyView(LoginRequiredMixin, View):
         return redirect('previewpost', pk=post_pk)
 
 
+
+@login_required(login_url='login')
+
 def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
     neighbourhood = request.POST.get('neighbourhood')
@@ -325,6 +353,25 @@ def userProfile(request, username):
     }
     return render(request, 'profile/userprofile.html', context)
 
+
+
+def updateprofile(request, username):
+    user = UserRegister.objects.get(username=username)
+    if request.method=='POST':
+        form = UserRegisterForm2(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile', username=username)
+    else:
+        form = UserRegisterForm2(instance=user)
+    context={
+        'form':form,
+    }
+    return render(request, 'profile/updateprofile.html', context)
+
+
+
+@login_required(login_url='login')
 
 def globalPostPage(request):
     post = Post.objects.filter(global_visibility=True)
