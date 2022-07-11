@@ -1,4 +1,5 @@
 from datetime import date
+from distutils.command.upload import upload
 from email.policy import default
 from enum import unique
 from pyexpat import model
@@ -37,7 +38,7 @@ class UserRegister(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     dob = models.DateField(max_length=8, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True) 
-    propic = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     def __str__(self):
         today = date.today()
         delta = relativedelta(today, self.dob)

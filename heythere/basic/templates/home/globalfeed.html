@@ -1,11 +1,62 @@
 
 
 <div class="row global-feed" >
-    <h3 style="margin-left:70px">Global Feed</h3>
+    <h6 style="margin-left:70px">Global Feed</h6>
 
-    <hr>
 
-    {% for i in post %}
+    <div class=" global-feed">
+        <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
+        {% for i in localpost %}
+
+
+        <div class="card card-global">
+
+            <div>
+                <div class="global-creator-and-date">
+                    <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                </div>
+                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top globalfeed-img" alt="..."></a>
+            </div>
+            
+    
+
+
+            <form class="like-global" action="{% url 'like-post' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{i.id}}">
+                {% if request.user not in i.likes.all %}
+                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                {% else %}
+                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                {% endif %}
+                
+            </form>
+            
+
+            <a id="comment-global" class="btn btn-info btn-sm comment-global" href="{% url 'previewpost' i.id %}">
+                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+            
+            <div class="caption-global">
+                <div class="card-body">
+                    <p class="card-text">{{i.caption}}</p>
+                </div>
+    
+            </div>
+    
+        </div>
+
+        
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+    <!-- {% for i in post %}
     <div style="margin-left:50px">
         <hr>
 
@@ -41,5 +92,5 @@
 
         
         <p style="margin-left:4rem; margin-right:-5.5rem; text-align: justify;"> &nbsp; - {{i.caption}}</p>
-    {% endfor %}
+    {% endfor %} -->
 </div>

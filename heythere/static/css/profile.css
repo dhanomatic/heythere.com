@@ -1,0 +1,28 @@
+.image-cropper {
+    width: 18rem;
+    height: 18rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+
+
+  .profile-details{
+    margin-left: 10rem;
+    margin-right: 0rem;
+  }
+
+  .banner{
+    width: 90%!important;
+    height: 18rem;
+    object-fit: cover;
+    margin-left: 0rem;
+  }
+

@@ -339,6 +339,7 @@ class CommentReplyView(LoginRequiredMixin, View):
 
 def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
+    userpost =  Post.objects.filter(creator = request.user.userregister.id)
     neighbourhood = request.POST.get('neighbourhood')
     print(neighbourhood)
     if request.method=='POST':
@@ -350,6 +351,7 @@ def userProfile(request, username):
     context={
         'user':user,
         'form':form,
+        'userpost':userpost,
     }
     return render(request, 'profile/userprofile.html', context)
 
@@ -358,7 +360,7 @@ def userProfile(request, username):
 def updateprofile(request, username):
     user = UserRegister.objects.get(username=username)
     if request.method=='POST':
-        form = UserRegisterForm2(request.POST, instance=user)
+        form = UserRegisterForm2(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect('userprofile', username=username)
