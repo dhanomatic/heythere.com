@@ -19,6 +19,21 @@
     margin-right: 0rem;
   }
 
+  
+  .profile-image-div{
+    margin-top: -20rem;
+    width: 18rem;
+    height: 18rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .profile-image-div img{
+    border: 10px !important;
+    border-color: black !important;
+  }
+
   .banner{
     width: 90%!important;
     height: 18rem;
@@ -26,3 +41,86 @@
     margin-left: 0rem;
   }
 
+  .neighbourhood-submit{
+    margin-top: 3rem;
+    max-width: 27rem; 
+    margin-right: -3rem;
+    margin-left: -7rem;
+  }
+
+  .profile-details-card{
+    width: 27rem;
+    margin-left: -7rem;
+
+  }
+
+  .username-profilefeed{
+    background-color: aqua;
+    border-radius: 1rem 1rem 1rem 1rem;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2.5px;
+    font-size: 0.8rem;
+  }
+  
+  .like-profile{
+    margin-left: 30.4rem;
+    margin-top: -7.5rem;
+    width: 2.8rem !important;
+  
+  }
+
+  .comment-profile{
+    margin-left: 30.4rem !important;
+    margin-top: 0.5rem;
+    width: 2.8rem !important;
+  }
+  
+  
+  .profile-local{
+    margin-left: 33.4rem;
+    margin-top: 0.5rem;
+    width: 2.8rem !important;
+  }
+  
+  .profile-upandde{
+    position: relative;
+    z-index: 10;
+    margin: 0.5rem;
+    margin-bottom: -1.5rem;
+  }
+  
+  .profile-creator-and-date{
+    margin: 0.5rem;
+  }
+  
+  .caption-profile p{
+    margin-top: 2rem;
+    margin-bottom: -0.5rem !important;
+    text-align: justify;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: medium;
+    font-weight: 400;
+  }
+  
+  .card-profile{
+    width: 33rem; 
+    margin-left: -2rem;
+    margin-top: 1rem; 
+    margin-bottom: 1rem;
+    border-radius: 0rem 1rem 1rem 1rem;
+  }
+  
+  .profilefeed-img{
+
+    width:32.9rem;
+    margin-top:0.5rem;
+  
+  }
+
+  .bio{
+    width: 61.2rem;
+    margin-left: -2rem;
+  }
+  

@@ -4,7 +4,7 @@
 
 
 
-<div class="row">
+<div class="row container">
 
     <div class="col-lg-2 col-md-2 col-12">
         {% include 'basic/sidebar.html' %}
@@ -12,15 +12,28 @@
 
     
     <div class="col-lg-10">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
                   <img src="https://www.wallpapers13.com/wp-content/uploads/2016/01/Seashore-wallpaper-222863-1920x1080.jpg" class="d-block w-100" alt="...">
               </div>
             </div>
-          </div>
+        </div>
 
-          <div class="row  container">
+        <div class="bio">
+            <div class="card">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{request.user.userregister.fname}} &nbsp; {{request.user.userregister.lname}}</h5>
+                  <p class="card-text">{{request.user.userregister.bio}}</p>
+                  <a href="#about" class="btn btn-primary">About</a>
+                </div>
+            </div>
+        </div>
+
+          <div class="row">
 
             <div class="col-lg-6 col-md-5 col-12">
 
@@ -38,15 +51,15 @@
         
         
         
-                    <div class=" local-feed">
+                    <div class=" profile-feed">
                         <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
                         {% for i in userpost %}
         
         
-                        <div class="card card-local shadow-sm">
+                        <div class="card card-profile shadow-sm">
         
                             {% if request.user.username == i.creator|safe %}
-                            <div class="local-upandde">
+                            <div class="profile-upandde">
                                 <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
                                 
                                 <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -54,17 +67,17 @@
                             </div>
                             {% endif %}
                             <div>
-                                <div class="local-creator-and-date">
-                                    <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                                <div class="profile-creator-and-date">
+                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
                                 </div>
                                 
-                                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top localfeed-img" alt="..."></a>
+                                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top profilefeed-img" alt="..."></a>
                             </div>
                             
                     
         
         
-                            <form class="like-local" action="{% url 'like-post' %}" method="post">
+                            <form class="like-profile" action="{% url 'like-post' %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{i.id}}">
                                 {% if request.user not in i.likes.all %}
@@ -76,10 +89,10 @@
                             </form>
                             
         
-                            <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                            <a id="comment-profile" class="btn btn-info btn-sm comment-profile" href="{% url 'previewpost' i.id %}">
                                 <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
                             
-                            <div class="caption-local">
+                            <div class="caption-profile">
                                 <div class="card-body">
                                     <p class="card-text">{{i.caption}}</p>
                                 </div>
@@ -111,7 +124,7 @@
                     </div>
             
                     <div class="neighbourhood-submit">
-                        <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card border-info mb-3">
                             <div class="card-header text-info">Enter your neighbourhood</div>
                             <div class="card-body text-info">
                                 <div>
@@ -131,11 +144,10 @@
             
             
                     <div>
-                        <div class="card border-info">
+                        <div id="about" class="card border-info profile-details-card">
                             <div class="container card-body text-dark">
                                 
                               <a href="{% url 'updateprofile' request.user.username %}">updateprofile</a>
-                              <h1 class="display-4">{{user.username}}</h1>
                                 <br>
                                 <p>Neighbourhood : <strong>{{user.neighbourhood}}</strong></p>
                                 <br>
