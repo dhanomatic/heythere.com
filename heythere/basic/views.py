@@ -75,7 +75,7 @@ def logoutUser(request):
 def home(request):
     neighbourhood = request.user.userregister.neighbourhood
     
-    localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
+    localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True).exclude(circle_visibility=True)
     
     post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
@@ -384,3 +384,39 @@ def globalPostPage(request):
 
 
 
+
+def createCircle(request):
+    if request.method=='POST':
+        form = CircleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CircleForm(initial={'circle_creator':request.user.userregister})
+    context = {
+        'form':form,
+    }
+    return render(request, 'circle/createcircle.html', context)
+
+
+def circle(request, circle):
+    circle = Circle.objects.get(name = circle)
+    post = Post.objects.filter(circle=circle)
+    context = {
+        'circle':circle,
+        'post':post,
+    }
+    return render(request, 'circle/circle.html', context)
+
+
+def createCirclePost(request, circle):
+    circle_name = Circle.objects.get(name=circle)
+    if request.method=='POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = PostForm(initial={'circle':circle_name, 'creator':request.user.userregister, 'circle_visibility':True})
+    context = {
+        'form':form,
+    }
+    return render(request, 'circle/createcircle.html', context)

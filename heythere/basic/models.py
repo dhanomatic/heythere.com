@@ -1,10 +1,13 @@
+from contextlib import nullcontext
 from datetime import date
 from distutils.command.upload import upload
 from email.policy import default
 from enum import unique
+from msilib.schema import Property
 from pyexpat import model
 from tkinter import CASCADE
 from tkinter.tix import Tree
+from unittest.mock import PropertyMock
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import BooleanField
@@ -47,6 +50,36 @@ class UserRegister(models.Model):
     def __str__(self):
         return self.username
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+
+        except:
+            url = ''
+        return url
+
+
+class Circle(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    discription = models.CharField(max_length=1000, null=True, blank=True)
+    circle_creator = models.ForeignKey(UserRegister, on_delete=models.DO_NOTHING, related_name='circle_creator', null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+    date_create = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+
+        except:
+            url = ''
+        return url
+
+
 class Post(models.Model):
     creator = models.ForeignKey(UserRegister, on_delete=models.CASCADE, null=True, related_name='creator')
     caption = models.TextField(max_length=500, null=True, blank=True)
@@ -57,12 +90,22 @@ class Post(models.Model):
     date_update = models.DateTimeField(auto_now=True, null=True)
     likes = models.ManyToManyField(User, related_name='liked', null=True, blank=True)
     commets = models.ManyToManyField(User, related_name='commented', null=True, blank=True)
+    circle = models.ForeignKey(Circle, on_delete=models.CASCADE, related_name='circle', null=True, blank=True)
+    circle_visibility = models.BooleanField(default=False, null=True, blank=True)
 
     class Meta:
         ordering = ['-date_create']
 
     # def __str__(self):
     #     return self.creator.username
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+
+        except:
+            url = ''
+        return url
 
     @property
     def total_like(self):
@@ -111,5 +154,12 @@ class Comment(models.Model):
         if self.parent is None:
             return True
         return False
+
+
+
+
+# class CirclePost(models.Model):
+#     circle_name = models.ForeignKey(Circle, on_delete=models.CASCADE, related_name='circle_name')
+#     creator = models.ForeignKey(UserRegister, on_delete=models.DO_NOTHING, related_name='creator', null=True, blank=True)
 
 

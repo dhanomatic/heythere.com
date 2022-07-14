@@ -1,0 +1,27 @@
+{% extends 'basic/main.html' %}
+
+
+{% block content %}
+
+{{circle.name}}
+<br>
+{{circle.discription}}
+<br>
+{{circle.date_create}}
+<br>
+<img src="{{circle.imageURL}}" alt="">
+
+<hr>
+
+{% for i in post %}
+
+    {{i.creator}}
+    <br>
+    {{i.caption}}
+    <br>
+    <img src="{{i.imageURL}}" alt="">
+
+{% endfor %}
+
+
+{% endblock content %}

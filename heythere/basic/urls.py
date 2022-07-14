@@ -1,4 +1,6 @@
+from turtle import circle
 from django.urls import path
+
 from . import views
 
 from django.conf.urls.static import static
@@ -22,6 +24,9 @@ urlpatterns = [
     path('userprofile/<str:username>', views.userProfile, name='userprofile'),
     path('updateprofile/<str:username>', views.updateprofile, name='updateprofile'),
     path('globalpage/', views.globalPostPage, name='globalpage'),
+    path('createcircle/', views.createCircle, name='createcircle'),
+    path('circle/<str:circle>', views.circle, name='circle'),
+    path('create-circle-post/<str:circle>', views.createCirclePost, name='create-circle-post'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

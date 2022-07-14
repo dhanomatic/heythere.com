@@ -2,6 +2,7 @@ from dataclasses import fields
 from logging import PlaceHolder
 from tkinter import Widget
 from turtle import width
+from urllib import request
 from django import forms
 from . models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -46,3 +47,9 @@ class CommentForm(forms.ModelForm):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
+
+
+class CircleForm(forms.ModelForm):
+    class Meta:
+        model = Circle
+        fields = '__all__'
