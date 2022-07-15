@@ -15,7 +15,7 @@
                 <div class="global-creator-and-date">
                     <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
                 </div>
-                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top globalfeed-img" alt="..."></a>
+                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top globalfeed-img" alt="..."></a>
             </div>
             
     

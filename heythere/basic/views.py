@@ -76,7 +76,7 @@ def home(request):
     neighbourhood = request.user.userregister.neighbourhood
     
     localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True).exclude(circle_visibility=True)
-    
+    circles = Circle.objects.filter(neighbourhood=neighbourhood).order_by('-id')[:5]
     post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
@@ -86,6 +86,7 @@ def home(request):
         'post':post,
         'user':user,
         'u':u,
+        'circles':circles
     }
     return render(request, 'basic/home.html', context)
 
@@ -415,7 +416,7 @@ def createCirclePost(request, circle):
         if form.is_valid():
             form.save()
     else:
-        form = PostForm(initial={'circle':circle_name, 'creator':request.user.userregister, 'circle_visibility':True})
+        form = PostForm(initial={'circle':circle_name, 'creator':request.user.userregister, 'circle_visibility':True, 'local_visibility':False})
     context = {
         'form':form,
     }

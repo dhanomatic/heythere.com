@@ -1,27 +1,210 @@
 {% extends 'basic/main.html' %}
 
-
 {% block content %}
 
-{{circle.name}}
-<br>
-{{circle.discription}}
-<br>
-{{circle.date_create}}
-<br>
-<img src="{{circle.imageURL}}" alt="">
 
-<hr>
 
-{% for i in post %}
+<div class="row container">
 
-    {{i.creator}}
-    <br>
-    {{i.caption}}
-    <br>
-    <img src="{{i.imageURL}}" alt="">
+    <div class="col-lg-2 col-md-2 col-12">
+        {% include 'basic/sidebar.html' %}
+    </div>
 
-{% endfor %}
+    
+    <div class="col-lg-10">
+        <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active banner">
+                  <img src="https://www.wallpapers13.com/wp-content/uploads/2016/01/Seashore-wallpaper-222863-1920x1080.jpg" class="d-block w-100" alt="...">
+              </div>
+            </div>
+        </div>
+
+        <div class="bio">
+            <div class="card">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{circle.name}} &nbsp; {{request.user.userregister.lname}}</h5>
+                  <p class="card-text">{{circle.description}}</p>
+                  <a href="#about" class="btn btn-primary">About</a>
+                </div>
+            </div>
+        </div>
+
+          <div class="row">
+
+            <div class="col-lg-6 col-md-5 col-12">
+        
+                    <div class="craate-post">
+                        <a class="create-post-element" href="{% url 'create-circle-post' circle.name %}"><i class="bi bi-plus-circle"></i></a>
+                    </div>
+        
+    
+                    <div class=" profile-feed">
+                        <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
+                        {% for i in post %}
+        
+        
+                        <div class="card card-profile shadow-sm">
+        
+                            {% if request.user.username == i.creator|safe %}
+                            <div class="profile-upandde">
+                                <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
+                                
+                                <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                
+                            </div>
+                            {% endif %}
+                            <div>
+                                <div class="profile-creator-and-date">
+                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                                </div>
+                                
+                                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top profilefeed-img" alt="..."></a>
+                            </div>
+                            
+                    
+        
+        
+                            <form class="like-profile" action="{% url 'like-post' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{i.id}}">
+                                {% if request.user not in i.likes.all %}
+                                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                                {% endif %}
+                                
+                            </form>
+                            
+        
+                            <a id="comment-profile" class="btn btn-info btn-sm comment-profile" href="{% url 'previewpost' i.id %}">
+                                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                            
+                            <div class="caption-profile">
+                                <div class="card-body">
+                                    <p class="card-text">{{i.caption}}</p>
+                                </div>
+                    
+                            </div>
+                    
+                        </div>
+        
+                        {% endfor %}
+                    </div>
+        
+             
+               
+            </div>
+
+
+            <div class="col-lg-6 col-md-5 col-12">
+
+
+                <div class="profile-details">
+                    <div class="profile-image-div">
+                        <div class="card" style="width: 18rem;">
+                            <div class="image-cropper">
+                                <img src="{{circle.imageURL }}" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="neighbourhood-submit">
+                        <div class="card border-info mb-3">
+                            <div class="card-header text-info">Enter your neighbourhood</div>
+                            <div class="card-body text-info">
+                                <div>
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="neighbourhood" placeholder="Neighbourhood" style="text-transform: capitalize;" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <div class="input-group-append" style="width: 30%;">
+                                            <input type="submit" value="Submit" class="btn btn-outline-info" id="button-addon2">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+            
+            
+                    <div>
+                        <div id="about" class="card border-info profile-details-card">
+                            <div class="container card-body text-dark">
+                                
+                              <a href="{% url 'updateprofile' request.user.username %}">updateprofile</a>
+                                <br>
+                                <p>Neighbourhood : <strong>{{user.neighbourhood}}</strong></p>
+                                <br>
+                                <p>First Name : <strong>{{user.fname}}</strong></p>
+                                <br>
+                                <p>Last Name : <strong>{{user.lname}}</strong></p>
+                                <br>
+                                <p>Email : <strong>{{user.email}}</strong></p>
+                                <br>
+                                <p>Phone Number : <strong>{{user.phonenumber}}</strong></p>
+                                <br>
+                                <p>Gender : <strong>{{user.gender}}</strong></p>
+                                <br>
+                                <p>Bio : <strong>{{user.bio}}</strong></p>
+                                <br>
+                                <p>Date of Birth : <strong>{{user.dob}}</strong></p>
+                                <br>
+                                <p>Age : <strong>{{user.age}}</strong></p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+        
+
+          </div>
+    </div>
+
+
+    
+
+
+
+    
+
 
 
 {% endblock content %}
+
+
+
+
+<!-- <div>
+            <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="neighbourhood" placeholder="Recipient's username" style="text-transform: capitalize;" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append" style="width: 50%;">
+                    <input type="submit" value="Submit" class="btn btn-outline-secondary" id="button-addon2">
+                    </div>
+                </div>
+            </form>
+        </div> -->
+
+
+        <!-- <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br>
+            <br>
+        
+            <label for="neighbourhood">Neighbourhood :</label>
+            <input name="neighbourhood" type="text" style="text-transform: capitalize;"></input>
+            <br>
+            <br>
+            <input type="submit" value="Submit">
+        </form> -->
+

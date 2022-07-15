@@ -1,0 +1,57 @@
+.circle-card{
+    width: 36rem;
+    height: 16rem;
+    margin-left: -2rem;
+    border-radius: 0;
+}
+
+.circle-elements{
+    margin-right: 2rem;
+    margin-left: -1rem;
+    width: 36rem !important;
+    transition: 100ms;
+    
+}
+
+.circle-elements:hover {
+    transform: translate3d(10px,0px,20px);
+}
+
+
+.circle-elements p{
+    font-size: 14px;
+    width: 4rem;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+.circle-local-body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-left: 0.3rem !important;
+}
+
+.image-cropper-circle {
+    margin-left: -1rem;
+    width: 6rem;
+    height: 6rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: solid;
+    border-color: #16a0b6;
+  }
+
+.image-cropper-circle img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+
+.circle-showmore-btn{
+    border-radius: 0rem 0rem 0rem 0rem;
+}

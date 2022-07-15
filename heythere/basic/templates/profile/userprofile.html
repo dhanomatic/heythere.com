@@ -68,7 +68,11 @@
                             {% endif %}
                             <div>
                                 <div class="profile-creator-and-date">
-                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> 
+                                    {% if i.circle is not None %}
+                                        <b><span class="circlename-profilefeed">{{i.circle}}</span></b>
+                                    {% endif %}
+                                    <small>{{i.date_create}}</small>
                                 </div>
                                 
                                 <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top profilefeed-img" alt="..."></a>

@@ -1,0 +1,26 @@
+<div class="card circle-card">
+        <div class="">
+            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Your Neighbourhood Circles</h6>
+        </div>
+
+        {% for circle in circles %}
+        {% if forloop.first %}
+        <div class="row mx-auto card-body circle-local-body">
+        {% endif %}
+            <div class="col-lg-2 bg-light shadow-sm circle-elements">
+                <div class=" image-cropper-circle" >
+                    <a href="{% url 'circle' circle.name %}"><img src="{{circle.imageURL}}"  alt=""></a>
+                </div>
+                <p class="card-text">{{circle.name}}</p>
+                
+            </div>
+        {% if forloop.counter|divisibleby:5 %} 
+        </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+        {% endfor %}
+
+        <div >
+            <a href="http://" class="btn btn-info btn-block  circle-showmore-btn">show more</a>
+        </div>
+        
+        
+</div>

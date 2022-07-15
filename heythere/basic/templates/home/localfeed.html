@@ -12,6 +12,12 @@
         <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="bi bi-plus-circle"></i></a>
     </div>
 
+    <hr>
+
+        {% include 'circle/localdisplay.html' %}
+
+    <hr>
+
 
 
     <div class=" local-feed">
@@ -31,10 +37,17 @@
             {% endif %}
             <div>
                 <div class="local-creator-and-date">
-                    <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                    <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
                 </div>
+
+                {% if i.image.url is not None %}
                 
-                <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top localfeed-img" alt="..."></a>
+                    <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top localfeed-img" alt="..."></a>
+                {% else %}
+                
+                    
+
+                {% endif %}
             </div>
             
     
@@ -57,7 +70,7 @@
             
             <div class="caption-local">
                 <div class="card-body">
-                    <p class="card-text">{{i.caption}}</p>
+                    <p class="card-text caption-local" >{{i.caption}}</p>
                 </div>
     
             </div>
@@ -78,7 +91,7 @@
             {% endif %}
             <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
             <br>
-            <a href="{% url 'previewpost' i.id %}" ><img class="localfeed-img" src="{{i.image.url}}" alt="" ></a>
+            
 
         </div>
 
