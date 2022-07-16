@@ -46,6 +46,7 @@
     max-width: 27rem; 
     margin-right: -3rem;
     margin-left: -7rem;
+    margin-bottom: -2rem;
   }
 
   .profile-details-card{
@@ -123,14 +124,19 @@
   }
   
   .profilefeed-img{
-
     width:32.9rem;
     margin-top:0.5rem;
-  
+    max-height: 34.9rem!important;
+    object-fit: cover;
+    object-position: center;
   }
 
   .bio{
     width: 61.2rem;
     margin-left: -2rem;
   }
+
+#about{
+  margin-top: 3.1rem !important;
+}
   

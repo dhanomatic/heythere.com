@@ -33,13 +33,40 @@ a{
   padding-top: 2px;
   padding-left: 6px;
   padding-right: 6px;
-  padding-bottom: 5px !important;
+  padding-bottom: 4px !important;
   font-size: 0.9rem;
 }
 
-.create-post-element{
-  font-size: 2.5rem;
+.circlename-localfeed{
+  background-color: greenyellow;
+  border-radius: 1rem 1rem 1rem 1rem;
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 4px !important;
+  font-size: 0.7rem;
 }
+
+.create-post-card{
+  width: 36rem;
+  margin-left: -2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+}
+
+.create-post-card-body{
+  margin-bottom: -1rem;
+}
+
+.create-post-card-body a{
+  background-color: rgb(245, 245, 245);
+  border: 0;
+  border-radius: 8px !important;
+}
+
+
+
 
 .like-local{
   margin-left: 33.4rem;
@@ -86,14 +113,25 @@ a{
   margin-left: -2rem;
   margin-top: 1rem; 
   margin-bottom: 1rem;
-  border-radius: 0rem 0rem 0rem 0rem;
+  border-radius: 1rem 1rem 1rem 1rem;
+  border: 0;
 }
 
 .card-global{
   width: 26rem; 
   margin-left: -2rem;
-  margin-top: 1rem; 
+  margin-top: 0rem; 
   margin-bottom: 1rem;
+  border: 0;
+  border-radius: 1rem;
+}
+
+.home-global-title-card{
+  color: white;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  border: 0;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .global-feed{
@@ -141,9 +179,19 @@ a{
 
 .localfeed-img{
 
-  width:35.9rem;
+  width:36rem;
   margin-top:0.5rem;
+  max-height: 36rem!important;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
 
+}
+
+.globalfeed-img{
+  border: 0;
+  border-radius: 0;
 }
 
 
@@ -412,6 +460,7 @@ a{
     margin: 3.5rem;
     flex-direction:column;
     position: fixed;
+    font-size: large;
   }
 
   .craate-post{
@@ -423,6 +472,11 @@ a{
   .previewpost img{
     width: 42rem;
     margin-left: 2rem;
+  }
+
+  .create-post-element{
+    font-size: 2.5rem;
+    display: none;
   }
   
 }

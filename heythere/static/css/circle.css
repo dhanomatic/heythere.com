@@ -1,8 +1,12 @@
 .circle-card{
     width: 36rem;
-    height: 16rem;
+    height: 17.5rem;
     margin-left: -2rem;
-    border-radius: 0;
+    border-radius: 1rem;
+}
+
+.circle-card a{
+    border-radius: 0rem 0rem 1rem 1rem;
 }
 
 .circle-elements{
@@ -25,6 +29,29 @@
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
+}
+
+.circle-join-btn-div{
+    margin-top: -0.5rem;
+}
+
+.circle-join-btn-div a{
+    background-color: #009dd1;
+    color: whitesmoke;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 1rem;
+}
+
+.circle-join-btn-div a:hover{
+    background-color: #0087b4;
+    color: whitesmoke;
+    font-weight: 600;
+    margin-left: 0rem;
+    border-radius: 1rem;
 }
 
 .circle-local-body{

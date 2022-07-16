@@ -8,113 +8,195 @@
 
 {% else %}
 
-    <div class="craate-post">
-        <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="bi bi-plus-circle"></i></a>
+    <div>
+        <div class="card create-post-card ">
+            <div class="card-body input-group mb-3">
+                <div class="input-group create-post-card-body">
+                    <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                    <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                    <div class="input-group-append">
+                      <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <hr>
+    <!-- <div class="craate-post">
+        <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="bi bi-plus-circle"></i></a>
+    </div> -->
+
+    <div>
 
         {% include 'circle/localdisplay.html' %}
 
-    <hr>
+    </div>
 
 
 
     <div class=" local-feed">
         <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
+        
+            
+        
         {% for i in localpost %}
 
+            {% for c in circle %}
+            
+                {% if i.circle == c %}
 
-        <div class="card card-local shadow-sm">
+                <div class="card card-local shadow">
 
-            {% if request.user.username == i.creator|safe %}
-            <div class="local-upandde">
-                <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
-                
-                <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
-                
-            </div>
-            {% endif %}
-            <div>
-                <div class="local-creator-and-date">
-                    <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
-                </div>
+                    {% if request.user.username == i.creator|safe %}
+                    <div class="local-upandde">
+                        <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
+                        
+                        <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
+                        
+                    </div>
+                    {% endif %}
+                    <div>
+                        <div class="local-creator-and-date">
+                            <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <b><span class="circlename-localfeed">{{i.circle}}</span></b> <small style="color: grey;">{{i.date_create}}</small>
+                        </div>
 
-                {% if i.image.url is not None %}
-                
-                    <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top localfeed-img" alt="..."></a>
-                {% else %}
-                
+                        {% if i.image.url is not None %}
+                        
+                            <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top localfeed-img" alt="..."></a>
+                        {% else %}
+                        
+                            
+
+                        {% endif %}
+                    </div>
+                    
+            
+
+
+                    <form class="like-local" action="{% url 'like-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                        {% if request.user not in i.likes.all %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                        {% endif %}
+                        
+                    </form>
                     
 
-                {% endif %}
-            </div>
+                    <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                        <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                    
+                    <div class="caption-local">
+                        <div class="card-body">
+                            <p class="card-text caption-local" >{{i.caption}}</p>
+                        </div>
             
-    
-
-
-            <form class="like-local" action="{% url 'like-post' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="post_id" value="{{i.id}}">
-                {% if request.user not in i.likes.all %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
-                {% else %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
-                {% endif %}
-                
-            </form>
+                    </div>
             
-
-            <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
-                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
-            
-            <div class="caption-local">
-                <div class="card-body">
-                    <p class="card-text caption-local" >{{i.caption}}</p>
                 </div>
-    
-            </div>
-    
-        </div>
 
 
 
-        <!-- <div>
-        <hr>
-            {% if request.user.username == i.creator|safe %}
-            <div style="float: right;">
-                <a href="{% url 'update-post' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                &nbsp;
-                <a class="trash" href="{% url 'delete-post' i.id %}"><i class="fa-solid fa-trash"></i></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-            {% endif %}
-            <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
-            <br>
+                <!-- <div>
+                <hr>
+                    {% if request.user.username == i.creator|safe %}
+                    <div style="float: right;">
+                        <a href="{% url 'update-post' i.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        &nbsp;
+                        <a class="trash" href="{% url 'delete-post' i.id %}"><i class="fa-solid fa-trash"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    {% endif %}
+                    <b><span><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b>&nbsp;<small>{{i.date_create}}</small>
+                    <br>
+                    
+
+                </div>
+
+                <div>
+
+                    <form class="like-local" action="{% url 'like-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                        {% if request.user not in i.likes.all %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                        {% endif %}
+                        
+                    </form>
+
+                        <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                        <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                </div>
+                
+
+                <p class="caption-local" style=""> &nbsp; - {{i.caption}}</p> -->
+
+                
+
+                {% endif %}
+
+            {% endfor %}
+
+                {% if i.circle is None %}
+
+                <div class="card card-local shadow-sm">
+
+                    {% if request.user.username == i.creator|safe %}
+                    <div class="local-upandde">
+                        <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
+                        
+                        <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
+                        
+                    </div>
+                    {% endif %}
+                    <div>
+                        <div class="local-creator-and-date">
+                            <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
+                        </div>
+
+                        {% if i.image.url is not None %}
+                        
+                            <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top localfeed-img" alt="..."></a>
+                        {% else %}
+                        
+                            
+
+                        {% endif %}
+                    </div>
+                    
             
 
-        </div>
 
-        <div>
+                    <form class="like-local" action="{% url 'like-post' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                        {% if request.user not in i.likes.all %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                        {% endif %}
+                        
+                    </form>
+                    
 
-            <form class="like-local" action="{% url 'like-post' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="post_id" value="{{i.id}}">
-                {% if request.user not in i.likes.all %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
-                {% else %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                    <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                        <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                    
+                    <div class="caption-local">
+                        <div class="card-body">
+                            <p class="card-text caption-local" >{{i.caption}}</p>
+                        </div>
+            
+                    </div>
+            
+                </div>
+
                 {% endif %}
-                
-            </form>
 
-                <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
-                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
-        </div>
-        
-
-        <p class="caption-local" style=""> &nbsp; - {{i.caption}}</p> -->
-        
         {% endfor %}
     </div>
 

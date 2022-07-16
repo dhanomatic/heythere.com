@@ -1,3 +1,4 @@
+from ntpath import join
 from turtle import circle
 from django.urls import path
 
@@ -27,6 +28,7 @@ urlpatterns = [
     path('createcircle/', views.createCircle, name='createcircle'),
     path('circle/<str:circle>', views.circle, name='circle'),
     path('create-circle-post/<str:circle>', views.createCirclePost, name='create-circle-post'),
+    path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

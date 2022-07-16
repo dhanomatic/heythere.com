@@ -45,9 +45,19 @@
         
                 {% else %}
         
-                    <div class="craate-post">
-                        <a class="create-post-element" href="{% url 'create-post' user.id %}"><i class="bi bi-plus-circle"></i></a>
+                <div>
+                    <div class="card create-post-card" style="width: 33rem;">
+                        <div class="card-body input-group mb-3">
+                            <div class="input-group create-post-card-body">
+                                <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                                <a style="width: 24rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                                <div class="input-group-append">
+                                  <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
         
         
         
@@ -126,6 +136,8 @@
                             </div>
                         </div>
                     </div>
+
+                    {% if request.user.userregister.neighbourhood is None %}
             
                     <div class="neighbourhood-submit">
                         <div class="card border-info mb-3">
@@ -145,6 +157,8 @@
                             </div>
                           </div>
                     </div>
+
+                    {% endif %}
             
             
                     <div>

@@ -67,6 +67,7 @@ class Circle(models.Model):
     image = models.ImageField(null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True)
     neighbourhood = models.CharField(max_length=100, null=True, blank=True)
+    members = models.ManyToManyField(UserRegister, related_name='members', null=True, blank=True)
 
     class Meta:
         ordering = ['-date_create']
