@@ -3,6 +3,7 @@
     height: 17.5rem;
     margin-left: -2rem;
     border-radius: 1rem;
+    border: 0;
 }
 
 .circle-card a{
@@ -82,3 +83,56 @@
 .circle-showmore-btn{
     border-radius: 0rem 0rem 0rem 0rem;
 }
+
+
+.members-card{
+    width: 26rem;
+    height: 17.5rem;
+    margin-top: 1rem;
+    margin-left: -6rem;
+    border-radius: 1rem;
+    border: 0;
+}
+
+.members-elements{
+    margin-right: rem;
+    margin-left: rem;
+    width: 28rem;
+    
+}
+
+.members-elements p{
+    font-size: 14px;
+    width: 4rem;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    margin-left: -0.1rem;
+}
+
+
+.members-local-body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-left: 0.3rem !important;
+}
+
+.image-cropper-member-circle {
+    margin-left: -0.2rem;
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: solid;
+    border-color: #16a0b6;
+  }
+
+.image-cropper-member-circle img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }

@@ -406,9 +406,13 @@ def createCircle(request):
 def circle(request, circle):
     circle = Circle.objects.get(name = circle)
     post = Post.objects.filter(circle=circle)
+    members = UserRegister.objects.filter(members__name=circle)
+    flag=0
     context = {
         'circle':circle,
         'post':post,
+        'members':members,
+        'flag':flag,
     }
     return render(request, 'circle/circle.html', context)
 
@@ -420,7 +424,7 @@ def createCirclePost(request, circle):
         if form.is_valid():
             form.save()
     else:
-        form = PostForm(initial={'circle':circle_name, 'creator':request.user.userregister, 'circle_visibility':True, 'local_visibility':False})
+        form = PostForm(initial={'circle':circle_name, 'creator':request.user.userregister})
     context = {
         'form':form,
     }

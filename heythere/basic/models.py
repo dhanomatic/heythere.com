@@ -96,7 +96,6 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='liked', null=True, blank=True)
     commets = models.ManyToManyField(User, related_name='commented', null=True, blank=True)
     circle = models.ForeignKey(Circle, on_delete=models.CASCADE, related_name='circle', null=True, blank=True)
-    circle_visibility = models.BooleanField(default=False, null=True, blank=True)
 
     class Meta:
         ordering = ['-date_create']

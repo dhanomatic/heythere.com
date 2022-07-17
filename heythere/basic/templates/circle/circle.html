@@ -10,6 +10,7 @@
         {% include 'basic/sidebar.html' %}
     </div>
 
+
     
     <div class="col-lg-10">
         <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
@@ -23,12 +24,11 @@
         <div class="bio">
             <div class="card">
                 <div class="card-header">
-                  Featured
+                  <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 0rem;">created by {{circle.circle_creator.fname}} {{circle.circle_creator.lname}}</p>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{circle.name}} &nbsp; {{request.user.userregister.lname}}</h5>
-                  <p class="card-text">{{circle.description}}</p>
-                  <a href="#about" class="btn btn-primary">About</a>
+                  <h4 style="font-weight: 700;" class="card-title">{{circle.name}} &nbsp; </h4>
+                  <p class="card-text" style="margin-right: 15rem;">{{circle.description}}</p>
                 </div>
             </div>
         </div>
@@ -37,9 +37,19 @@
 
             <div class="col-lg-6 col-md-5 col-12">
         
-                    <div class="craate-post">
-                        <a class="create-post-element" href="{% url 'create-circle-post' circle.name %}"><i class="bi bi-plus-circle"></i></a>
+                <div>
+                    <div class="card create-post-card" style="width: 33rem;">
+                        <div class="card-body input-group mb-3">
+                            <div class="input-group create-post-card-body">
+                                <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                                <a style="width: 24rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                                <div class="input-group-append">
+                                  <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
         
     
                     <div class=" profile-feed">
@@ -59,7 +69,9 @@
                             {% endif %}
                             <div>
                                 <div class="profile-creator-and-date">
-                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                                    <b><span class="username-profilefeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> 
+                                    <b><span class="circlename-profilefeed">{{i.circle}}</span></b>
+                                     <small>{{i.date_create}}</small>
                                 </div>
                                 
                                 <a href="{% url 'previewpost' i.id %}" ><img src="{{i.image.url}}" class="card-img-top profilefeed-img" alt="..."></a>
@@ -114,51 +126,55 @@
                         </div>
                     </div>
             
-                    <div class="neighbourhood-submit">
-                        <div class="card border-info mb-3">
-                            <div class="card-header text-info">Enter your neighbourhood</div>
-                            <div class="card-body text-info">
-                                <div>
-                                    <form action="" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="neighbourhood" placeholder="Neighbourhood" style="text-transform: capitalize;" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                            <div class="input-group-append" style="width: 30%;">
-                                            <input type="submit" value="Submit" class="btn btn-outline-info" id="button-addon2">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                          </div>
-                    </div>
+                    
             
             
                     <div>
                         <div id="about" class="card border-info profile-details-card">
                             <div class="container card-body text-dark">
                                 
-                              <a href="{% url 'updateprofile' request.user.username %}">updateprofile</a>
+                              <a style="float: right;" href="{% url 'updateprofile' request.user.username %}">updateprofile</a>
                                 <br>
-                                <p>Neighbourhood : <strong>{{user.neighbourhood}}</strong></p>
+                                <p>Neighbourhood : <strong>{{request.user.userregister.neighbourhood}}</strong></p>
                                 <br>
-                                <p>First Name : <strong>{{user.fname}}</strong></p>
+                                <p>Name : <strong>{{circle.name}}</strong></p>
                                 <br>
-                                <p>Last Name : <strong>{{user.lname}}</strong></p>
+                                <p>Description : <strong>{{circle.description}}</strong></p>
                                 <br>
                                 <p>Email : <strong>{{user.email}}</strong></p>
                                 <br>
                                 <p>Phone Number : <strong>{{user.phonenumber}}</strong></p>
                                 <br>
-                                <p>Gender : <strong>{{user.gender}}</strong></p>
-                                <br>
-                                <p>Bio : <strong>{{user.bio}}</strong></p>
-                                <br>
-                                <p>Date of Birth : <strong>{{user.dob}}</strong></p>
-                                <br>
-                                <p>Age : <strong>{{user.age}}</strong></p>
                             </div>
                           </div>
+                    </div>
+
+                    <div class="members">
+                        <div class="card members-card">
+                            <div class="">
+                                <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Your Neighbourhood Circles</h6>
+                            </div>
+                    
+                            {% for member in members %}
+                            {% if forloop.first %}
+                            <div class="row mx-auto card-body members-local-body">
+                            {% endif %}
+                                <div class="col-lg-2 members-elements">
+                                    <div class="image-cropper-member-circle" >
+                                        <a href="#"><img src="{{member.imageURL}}"  alt=""></a>
+                                    </div>
+                                    <p class="card-text">{{member.username}}</p>
+                                </div>
+                            {% if forloop.counter|divisibleby:5 %} 
+                            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+                            {% endfor %}
+                    
+                            <div >
+                                <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
+                            </div>
+                            
+                            
+                        </div>
                     </div>
                 </div>
         
