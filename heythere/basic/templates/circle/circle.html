@@ -1,5 +1,5 @@
 {% extends 'basic/main.html' %}
-
+{% load static %}
 {% block content %}
 
 
@@ -16,7 +16,7 @@
         <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
-                  <img src="https://www.wallpapers13.com/wp-content/uploads/2016/01/Seashore-wallpaper-222863-1920x1080.jpg" class="d-block w-100" alt="...">
+                  <img src="{% static 'images/Wallpaper_20.jpg' %}" class="d-block w-100" alt="...">
               </div>
             </div>
         </div>
@@ -36,6 +36,8 @@
           <div class="row">
 
             <div class="col-lg-6 col-md-5 col-12">
+
+                {% if flag == True %}
         
                 <div>
                     <div class="card create-post-card" style="width: 33rem;">
@@ -50,7 +52,9 @@
                         </div>
                     </div>
                 </div>
-        
+                {% endif %}
+                
+                
     
                     <div class=" profile-feed">
                         <!-- <h5 style="margin-left:70px">Local Feed</h5> -->
@@ -79,7 +83,8 @@
                             
                     
         
-        
+                            {% if flag == True %}
+
                             <form class="like-profile" action="{% url 'like-post' %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{i.id}}">
@@ -94,6 +99,11 @@
         
                             <a id="comment-profile" class="btn btn-info btn-sm comment-profile" href="{% url 'previewpost' i.id %}">
                                 <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                            {% else %}
+
+                            <p style="margin-top: -3rem;"></p>
+
+                            {% endif %}
                             
                             <div class="caption-profile">
                                 <div class="card-body">
@@ -106,6 +116,7 @@
         
                         {% endfor %}
                     </div>
+                
         
              
                

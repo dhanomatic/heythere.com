@@ -75,7 +75,7 @@ def logoutUser(request):
 def home(request):
     neighbourhood = request.user.userregister.neighbourhood
 
-    circle = Circle.objects.filter(members=request.user.userregister)
+    user_circle = Circle.objects.filter(members=request.user.userregister)
     print(circle)
 
     localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
@@ -83,6 +83,8 @@ def home(request):
     post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
+
+    flag = request.user.userregister.neighbourhood
     
     context={
         'localpost':localpost,
@@ -90,7 +92,8 @@ def home(request):
         'user':user,
         'u':u,
         'circles':circles,
-        'circle':circle,
+        'user_circle':user_circle,
+        'flag':flag
     }
     return render(request, 'basic/home.html', context)
 
@@ -407,7 +410,12 @@ def circle(request, circle):
     circle = Circle.objects.get(name = circle)
     post = Post.objects.filter(circle=circle)
     members = UserRegister.objects.filter(members__name=circle)
-    flag=0
+
+    flag=False
+    for i in members:
+        if i == request.user.userregister:
+            flag=True
+
     context = {
         'circle':circle,
         'post':post,
