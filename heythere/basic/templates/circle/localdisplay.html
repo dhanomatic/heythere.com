@@ -16,11 +16,22 @@
                         <p class="card-text">{{circle.name}}</p>
                         <div class="circle-join-btn-div">
                             
-                            {% if flag == request.user.userregister %}
+                            <!-- {% if flag == request.user.userregister %}
                                 <a href="{% url 'join-circle' circle.name %}" class="btn btn-sm  btn-block">Leave</a>
                             {% else %}
                                 <a href="{% url 'join-circle' circle.name %}" class="btn btn-sm  btn-block">Join</a>
-                            {% endif %}
+                            {% endif %} -->
+
+                            <form class="" action="{% url 'join' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="circle_id" value="{{circle.id}}">
+                                {% if request.user.userregister not in circle.members.all %}
+                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">Join</button>
+                                {% else %}
+                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">Leave</button>
+                                {% endif %}
+                                
+                            </form>
                             
                         </div>
                         

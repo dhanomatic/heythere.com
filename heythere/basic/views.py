@@ -445,3 +445,26 @@ def joinCircle(request, circle):
     c.members.add(username)
     c.save()
     return redirect('home')
+
+
+def join(request):
+    user = request.user.userregister
+    if request.method=='POST':
+        circle_id=request.POST.get('circle_id')
+        circle_obj = Circle.objects.get(id=circle_id)
+
+        if user in circle_obj.members.all():
+            circle_obj.members.remove(user)
+        else:
+            circle_obj.members.add(user)
+
+        join, created = Join.objects.get_or_create(user=user, circle=circle_obj)
+
+        if not created:
+            if join.value == 'Join':
+                join.value = 'Leave'
+            else:
+                join.value = 'Join'
+
+        join.save()
+    return redirect('home')

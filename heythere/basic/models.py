@@ -85,6 +85,20 @@ class Circle(models.Model):
         return url
 
 
+
+class Join(models.Model):
+    user = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
+    circle = models.ForeignKey(Circle, on_delete=models.CASCADE)
+    Join_CHOICES = (
+        ('Join', 'Join'),
+        ('Leave', 'Leave'),
+    )
+    value = models.CharField(choices=Join_CHOICES, default='Join', max_length=10)
+
+    def __str__(self):
+        return str(self.circle)
+
+
 class Post(models.Model):
     creator = models.ForeignKey(UserRegister, on_delete=models.CASCADE, null=True, related_name='creator')
     caption = models.TextField(max_length=500, null=True, blank=True)

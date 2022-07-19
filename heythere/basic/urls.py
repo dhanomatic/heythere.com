@@ -29,6 +29,7 @@ urlpatterns = [
     path('circle/<str:circle>', views.circle, name='circle'),
     path('create-circle-post/<str:circle>', views.createCirclePost, name='create-circle-post'),
     path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
+    path('join/', views.join, name='join'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
