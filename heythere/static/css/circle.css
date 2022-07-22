@@ -55,6 +55,60 @@
     border-radius: 1rem;
 }
 
+.circle-header-info{
+    width: 40rem;
+    height: 2rem;
+}
+
+.circlepage-join-btn-div{
+    margin-top: 0.5rem;
+}
+
+.circlepage-join-btn-div button{
+    background-color: #16a0b6;
+    color: whitesmoke;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 0rem 0.5rem 0.5rem 0rem ;
+    position: relative;
+    z-index: 10;
+}
+
+.circlepage-join-btn-div button:hover{
+    background-color: #0087b4;
+    color: whitesmoke;
+    font-weight: 600;
+    margin-left: 0rem;
+    border-radius: 0rem 0.5rem 0.5rem 0rem ;
+}
+
+.circlepage-join-btn-div a{
+    width: 6rem;
+    height: 2.3rem;
+    margin-right: 0.5rem;
+    background-color: #16a0b6;
+    color: whitesmoke;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 0.5rem 0rem 0rem 0.5rem ;
+    position: relative;
+    z-index: 10;
+}
+
+.circlepage-join-btn-div a:hover{
+    background-color: #0087b4;
+    color: whitesmoke;
+    font-weight: 600;
+    margin-left: 0rem;
+    border-radius: 0.5rem 0rem 0rem 0.5rem ;
+}
+
 .circle-local-body{
     overflow-x: hidden;
     overflow-y: hidden;
@@ -70,7 +124,7 @@
     overflow: hidden;
     border-radius: 50%;
     border: solid;
-    border-color: #16a0b6;
+    border-color: #0087b4;
   }
 
 .image-cropper-circle img {
@@ -84,6 +138,17 @@
     border-radius: 0rem 0rem 0rem 0rem;
 }
 
+.profile-image-div-cricle{
+    margin-top: -22.5rem;
+    margin-left: -19rem;
+    margin-right: 17.8rem;
+}
+
+.profile-image-div-cricle .image-cropper{
+    border: solid;
+    border-width: 3px;
+    border-color: white;
+}
 
 .members-card{
     width: 26rem;

@@ -168,7 +168,7 @@ a{
 
 .caption-global{
   margin-top: 2.5rem;
-  height: 6rem; 
+  max-height: 6rem; 
   overflow:hidden;
   margin-bottom: 1rem;
   text-align: justify;

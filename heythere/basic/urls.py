@@ -26,10 +26,12 @@ urlpatterns = [
     path('updateprofile/<str:username>', views.updateprofile, name='updateprofile'),
     path('globalpage/', views.globalPostPage, name='globalpage'),
     path('createcircle/', views.createCircle, name='createcircle'),
+    path('updatecircle/<str:circle>', views.updateCircle, name='updatecircle'),
     path('circle/<str:circle>', views.circle, name='circle'),
     path('create-circle-post/<str:circle>', views.createCirclePost, name='create-circle-post'),
-    path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
+    # path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
     path('join/', views.join, name='join'),
+    path('circle-chat/<str:circle>', views.circleChat, name='circle-chat'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -27,8 +27,28 @@
                   <p style="font-weight: 600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 0rem;">created by {{circle.circle_creator.fname}} {{circle.circle_creator.lname}}</p>
                 </div>
                 <div class="card-body">
-                  <h4 style="font-weight: 700;" class="card-title">{{circle.name}} &nbsp; </h4>
-                  <p class="card-text" style="margin-right: 15rem;">{{circle.description}}</p>
+                    <div class="circle-header-info">
+                        <div style="float: left;">
+                            <h4 style="font-weight: 700;" class="card-title">{{circle.name}} &nbsp; </h4>
+                            <p class="card-text" style="margin-right: 15rem;">{{circle.description}}</p>
+                        </div>
+                    </div>
+                    <div class="circlepage-join-btn-div" style="float: right;">
+                        <form class="" action="{% url 'join' %}" method="post" style="float: right;">
+                            {% csrf_token %}
+                            <input type="hidden" name="circle_id" value="{{circle.id}}">
+                            <input type="hidden" name="flag" value="1">
+                            {% if request.user.userregister not in circle.members.all %}
+                                <button style="width: 6rem;" type="submit" class="btn btn-lg btn-block" id="">Join</button>
+                            {% else %}
+                                <button style="width: 6rem;" type="submit" class="btn btn-lg btn-block" id="">Leave</button>
+                            {% endif %}
+                            
+                        </form>
+                        <div style="float: right;">
+                            <a href="{% url 'circle-chat' circle.name %}" class="btn btn-lg btn-block">Chat</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,7 +64,7 @@
                         <div class="card-body input-group mb-3">
                             <div class="input-group create-post-card-body">
                                 <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
-                                <a style="width: 24rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                                <a style="width: 24rem;" href="{% url 'create-circle-post' circle.name %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
                                 <div class="input-group-append">
                                   <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
                                 </div>
@@ -127,8 +147,8 @@
 
 
                 <div class="profile-details">
-                    <div class="profile-image-div">
-                        <div class="card" style="width: 18rem;">
+                    <div class="profile-image-div-cricle">
+                        <div class="" style="width: 18rem; border-radius: 50%;">
                             <div class="image-cropper">
                                 <img src="{{circle.imageURL }}" class="card-img-top" alt="...">
                             </div>
@@ -144,7 +164,7 @@
                         <div id="about" class="card border-info profile-details-card">
                             <div class="container card-body text-dark">
                                 
-                              <a style="float: right;" href="{% url 'updateprofile' request.user.username %}">updateprofile</a>
+                              <a style="float: right;" href="{% url 'updatecircle' circle.name %}"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <br>
                                 <p>Neighbourhood : <strong>{{request.user.userregister.neighbourhood}}</strong></p>
                                 <br>
@@ -152,9 +172,9 @@
                                 <br>
                                 <p>Description : <strong>{{circle.description}}</strong></p>
                                 <br>
-                                <p>Email : <strong>{{user.email}}</strong></p>
+                                <p>Email : <strong></strong></p>
                                 <br>
-                                <p>Phone Number : <strong>{{user.phonenumber}}</strong></p>
+                                <p>Phone Number : <strong></strong></p>
                                 <br>
                             </div>
                           </div>

@@ -76,6 +76,7 @@
                     <form class="like-local" action="{% url 'like-post' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{i.id}}">
+                        <input type="hidden" name="flag" value="0">
                         {% if request.user not in i.likes.all %}
                             <button style="width: 4rem;" type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
                         {% else %}

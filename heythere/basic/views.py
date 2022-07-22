@@ -1,6 +1,8 @@
+import imp
 from multiprocessing import context
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import is_valid_path
 from django.views import View
 from .models import *
 from .forms import *
@@ -10,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .decorators import unauthenticated_user
+from chat.models import Room
 
 # Create your views here.
 
@@ -399,8 +402,22 @@ def createCircle(request):
         if form.is_valid():
             form.save()
     else:
-        form = CircleForm(initial={'circle_creator':request.user.userregister})
+        form = CircleForm(initial={'circle_creator':request.user.userregister, 'members':request.user.userregister, 'neighbourhood':request.user.userregister.neighbourhood})
     context = {
+        'form':form,
+    }
+    return render(request, 'circle/createcircle.html', context)
+
+def updateCircle(request, circle):
+    circle = Circle.objects.get(name=circle)
+    if request.method=='POST':
+        form = CircleForm(request.POST, request.FILES, instance=circle)
+        if form.is_valid():
+            form.save()
+            return redirect('circle', circle)
+    else:
+        form = CircleForm(instance=circle)
+    context={
         'form':form,
     }
     return render(request, 'circle/createcircle.html', context)
@@ -438,13 +455,13 @@ def createCirclePost(request, circle):
     }
     return render(request, 'circle/createcircle.html', context)
 
-def joinCircle(request, circle):
-    username = request.user.userregister
-    c = Circle.objects.get(name=circle)
-    print(c)
-    c.members.add(username)
-    c.save()
-    return redirect('home')
+# def joinCircle(request, circle):
+#     username = request.user.userregister
+#     c = Circle.objects.get(name=circle)
+#     print(c)
+#     c.members.add(username)
+#     c.save()
+#     return redirect('home')
 
 
 def join(request):
@@ -452,6 +469,7 @@ def join(request):
     if request.method=='POST':
         circle_id=request.POST.get('circle_id')
         circle_obj = Circle.objects.get(id=circle_id)
+        flag=request.POST.get('flag')
 
         if user in circle_obj.members.all():
             circle_obj.members.remove(user)
@@ -467,4 +485,19 @@ def join(request):
                 join.value = 'Join'
 
         join.save()
-    return redirect('home')
+    if flag==None:
+        return redirect('home')
+    else:
+        return redirect('circle', circle_obj)
+
+
+def circleChat(request, circle):
+    room = circle
+    username = str(request.user.userregister)
+
+    if Room.objects.filter(name=room).exists():
+        return redirect('/room/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room)
+        new_room.save()
+        return redirect('/room/'+room+'/?username='+username)
