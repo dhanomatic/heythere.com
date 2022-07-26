@@ -350,7 +350,7 @@ class CommentReplyView(LoginRequiredMixin, View):
 
 def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
-    userpost =  Post.objects.filter(creator = request.user.userregister.id)
+    userpost =  Post.objects.filter(creator = user)
     neighbourhood = request.POST.get('neighbourhood')
     print(neighbourhood)
     if request.method=='POST':

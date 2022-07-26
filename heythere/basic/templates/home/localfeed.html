@@ -12,7 +12,7 @@
         <div class="card create-post-card ">
             <div class="card-body input-group mb-3">
                 <div class="input-group create-post-card-body">
-                    <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                    <img src="{{request.user.userregister.imageURL}}" alt=""> &nbsp; &nbsp;
                     <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
                     <div class="input-group-append">
                       <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
@@ -57,7 +57,7 @@
                     {% endif %}
                     <div>
                         <div class="local-creator-and-date">
-                            <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <b><span class="circlename-localfeed">{{i.circle}}</span></b> <small style="color: grey;">{{i.date_create}}</small>
+                            <b><span class="username-localfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> <b><span class="circlename-localfeed">{{i.circle}}</span></b> <small style="color: grey;">{{i.date_create}}</small>
                         </div>
 
                         {% if i.image.url is not None %}
@@ -156,7 +156,7 @@
                     {% endif %}
                     <div>
                         <div class="local-creator-and-date">
-                            <b><span class="username-localfeed"><a href="/peopleprofile/{{i.creator}}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
+                            <b><span class="username-localfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
                         </div>
 
                         {% if i.image.url is not None %}
