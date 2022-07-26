@@ -2,13 +2,21 @@ from email import message
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from chat.models import *
+from basic.models import *
 
 # Create your views here.
 
 def chathome(request):
+    neighbourhood=request.user.userregister.neighbourhood
+    circle = Circle.objects.filter(members=request.user.userregister)
+
+    for i in circle:
+        print(i)
+    
     rooms = Room.objects.all()
     context={
         'rooms':rooms,
+        'circle':circle,
     }
     return render(request, 'chat/home.html', context)
 
@@ -36,12 +44,13 @@ def room(request, room):
 
 def checkview(request):
     room = request.POST['room_name']
+    neighbourhood=request.user.userregister
     username = str(request.user)
 
     if Room.objects.filter(name=room).exists():
         return redirect('/room/'+room+'/?username='+username)
     else:
-        new_room = Room.objects.create(name=room)
+        new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()
         return redirect('/room/'+room+'/?username='+username)
 

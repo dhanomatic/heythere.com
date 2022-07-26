@@ -147,9 +147,13 @@
 
     <div class="rooms">
       {% for room in rooms %}
-      <ul>
-        <a href="{% url 'room' room.name %}"><li class="darker room-li">{{room.name}}</li></a>
-      </ul>
+        {% for i in circle %}
+          {% if room.name == i|safe %}
+            <ul>
+              <a href="{% url 'room' room.name %}"><li class="darker room-li">{{room.name}}</li></a>
+            </ul>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
     </div>
     

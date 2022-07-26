@@ -131,7 +131,9 @@
     display: inline;
     margin: 0 auto;
     height: 100%;
-    width: auto;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
 .circle-showmore-btn{
@@ -199,5 +201,8 @@
     display: inline;
     margin: 0 auto;
     height: 100%;
-    width: auto;
+    width: 100%;
+    
+    object-fit: cover;
+    object-position: center !important;
   }

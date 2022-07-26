@@ -494,10 +494,10 @@ def join(request):
 def circleChat(request, circle):
     room = circle
     username = str(request.user.userregister)
-
+    neighbourhood=request.user.userregister.neighbourhood
     if Room.objects.filter(name=room).exists():
         return redirect('/room/'+room+'/?username='+username)
     else:
-        new_room = Room.objects.create(name=room)
+        new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()
         return redirect('/room/'+room+'/?username='+username)

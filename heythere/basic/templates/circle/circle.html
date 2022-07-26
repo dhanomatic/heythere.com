@@ -39,15 +39,17 @@
                             <input type="hidden" name="circle_id" value="{{circle.id}}">
                             <input type="hidden" name="flag" value="1">
                             {% if request.user.userregister not in circle.members.all %}
-                                <button style="width: 6rem;" type="submit" class="btn btn-lg btn-block" id="">Join</button>
+                                <button style="width: 6rem; border-radius: 0.5rem;" type="submit" class="btn btn-lg btn-block" id="">Join</button>
                             {% else %}
                                 <button style="width: 6rem;" type="submit" class="btn btn-lg btn-block" id="">Leave</button>
                             {% endif %}
                             
                         </form>
+                        {% if request.user.userregister in circle.members.all %}
                         <div style="float: right;">
                             <a href="{% url 'circle-chat' circle.name %}" class="btn btn-lg btn-block">Chat</a>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
