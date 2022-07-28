@@ -57,7 +57,7 @@
                     {% endif %}
                     <div>
                         <div class="local-creator-and-date">
-                            <b><span class="username-localfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> <b><span class="circlename-localfeed">{{i.circle}}</span></b> <small style="color: grey;">{{i.date_create}}</small>
+                            <b><span class="username-localfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> <b><span class="circlename-localfeed"><a href="{% url 'circle' i.circle %}">{{i.circle}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
                         </div>
 
                         {% if i.image.url is not None %}

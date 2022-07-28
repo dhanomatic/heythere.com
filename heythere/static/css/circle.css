@@ -138,6 +138,8 @@
 
 .circle-showmore-btn{
     border-radius: 0rem 0rem 0rem 0rem;
+    font-weight:600;
+    color: #16a0b6 !important; 
 }
 
 .profile-image-div-cricle{

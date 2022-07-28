@@ -1,16 +1,7 @@
-from contextlib import nullcontext
 from datetime import date
-from distutils.command.upload import upload
-from email.policy import default
-from enum import unique
-from msilib.schema import Property
-from pyexpat import model
 from tkinter import CASCADE
-from tkinter.tix import Tree
-from unittest.mock import PropertyMock
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import BooleanField
 from phone_field import PhoneField
 from dateutil.relativedelta import relativedelta
 
@@ -42,6 +33,15 @@ class UserRegister(models.Model):
     dob = models.DateField(max_length=8, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True) 
     image = models.ImageField(null=True, blank=True)
+    friends =  models.ManyToManyField('self', related_name='friends', blank=True)
+
+    def get_friends(self):
+        return self.friends.all()
+
+    def get_friends_count(self):
+        return self.friends.all().count()
+
+
     def __str__(self):
         today = date.today()
         delta = relativedelta(today, self.dob)
@@ -59,6 +59,22 @@ class UserRegister(models.Model):
             url = ''
         return url
 
+
+STATUS_CHOICES = (
+    ('none', 'none'),
+    ('send', 'send'),
+    ('accepted', 'accepted'),
+    ('decline', 'decline'),
+)
+class Friend(models.Model):
+    sender = models.ForeignKey(UserRegister, on_delete=models.CASCADE, related_name='sender', null=True, blank=True)
+    receiver = models.ForeignKey(UserRegister, on_delete=models.CASCADE, related_name='receiver', null=True, blank=True)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='none', null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.sender}-{self.receiver}-{self.status}"
 
 class Circle(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -147,6 +163,9 @@ class Like(models.Model):
         return str(self.post)
 
 
+    
+
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, related_name='user_comment', on_delete=models.CASCADE, null=True)
@@ -175,9 +194,4 @@ class Comment(models.Model):
 
 
 
-
-# class CirclePost(models.Model):
-#     circle_name = models.ForeignKey(Circle, on_delete=models.CASCADE, related_name='circle_name')
-#     creator = models.ForeignKey(UserRegister, on_delete=models.DO_NOTHING, related_name='creator', null=True, blank=True)
-
-
+    

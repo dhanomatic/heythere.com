@@ -26,8 +26,24 @@
                   Featured
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{user.fname}} &nbsp; {{user.lname}}</h5>
-                  <p class="card-text">{{user.bio}}</p>
+                  <div style="float: left;">
+                    <h5 class="card-title">{{user.fname}} &nbsp; {{user.lname}}</h5>
+                    <p class="card-text">{{user.bio}}</p>
+                  </div>
+                  <div class="add-friend" style="float: right;">
+                    <!-- <a href="http://" class="btn btn-info">Message</a> -->
+                    {% if friend == 0 %}
+                    <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Add Friend</a>
+                    {% endif %}
+                    {% for i in friend %}
+                        
+                        {% if i.status == 'send'%}
+                            <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Cancel Request</a>
+                        {% elif i.status == 'accepted' %}
+                            <a href="{% url 'addfriend' user.username %}" class="btn btn-info">unfriend</a>
+                        {% endif %}
+                    {% endfor %}
+                  </div>
                 </div>
             </div>
         </div>

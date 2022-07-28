@@ -267,9 +267,13 @@ body {
 
         <div class="rooms" style="overflow: scroll; height: 30rem;">
           {% for room in display_rooms %}
-          <ul>
-            <a style="text-decoration: none;" href="{% url 'room' room.name %}"><li class="dark">{{room.name}}</li></a>
-          </ul>
+            {% for i in circle %}
+              {% if room.name == i|safe %}
+                <ul>
+                  <a style="text-decoration: none;" href="{% url 'room' room.name %}"><li class="dark">{{room.name}}</li></a>
+                </ul>
+              {% endif %}
+            {% endfor %}
           {% endfor %}
         </div>
         

@@ -23,7 +23,10 @@ def chathome(request):
 
 def room(request, room):
     username = str(request.user)
+    circle = Circle.objects.filter(members=request.user.userregister)
+
     display_rooms = Room.objects.all()
+
     room_details = Room.objects.get(name=room)
     if ActiveUsers.objects.filter(username=username, room_name=room).exists():
         pass
@@ -38,6 +41,7 @@ def room(request, room):
         'room_details':room_details,
         'user':user,
         'display_rooms':display_rooms,
+        'circle':circle,
     }
     return render(request, 'chat/room.html', context)
 

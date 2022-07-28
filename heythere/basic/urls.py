@@ -32,6 +32,10 @@ urlpatterns = [
     # path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
     path('join/', views.join, name='join'),
     path('circle-chat/<str:circle>', views.circleChat, name='circle-chat'),
+    path('addfriend/<str:username>', views.addfriend, name='addfriend'),
+    path('friend-requests/', views.friendRequests, name='friend-requests'),
+    path('accept-request/<str:username>', views.acceptRequest, name='accept-request'),
+    path('decline-request/<str:username>', views.declineRequest, name='decline-request'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

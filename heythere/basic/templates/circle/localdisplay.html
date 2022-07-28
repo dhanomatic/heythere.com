@@ -1,11 +1,13 @@
+{% if delta is False %}
 <div class="card circle-card">
         <div class="">
             <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Your Neighbourhood Circles</h6>
         </div>
+        
 
         {% for circle in circles %}
               
-          
+        
                 {% if forloop.first %}
                 <div class="row mx-auto card-body circle-local-body">
                 {% endif %}
@@ -43,9 +45,23 @@
             
         {% endfor %}
 
-        <div >
-            <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
+        
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="http://" class="btn btn-light  circle-showmore-btn">show more</a>
+            <a href="http://" class="btn btn-light  circle-showmore-btn">create circle</a>
         </div>
         
         
 </div>
+{% else %}
+
+<div>
+    <div class="card card-body create-post-card">
+        <div >
+            <a href="{% url 'createcircle' %}" style="font-weight: 700; color: gray;" class="btn btn-light btn-block  circle-showmore-btn">Create a Circle</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+

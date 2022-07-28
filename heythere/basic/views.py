@@ -1,5 +1,6 @@
 import imp
 from multiprocessing import context
+from django.dispatch import receiver
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import is_valid_path
@@ -83,6 +84,11 @@ def home(request):
 
     localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
     circles = Circle.objects.filter(neighbourhood=neighbourhood).order_by('-id')[:5]
+    delta = False
+    if circles.count() == 0:
+        delta = True
+
+    print(delta)
     post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
@@ -96,7 +102,8 @@ def home(request):
         'u':u,
         'circles':circles,
         'user_circle':user_circle,
-        'flag':flag
+        'flag':flag,
+        'delta':delta,
     }
     return render(request, 'basic/home.html', context)
 
@@ -352,7 +359,8 @@ def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
     userpost =  Post.objects.filter(creator = user)
     neighbourhood = request.POST.get('neighbourhood')
-    print(neighbourhood)
+    friend = Friend.objects.filter(sender=request.user.userregister, receiver=user)
+    print(friend)
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
         if form.is_valid():
@@ -363,6 +371,7 @@ def userProfile(request, username):
         'user':user,
         'form':form,
         'userpost':userpost,
+        'friend':friend,
     }
     return render(request, 'profile/userprofile.html', context)
 
@@ -501,3 +510,33 @@ def circleChat(request, circle):
         new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()
         return redirect('/room/'+room+'/?username='+username)
+
+
+def addfriend(request, username):
+    sender = request.user.userregister
+    receiver = UserRegister.objects.get(username=username)
+    frec = Friend.objects.create(sender=sender, receiver=receiver, status='send')
+    return redirect('userprofile', username)
+
+def friendRequests(request):
+    username = request.user.userregister
+    requests = Friend.objects.filter(receiver=username, status='send')
+    context={
+        'requests':requests,
+    }
+    return render(request, "friendrequests/friendrequests.html", context)
+
+def acceptRequest(request, username):
+    sender = UserRegister.objects.get(username=username)
+    print(sender)
+    receiver = request.user.userregister
+    print(receiver)
+    accept = Friend.objects.filter(sender=sender, receiver=receiver, status='send').update(status='accepted')
+    print(accept)
+    return redirect('friend-requests')
+
+def declineRequest(request, username):
+    sender = UserRegister.objects.get(username=username)
+    receiver = request.user.userregister
+    decline = Friend.objects.filter(sender=sender, receiver=receiver).update(status='decline')
+    return redirect('friend-requests')
