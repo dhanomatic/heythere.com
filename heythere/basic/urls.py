@@ -36,6 +36,8 @@ urlpatterns = [
     path('friend-requests/', views.friendRequests, name='friend-requests'),
     path('accept-request/<str:username>', views.acceptRequest, name='accept-request'),
     path('decline-request/<str:username>', views.declineRequest, name='decline-request'),
+    path('cancel-request/<str:username>', views.cancelRequest, name='cancel-request'),
+    path('unfriend/<str:username>', views.unFriend, name='unfriend'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

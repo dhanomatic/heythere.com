@@ -14,6 +14,7 @@ from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .decorators import unauthenticated_user
 from chat.models import Room
+from django.db.models import Q
 
 # Create your views here.
 
@@ -359,8 +360,14 @@ def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
     userpost =  Post.objects.filter(creator = user)
     neighbourhood = request.POST.get('neighbourhood')
-    friend = Friend.objects.filter(sender=request.user.userregister, receiver=user)
-    print(friend)
+    friend = Friend.objects.filter(Q(sender=request.user.userregister, receiver=user)|Q(sender=user, receiver=request.user.userregister))
+    flag=False
+    if friend.exists():
+        print('exist')
+    else:
+        flag=True
+    if friend == 0:
+        print("true")
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
         if form.is_valid():
@@ -372,6 +379,7 @@ def userProfile(request, username):
         'form':form,
         'userpost':userpost,
         'friend':friend,
+        'flag':flag
     }
     return render(request, 'profile/userprofile.html', context)
 
@@ -528,15 +536,42 @@ def friendRequests(request):
 
 def acceptRequest(request, username):
     sender = UserRegister.objects.get(username=username)
-    print(sender)
+
     receiver = request.user.userregister
-    print(receiver)
+
     accept = Friend.objects.filter(sender=sender, receiver=receiver, status='send').update(status='accepted')
-    print(accept)
+
+    db_user= UserRegister.objects.get(username=receiver) #adding sender to user friend list
+    db_user.friends.add(sender)
+
+    db_sender= UserRegister.objects.get(username=sender) #adding reciever to sender friend list
+    db_sender.friends.add(receiver)
+    
+
     return redirect('friend-requests')
 
 def declineRequest(request, username):
     sender = UserRegister.objects.get(username=username)
     receiver = request.user.userregister
-    decline = Friend.objects.filter(sender=sender, receiver=receiver).update(status='decline')
+    decline = Friend.objects.filter(sender=sender, receiver=receiver)
+    decline.delete()
     return redirect('friend-requests')
+
+def cancelRequest(request, username):
+    username=UserRegister.objects.get(username=username)
+    crec = Friend.objects.filter(sender=request.user.userregister, receiver=username)
+    crec.delete()
+    return redirect('userprofile', username)
+
+def unFriend(request, username):
+    db_user= UserRegister.objects.get(username=request.user.userregister)
+    username=UserRegister.objects.get(username=username)
+    db_user.friends.remove(username)
+
+    db_friend = UserRegister.objects.get(username=username)
+    db_friend.friends.remove(request.user.userregister)
+
+    frec = Friend.objects.filter(sender=request.user.userregister, receiver=username)
+    frec.delete()
+
+    return redirect('userprofile', username)

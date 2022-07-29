@@ -27,23 +27,26 @@
                 </div>
                 <div class="card-body">
                   <div style="float: left;">
-                    <h5 class="card-title">{{user.fname}} &nbsp; {{user.lname}}</h5>
+                    <h5 class="card-title">{{user.fname}} {{user.lname}}</h5>
                     <p class="card-text">{{user.bio}}</p>
                   </div>
+                  {% if user.username != request.user.userregister|safe %}
                   <div class="add-friend" style="float: right;">
                     <!-- <a href="http://" class="btn btn-info">Message</a> -->
-                    {% if friend == 0 %}
-                    <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Add Friend</a>
+                    {% if flag is True %}
+                        <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Add Friend</a>
                     {% endif %}
                     {% for i in friend %}
                         
                         {% if i.status == 'send'%}
-                            <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Cancel Request</a>
+                            <a href="{% url 'cancel-request' user.username %}" class="btn btn-info">Cancel Request</a>
                         {% elif i.status == 'accepted' %}
-                            <a href="{% url 'addfriend' user.username %}" class="btn btn-info">unfriend</a>
+                            <a href="{% url 'unfriend' user.username %}" class="btn btn-info">Friends</a>
                         {% endif %}
+                        
                     {% endfor %}
                   </div>
+                  {% endif %}
                 </div>
             </div>
         </div>
