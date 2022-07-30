@@ -5,8 +5,8 @@
 {% for i in requests %}
 
     {{i.sender}}
-    <a href="{% url 'accept-request' i.sender %}" class="btn btn-info" >Accept</a>
-    <a href="{% url 'decline-request' i.sender %}" class="btn btn-info" >Decline</a>
+    <a href="{% url 'accept-request' i.sender False %}" class="btn btn-info" >Accept</a>
+    <a href="{% url 'decline-request' i.sender False %}" class="btn btn-info" >Decline</a>
 
 {% endfor %}
 

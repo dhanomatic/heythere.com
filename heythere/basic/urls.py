@@ -34,8 +34,8 @@ urlpatterns = [
     path('circle-chat/<str:circle>', views.circleChat, name='circle-chat'),
     path('addfriend/<str:username>', views.addfriend, name='addfriend'),
     path('friend-requests/', views.friendRequests, name='friend-requests'),
-    path('accept-request/<str:username>', views.acceptRequest, name='accept-request'),
-    path('decline-request/<str:username>', views.declineRequest, name='decline-request'),
+    path('accept-request/<str:username>/<str:check>', views.acceptRequest, name='accept-request'),
+    path('decline-request/<str:username>/<str:check>', views.declineRequest, name='decline-request'),
     path('cancel-request/<str:username>', views.cancelRequest, name='cancel-request'),
     path('unfriend/<str:username>', views.unFriend, name='unfriend'),
 ]

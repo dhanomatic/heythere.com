@@ -1,4 +1,3 @@
-import imp
 from multiprocessing import context
 from django.dispatch import receiver
 from django.http import HttpResponse, HttpResponseRedirect
@@ -360,14 +359,26 @@ def userProfile(request, username):
     user = UserRegister.objects.get(username=username)
     userpost =  Post.objects.filter(creator = user)
     neighbourhood = request.POST.get('neighbourhood')
-    friend = Friend.objects.filter(Q(sender=request.user.userregister, receiver=user)|Q(sender=user, receiver=request.user.userregister))
+
+    accepted = Friend.objects.filter(Q(sender=request.user.userregister, receiver=user, status='accepted')|Q(sender=user, receiver=request.user.userregister, status='accepted'))
+    delta=False
+    if accepted.exists():
+        delta=True
+
+    friend = Friend.objects.filter(sender=request.user.userregister, receiver=user)
+    print(friend)
+
+    frec = Friend.objects.filter(sender=user, receiver=request.user.userregister, status='send')
+    alpha=False
+    for i in frec:
+        if i.sender == user:
+            alpha = True
+
     flag=False
-    if friend.exists():
-        print('exist')
-    else:
+    addfriend = Friend.objects.filter(Q(sender=request.user.userregister, receiver=user)|Q(sender=user, receiver=request.user.userregister))
+    if addfriend.exists():
         flag=True
-    if friend == 0:
-        print("true")
+    
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
         if form.is_valid():
@@ -379,7 +390,10 @@ def userProfile(request, username):
         'form':form,
         'userpost':userpost,
         'friend':friend,
-        'flag':flag
+        'flag':flag,
+        'delta':delta,
+        'alpha':alpha,
+
     }
     return render(request, 'profile/userprofile.html', context)
 
@@ -534,7 +548,7 @@ def friendRequests(request):
     }
     return render(request, "friendrequests/friendrequests.html", context)
 
-def acceptRequest(request, username):
+def acceptRequest(request, username, check):
     sender = UserRegister.objects.get(username=username)
 
     receiver = request.user.userregister
@@ -547,15 +561,20 @@ def acceptRequest(request, username):
     db_sender= UserRegister.objects.get(username=sender) #adding reciever to sender friend list
     db_sender.friends.add(receiver)
     
+    if check == 'True':
+        return redirect('userprofile', sender)
+    elif check == 'False':
+        return redirect('friend-requests')
 
-    return redirect('friend-requests')
-
-def declineRequest(request, username):
+def declineRequest(request, username, check):
     sender = UserRegister.objects.get(username=username)
     receiver = request.user.userregister
     decline = Friend.objects.filter(sender=sender, receiver=receiver)
     decline.delete()
-    return redirect('friend-requests')
+    if check == 'True':
+        return redirect('userprofile', sender)
+    elif check == 'False':
+        return redirect('friend-requests')
 
 def cancelRequest(request, username):
     username=UserRegister.objects.get(username=username)
@@ -571,7 +590,7 @@ def unFriend(request, username):
     db_friend = UserRegister.objects.get(username=username)
     db_friend.friends.remove(request.user.userregister)
 
-    frec = Friend.objects.filter(sender=request.user.userregister, receiver=username)
+    frec = Friend.objects.filter(Q(sender=request.user.userregister, receiver=username)|Q(sender=username, receiver=request.user.userregister))
     frec.delete()
 
     return redirect('userprofile', username)
