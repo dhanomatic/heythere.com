@@ -1,4 +1,5 @@
 {% extends 'basic/main.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -15,7 +16,7 @@
         <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
-                  <img src="https://www.wallpapers13.com/wp-content/uploads/2016/01/Seashore-wallpaper-222863-1920x1080.jpg" class="d-block w-100" alt="...">
+                  <img src="{% static 'images/hero/banner-img2.jpg' %}" class="d-block w-100" alt="...">
               </div>
             </div>
         </div>
@@ -53,6 +54,8 @@
 
                     {% if delta == True %}
                             <a href="{% url 'unfriend' user.username %}" class="btn btn-info">Friends</a>
+                            <a href="{% url 'private-chat' user.username %}" class="btn btn-info">Message</a>
+
                     {% endif %}
 
                   </div>

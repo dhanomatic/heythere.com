@@ -80,7 +80,6 @@ def home(request):
     neighbourhood = request.user.userregister.neighbourhood
 
     user_circle = Circle.objects.filter(members=request.user.userregister)
-    print(circle)
 
     localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
     circles = Circle.objects.filter(neighbourhood=neighbourhood).order_by('-id')[:5]
@@ -88,7 +87,6 @@ def home(request):
     if circles.count() == 0:
         delta = True
 
-    print(delta)
     post = Post.objects.filter(global_visibility=True)
     user = UserRegister.objects.get(username=request.session['username'])
     u = str(request.user.username)
@@ -528,6 +526,26 @@ def circleChat(request, circle):
     neighbourhood=request.user.userregister.neighbourhood
     if Room.objects.filter(name=room).exists():
         return redirect('/room/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
+        new_room.save()
+        return redirect('/room/'+room+'/?username='+username)
+
+
+def privateChat(request, friend):
+    username = str(request.user.userregister)
+    room = friend+username
+    reverse_room = username+friend
+
+    if Room.objects.filter(name=room).exists():
+        r=room
+    else:
+        r=reverse_room
+    
+    neighbourhood=request.user.userregister.neighbourhood
+    if Room.objects.filter(Q(name=room)|Q(name=reverse_room)).exists():
+
+        return redirect('/room/'+r+'/?username='+username+'/?friend='+friend)
     else:
         new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()

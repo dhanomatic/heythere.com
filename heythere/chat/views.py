@@ -28,6 +28,7 @@ def room(request, room):
     display_rooms = Room.objects.all()
 
     room_details = Room.objects.get(name=room)
+    
     if ActiveUsers.objects.filter(username=username, room_name=room).exists():
         pass
     else:
@@ -83,4 +84,4 @@ def getActiveUsers(request, room):
 def leaveChat(request, room):
     username= str(request.user)
     remove_user = ActiveUsers.objects.filter(room_name=room, username=username).delete()
-    return redirect('chat-home')
+    return redirect('/')
