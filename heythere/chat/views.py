@@ -21,7 +21,7 @@ def chathome(request):
     return render(request, 'chat/home.html', context)
 
 
-def room(request, room):
+def room(request, room, display_name):
     username = str(request.user)
     circle = Circle.objects.filter(members=request.user.userregister)
 
@@ -43,6 +43,7 @@ def room(request, room):
         'user':user,
         'display_rooms':display_rooms,
         'circle':circle,
+        'display_name':display_name,
     }
     return render(request, 'chat/room.html', context)
 

@@ -525,11 +525,11 @@ def circleChat(request, circle):
     username = str(request.user.userregister)
     neighbourhood=request.user.userregister.neighbourhood
     if Room.objects.filter(name=room).exists():
-        return redirect('/room/'+room+'/?username='+username)
+        return redirect('/room/'+room+'/'+circle+'/?username='+username)
     else:
         new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()
-        return redirect('/room/'+room+'/?username='+username)
+        return redirect('/room/'+room+'/'+circle+'/?username='+username)
 
 
 def privateChat(request, friend):
@@ -544,12 +544,11 @@ def privateChat(request, friend):
     
     neighbourhood=request.user.userregister.neighbourhood
     if Room.objects.filter(Q(name=room)|Q(name=reverse_room)).exists():
-
-        return redirect('/room/'+r+'/?username='+username+'/?friend='+friend)
+        return redirect('/room/'+r+'/'+friend+'/?username='+username)
     else:
         new_room = Room.objects.create(name=room, neighbourhood=neighbourhood)
         new_room.save()
-        return redirect('/room/'+room+'/?username='+username)
+        return redirect('/room/'+room+'/'+friend+'/?username='+username)
 
 
 def addfriend(request, username):

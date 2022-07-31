@@ -253,7 +253,7 @@ body {
 
 
 <div>
-  <h2>{{friend}} - heythere</h2>
+  <h2>{{display_name}} - heythere</h2>
 </div>
     
 
@@ -270,7 +270,7 @@ body {
             {% for i in circle %}
               {% if room.name == i|safe %}
                 <ul>
-                  <a style="text-decoration: none;" href="{% url 'room' room.name %}"><li class="dark">{{room.name}}</li></a>
+                  <a style="text-decoration: none;" href="{% url 'room' room.name room.name %}"><li class="dark">{{room.name}}</li></a>
                 </ul>
               {% endif %}
             {% endfor %}
