@@ -1,0 +1,51 @@
+
+{% if request.user.userregister.neighbourhood is not None %}
+<div class="card viewprofile-card">
+        <div class="">
+            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Friend requests</h6>
+        </div>
+
+        {% if suggestions %}
+
+        <div>
+            {% for i in suggestions %}
+            
+                    <div class="row viewprofile-local-body">
+                    
+                        <div class="viewprofile-elements">
+                            <div class=" image-cropper-viewprofile" style="float: left;" >
+                                <a href="{% url 'userprofile' i.sender %}"><img src="{{i.sender.imageURL}}"  alt=""></a>
+                            </div>
+                            <div style="float: left;">
+                                <a href="{% url 'userprofile' i.sender %}"><p class="card-text">@{{i.sender.username}}</p></a>
+                            </div>
+                            <div style="float: left;">
+                                <p class="card-text" style="width: 10rem; color: rgb(211, 210, 210);">{{i.sender.fname}} {{i.sender.lname}}</p>
+                            </div>
+                            
+                            <div class="viewprofile-join-btn-div" style="float: right;">
+                                <a href="{% url 'userprofile' i.sender %}" class="view-profile-btn btn btn-sm">View Profile</a>
+                            </div>
+                            
+                            
+                        </div>
+                    
+                    </div>
+
+            {% endfor %}
+
+        </div>
+            {% if request_count >= 3 %}
+                <div class="btn-group viewprofile-showmore" role="group" aria-label="Basic example">
+                    <a href="{% url 'friend-requests' %}" class="btn btn-light  circle-showmore-btn">show more</a>
+                </div>
+            {% endif %}
+        {% else %}
+        <div>
+            <p class="card-text" style="color: rgb(184, 184, 184); text-align: center;">No friend requests</p>
+        </div>
+
+        {% endif %}
+        
+</div>
+{% endif %}

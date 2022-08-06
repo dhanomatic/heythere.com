@@ -76,6 +76,10 @@ class Friend(models.Model):
     def __str__(self):
         return f"{self.sender}-{self.receiver}-{self.status}"
 
+class Friend_Suggestion(models.Model):
+    user = models.ForeignKey(UserRegister, on_delete=models.CASCADE, related_name='user_sugg', null=True, blank=True)
+    friend = models.ForeignKey(UserRegister, on_delete=models.CASCADE, related_name='friend_sugg', null=True, blank=True)
+
 class Circle(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)

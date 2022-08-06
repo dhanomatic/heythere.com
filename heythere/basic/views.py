@@ -1,4 +1,6 @@
 from multiprocessing import context
+from operator import ne
+from re import template
 from django.dispatch import receiver
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -17,13 +19,19 @@ from django.db.models import Q
 
 # Create your views here.
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+from  django.template.loader import render_to_string
+
 @unauthenticated_user
 def registerPage(request):
+
     if request.method=='POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             neighbourhood = form.cleaned_data.get('neighbourhood')
             n = str(neighbourhood)
             print(n)
@@ -38,6 +46,21 @@ def registerPage(request):
             # user_data.save()
 
             messages.success(request, 'Account was created for '+ username)
+
+
+            # SMTP Configuration
+            template = render_to_string('basic/email_template.html', {'username': username})
+            email = EmailMessage(
+                'Congratulations! You have successfuly created an account in heythere',
+                template,
+                settings.EMAIL_HOST_USER,
+                [email],
+            )
+
+            email.fail_silently=False
+            email.send()
+            # End of SMTP Configuration
+
             return redirect('login')
             
     else:
@@ -83,6 +106,9 @@ def home(request):
 
     localpost = Post.objects.filter(creator__neighbourhood=neighbourhood, local_visibility=True)
     circles = Circle.objects.filter(neighbourhood=neighbourhood).order_by('-id')[:5]
+    suggestions = Friend.objects.filter(receiver__username = request.user.userregister, status='send').order_by('-id')[:3]
+    request_count = suggestions.count()
+    
     delta = False
     if circles.count() == 0:
         delta = True
@@ -102,6 +128,8 @@ def home(request):
         'user_circle':user_circle,
         'flag':flag,
         'delta':delta,
+        'suggestions':suggestions,
+        'request_count':request_count,
     }
     return render(request, 'basic/home.html', context)
 
@@ -578,6 +606,8 @@ def acceptRequest(request, username, check):
     db_sender= UserRegister.objects.get(username=sender) #adding reciever to sender friend list
     db_sender.friends.add(receiver)
     
+    db_user_sugg = Friend_Suggestion.objects.create(user=sender, friend = receiver)
+
     if check == 'True':
         return redirect('userprofile', sender)
     elif check == 'False':
@@ -611,3 +641,9 @@ def unFriend(request, username):
     frec.delete()
 
     return redirect('userprofile', username)
+
+
+
+
+
+    

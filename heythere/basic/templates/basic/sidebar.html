@@ -1,39 +1,72 @@
 
 <body>
-        <div class = "sidebar">
+        <div class = "sidebar-mobile">
             <br><br>
             <div class="">
-                <a class="sidebar-element" href="{% url 'home' %}"><i class="fa-solid fa-house-chimney"></i></a>
+                <a class="sidebar-mobile-element" href="{% url 'home' %}"><i class="fa-solid fa-house-chimney"></i></a>
             </div>
 
             <br><br>
 
             <div class="">
-                <a class="sidebar-element" href="{% url 'chat-home' %}"><i class="fa-solid fa-comments"></i></a>
+                <a class="sidebar-mobile-element" href="{% url 'chat-home' %}"><i class="fa-solid fa-comments"></i></a>
             </div>
 
             <br><br>
 
             <div class="">
-            <a class="sidebar-element" href="{% url 'userprofile' request.user %}"><i class="fa-solid fa-user"></i></a>
+            <a class="sidebar-mobile-element" href="{% url 'userprofile' request.user %}"><i class="fa-solid fa-user"></i></a>
             </div>
 
             <br><br>
 
             <div class="">
-            <a class="sidebar-element" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="sidebar-mobile-element" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
 
             <br><br>
 
             <div class="">
-            <a class="sidebar-element" href="{% url 'globalpage' %}"><i class="fa-solid fa-circle-notch"></i></a>
+            <a class="sidebar-mobile-element" href="{% url 'globalpage' %}"><i class="fa-solid fa-circle-notch"></i></a>
             </div>
 
             <br><br>
 
             <div class="">
-            <a class="sidebar-element" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <a class="sidebar-mobile-element" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+         </div>
+
+
+
+
+         <div class = "sidebar-desktop">
+            
+            <div class="side-bar-box">
+                <a class="btn btn-light sidebar-element" href="{% url 'home' %}"><i class="fa-solid fa-house-chimney"></i></a>
+            </div>
+
+            <div class="side-bar-box">
+                <a class="btn btn-light sidebar-element" href="{% url 'chat-home' %}"><i class="fa-solid fa-comments"></i></a>
+            </div>
+
+
+            <div class="side-bar-box">
+            <a class="btn btn-light sidebar-element" href="{% url 'userprofile' request.user %}"><i class="fa-solid fa-user"></i></a>
+            </div>
+
+            <div class="side-bar-box">
+            <a class="btn btn-light sidebar-element" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+    
+
+            <div class="side-bar-box">
+            <a class="btn btn-light sidebar-element" href="{% url 'globalpage' %}"><i class="fa-solid fa-circle-notch"></i></a>
+            </div>
+
+
+            <div class="side-bar-box">
+            <a class="btn btn-light sidebar-element" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
          </div>
 </body>

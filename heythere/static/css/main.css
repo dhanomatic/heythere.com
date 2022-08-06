@@ -278,6 +278,8 @@ a{
 
 .Neighbourhood-warning{
 
+  margin-top: 3rem;
+
 }
 
 .global-page-img{
@@ -339,7 +341,12 @@ a{
 
 
 @media (max-width:780px){
-  .sidebar{
+
+  .sidebar-desktop{
+    display: none;
+  }
+
+  .sidebar-mobile{
     background-color: rgb(255, 255, 255);
     width: 100%;
     margin-top: -0.6rem;
@@ -353,7 +360,7 @@ a{
     z-index: 9;
   }
 
-  .sidebar-element{
+  .sidebar-mobile-element{
     margin-left: 3.2rem;
     font-size: large;
   }
@@ -492,12 +499,33 @@ a{
 }
 
 @media (min-width:1080px){
-  .sidebar-element{
-    margin: 3.5rem;
-    flex-direction:column;
+  .sidebar-mobile{
+    display: none;
+  }
+
+  .sidebar-desktop{
     position: fixed;
+    margin-top: 3rem;
+  }
+
+  .sidebar-element{
+    margin-left: 1.5rem;
+    margin-top: 2rem;
+    width: 5rem;
+    border: 0;
+    border-radius: 1rem;
+    /* flex-direction:column; */
+    /* position: fixed; */
     font-size: large;
   }
+
+  /* .side-bar-box{
+    background-color: white !important;
+    margin-left: 1.4rem;
+    border-radius: 1rem;
+    height: 2.5rem;
+    
+  } */
 
   .craate-post{
     margin-left: 18rem;

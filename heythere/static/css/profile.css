@@ -150,3 +150,85 @@
   margin-top: 3.1rem !important;
 }
   
+
+
+.viewprofile-card{
+  width: 28.5rem;
+  max-height: 14.6rem;
+  margin-left: -1.5rem;
+  border-radius: 1rem;
+  border: 0;
+  padding-bottom: 1rem;
+}
+
+.viewprofile-card a{
+  border-radius: 0rem 0rem 1rem 1rem;
+}
+
+.viewprofile-local-body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-left: 1rem !important;
+  padding-bottom: 0.1rem;
+}
+
+.viewprofile-elements{
+  margin-top:0.1rem;
+  margin-right: 2rem;
+  margin-left: 1rem;
+  width: 160rem !important;
+  height: 3rem;
+  background-color: #f7f7f7;
+  border-radius: 1rem;
+}
+
+.viewprofile-elements p{
+  font-size: 14px;
+  width: 4rem;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  margin-top: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+
+.viewprofile-join-btn-div{
+ margin-top: 0.4rem;
+}
+
+.view-profile-btn{
+  border-radius: 1rem !important;
+  margin-right: 1rem;
+  margin-top: 0.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: white !important;
+  background-color: #009dd1;
+}
+
+.viewprofile-showmore{
+  margin-top: 0.4rem;
+  margin-bottom: -1rem;
+}
+
+.image-cropper-viewprofile {
+  margin-left: -1rem;
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0087b4;
+}
+
+.image-cropper-viewprofile img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
