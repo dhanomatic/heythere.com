@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 {% load static %}
 <html lang="en">
 <head>
@@ -28,6 +29,25 @@
         <a href="{% url 'home' %}"><img src="{% static 'images/hero/logo-1.1.png' %}" width="140rem" style="margin-left: 1rem; margin-top: -0.2rem;" alt=""></a>
         
         <h6 style="">@{{request.user}}</h6>
+
+        <div style="float: right;" class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-language"></i>
+            </a>
+            <div class="dropdown-menu">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+
+                {% for lang in languages %}
+                    <li>
+                    <a class="dropdown-item" href="/{{ lang.code }}/">
+                        {{ lang.name_local }}
+                    </a>
+                    </li>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <br>
     <hr>

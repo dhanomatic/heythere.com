@@ -1,4 +1,4 @@
-
+{% load i18n %}
 
 {% if user.neighbourhood is None %}
 
@@ -13,7 +13,7 @@
             <div class="card-body input-group mb-3">
                 <div class="input-group create-post-card-body">
                     <img src="{{request.user.userregister.imageURL}}" alt=""> &nbsp; &nbsp;
-                    <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                    <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="{% translate 'Create Post' %}" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
                     <div class="input-group-append">
                       <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
                     </div>

@@ -1,7 +1,8 @@
+{% load i18n %}
 {% if delta is False %}
 <div class="card circle-card">
         <div class="">
-            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Your Neighbourhood Circles</h6>
+            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">{% translate "Your Neighbourhood Circles" %}</h6>
         </div>
         
 
@@ -28,9 +29,9 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="circle_id" value="{{circle.id}}">
                                 {% if request.user.userregister not in circle.members.all %}
-                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">Join</button>
+                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">{% translate "Join" %}</button>
                                 {% else %}
-                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">Leave</button>
+                                    <button style="width: 4rem;" type="submit" class="btn btn-sm  btn-block" id="">{% translate "Leave" %}</button>
                                 {% endif %}
                                 
                             </form>
@@ -48,8 +49,8 @@
         
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="http://" class="btn btn-light  circle-showmore-btn">show more</a>
-            <a href="http://" class="btn btn-light  circle-showmore-btn">create circle</a>
+            <a href="http://" class="btn btn-light  circle-showmore-btn">{% translate "show more" %}</a>
+            <a href="http://" class="btn btn-light  circle-showmore-btn">{% translate "create circle" %}</a>
         </div>
         
         

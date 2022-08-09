@@ -16,6 +16,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .decorators import unauthenticated_user
 from chat.models import Room
 from django.db.models import Q
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language, activate, gettext
 
 # Create your views here.
 
@@ -100,6 +102,9 @@ def logoutUser(request):
 @login_required(login_url='login')
 
 def home(request):
+
+    trans = translate(language='ml')
+
     neighbourhood = request.user.userregister.neighbourhood
 
     user_circle = Circle.objects.filter(members=request.user.userregister)
@@ -130,8 +135,20 @@ def home(request):
         'delta':delta,
         'suggestions':suggestions,
         'request_count':request_count,
+        'trans':trans,
     }
     return render(request, 'basic/home.html', context)
+
+
+def translate(language):
+    cur_language = get_language()
+    try:
+        activate(language)
+        text = gettext('Your Neighbourhood Circles')
+    finally:
+        activate(cur_language)
+    return text
+
 
 
 @login_required(login_url='login')

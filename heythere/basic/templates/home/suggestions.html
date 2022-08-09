@@ -1,8 +1,9 @@
+{% load i18n %}
 
 {% if request.user.userregister.neighbourhood is not None %}
 <div class="card viewprofile-card">
         <div class="">
-            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Friend requests</h6>
+            <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">{% translate "Friend requests" %}</h6>
         </div>
 
         {% if suggestions %}
@@ -24,7 +25,7 @@
                             </div>
                             
                             <div class="viewprofile-join-btn-div" style="float: right;">
-                                <a href="{% url 'userprofile' i.sender %}" class="view-profile-btn btn btn-sm">View Profile</a>
+                                <a href="{% url 'userprofile' i.sender %}" class="view-profile-btn btn btn-sm">{% translate "View Profile" %}</a>
                             </div>
                             
                             
@@ -37,7 +38,7 @@
         </div>
             {% if request_count >= 3 %}
                 <div class="btn-group viewprofile-showmore" role="group" aria-label="Basic example">
-                    <a href="{% url 'friend-requests' %}" class="btn btn-light  circle-showmore-btn">show more</a>
+                    <a href="{% url 'friend-requests' %}" class="btn btn-light  circle-showmore-btn">{% translate "show more" %}</a>
                 </div>
             {% endif %}
         {% else %}
