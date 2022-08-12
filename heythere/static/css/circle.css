@@ -33,7 +33,7 @@
 }
 
 .circle-join-btn-div{
-    margin-top: -0.5rem;
+    margin-top: 0.5rem;
 }
 
 .circle-join-btn-div button{
@@ -114,6 +114,7 @@
     overflow-y: hidden;
     white-space: nowrap;
     margin-left: 0.3rem !important;
+    margin-top: -0.5rem;
 }
 
 .image-cropper-circle {
@@ -207,4 +208,47 @@
     
     object-fit: cover;
     object-position: center !important;
+  }
+
+  /* all-circle */
+
+  .all-circle-title{
+    background-color: white;
+    width: 60%;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .all-circle-title h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 0.4rem;
+  }
+
+  .all-circle-card{
+    max-height: 10rem;
+    border-radius: 1rem;
+    border: 0;
+  }
+
+  .all-circle-card img{
+    height: 10rem !important;
+    width: 7.5rem;
+    object-fit: cover;
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .all-circle-card p{
+    font-size: small;
+    font-weight: 600;
+    color: gray;
+    height: 2.5rem !important;
+    overflow: hidden;
+  }
+
+  .all-circle-card a{
+    font-weight: 600;
+    color: white;
+    width: 11.5rem;
   }

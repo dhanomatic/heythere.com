@@ -245,12 +245,24 @@ a{
   padding-top: 0.5rem;
 }
 
+.preview-post-card{
+  margin-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 1rem 0 0 1rem;
+  padding: 1rem;
+}
+
 .previewpost img{
-  width: 42rem;
+  width: 40rem !important;
+  max-height: 48rem;
+  object-fit: cover;
+  margin-left: 0.3rem !important;
+  margin-top: 0.5rem;
 }
 
 .preview-like-comment{
   margin-left:5rem;
+  margin-top: -1rem;
 }
 
 .preview-comment-element{
@@ -264,12 +276,25 @@ a{
 }
 
 .previewpost-creatorname{
-  margin-left: 1rem;
 }
 
 .previewpost-caption{
-  margin-left: 3rem; 
-  margin-right: 2rem;
+}
+
+.comment-section-card{
+  margin-left: -2rem;
+  margin-top: -1.9rem;
+  margin-right: 1rem;
+  padding: 1rem;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.comment-and-replay{
+  margin-left: 1rem;
+}
+
+.comment-and-replay p{
+  margin-left: 1rem;
 }
 
 .local-feed{
@@ -288,8 +313,23 @@ a{
 }
 
 .global-page{
-  
-}  
+  margin-left: 8rem;
+} 
+
+.global-page-title{
+  background-color: white;
+  width: 36rem;
+  height: 3.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  margin-left: -2rem;
+}
+
+.global-page-title h3{
+  font-weight: 500;
+  font-size: 22px;
+  padding-top: 0.8rem;
+}
 
 .global-page-post-comment a{
   

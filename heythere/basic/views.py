@@ -537,6 +537,14 @@ def createCirclePost(request, circle):
 #     c.save()
 #     return redirect('home')
 
+def allCircle(request):
+    neighbourhood = request.user.userregister.neighbourhood
+    circles = Circle.objects.filter(neighbourhood=neighbourhood)
+    context = {
+        'circles':circles,
+    }
+    return render(request, 'circle/allcircle.html', context)
+
 
 def join(request):
     user = request.user.userregister

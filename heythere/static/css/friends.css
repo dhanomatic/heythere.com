@@ -1,0 +1,46 @@
+.friend-request-page{
+}
+
+.friend-request-page-card{
+    width: 15rem;
+    margin-left: -2rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-radius: 1rem;
+}
+
+.friend-request-page-card img{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: -0.5rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.friend-request-page-card h5, p{
+    margin: 0.1rem;
+}
+
+.friend-request-page-card h5{
+    font-size: 18px;
+}
+
+.friend-request-page-card a{
+    font-weight: 600;
+    color: white;
+}
+
+.friend-request-page-title{
+    background-color: white;
+    width: 60%;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    margin-left: -2rem;
+  }
+
+  .friend-request-page-title h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 0.4rem;
+  }

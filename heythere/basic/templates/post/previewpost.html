@@ -32,23 +32,22 @@
 
     <div class="col-lg-7 previewpost">
 
+        <div class="preview-post-card card" style="width: 43rem;">
             {% if request.user.username == post.creator|safe %}
-            <div style="float: right;">
-                <a class="update-link" href="{% url 'update-post' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <div style="local-upandde;">
+                <a class="update-link float-right" href="{% url 'update-post' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
                 &nbsp;&nbsp;
-                <a class="trash" href="{% url 'delete-post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+                <a class="trash float-right" href="{% url 'delete-post' post.id %}"><i class="fa-solid fa-trash"></i></a>
             </div>
-            
             {% endif %}
-           
-            <b><span><a class="previewpost-creatorname" href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> <small>{{post.date_create}}</small>
-            <br>
-            
-            <br>
-            <a href="{% url 'previewpost' post.id  %}"><img  src="{{post.image.url}}" alt=""></a>
+            <div>
+                <b><span><a class="previewpost-creatorname" href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> 
+                <small>{{post.date_create}}</small>
+            </div>
 
-
-            <!-- Like and comment block -->
+            <img src="{{post.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <!-- Like and comment block -->
             <div class="preview-like-comment">
                 <div style="" class="preview-like-element">
                     <form action="{% url 'like-previewpost' %}" method="post">
@@ -71,29 +70,21 @@
             </div>
             
             <!-- end of Like and comment block -->
-            <hr>
-            <!-- Post caption -->
-            <p class="previewpost-caption" style=""> &nbsp; - {{post.caption}}</p>
+              <!-- Post caption -->
+            <p class="previewpost-caption card-text" style=""> &nbsp; - {{post.caption}}</p>
             <!-- end of Post caption -->
-
-            <hr>
-
-
-            
-            
-                
-        <!-- <a href="/upvote/{{i.id}}">Upvote</a>
-        <a href="/downvote/{{i.id}}">Downvote</a> -->
-        <!-- <a href="{% url 'previewpost' post.id %}">Comment</a> -->
-
+            </div>
+        </div>
 
 
     </div>
 
 
+    
     <div class="col-lg-5 preview-comment-section">
 
-        <!-- Comment Box -->
+        <div class="comment-section-card card">
+            <!-- Comment Box -->
         <form action="" method="post" >
             {% csrf_token %}
             <div class="d-none">{{form.post}}</div>
@@ -107,88 +98,91 @@
 
         <hr>
 
-
-        {% for comment in comments %}
-        {% if comment.is_parent %}
-            <hr>
-            <small>
-            <strong>
-                @{{comment.user}}
-            </strong>
-            &nbsp; <span>{{comment.date_create}}</span> 
-            </small>
-            &nbsp;
-                <a class="trash" href="{% url 'delete-comment' comment.id post.id %}"><i class="bi bi-trash"></i></a>
+        <div class="comment-and-replay">
+            {% for comment in comments %}
+            {% if comment.is_parent %}
+                <small>
+                <strong>
+                    @{{comment.user}}
+                </strong>
+                <span>{{comment.date_create}}</span> 
+                </small>
+            
+                <a class="trash float-right" href="{% url 'delete-comment' comment.id post.id %}"><i class="bi bi-trash"></i></a>
+                
                 <br>
-            
-            
-            {{comment.body}}
-            
-            <div class="d-flex flex-row">
+                <p>{{comment.body}}</p>
+                
+                <div class="d-flex flex-row">
 
-                <form method="POST" action="{% url 'comment-like' post.id comment.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="btn" type="submit">
-                        <i class="far fa-thumbs-up"></i> <span>{{ comment.likes.all.count }}</span>
-                    </button>
-                </form>
+                    <form method="POST" action="{% url 'comment-like' post.id comment.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button class="btn" type="submit">
+                            <i class="far fa-thumbs-up"></i> <span>{{ comment.likes.all.count }}</span>
+                        </button>
+                    </form>
 
-                <form method="POST" action="{% url 'comment-dislike' post.pk comment.pk %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="btn" type="submit">
-                        <i class="far fa-thumbs-down"></i> <span>{{ comment.dislikes.all.count }}</span>
-                    </button>
-                </form>
+                    <form method="POST" action="{% url 'comment-dislike' post.pk comment.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button class="btn" type="submit">
+                            <i class="far fa-thumbs-down"></i> <span>{{ comment.dislikes.all.count }}</span>
+                        </button>
+                    </form>
 
-                <div>
-                    <button class="btn"><i class="far fa-comment-dots" onclick="commentReplyToggle('{{ comment.id }}')"></i></button>
-                </div>
-
-            </div>
-
-            <!-- Replay Comment Box -->
-            <div class="d-none mt-3" id="{{comment.id}}" >
-                <form action="{% url 'comment-reply' post.pk comment.pk %}" method="post">
-                    {% csrf_token %}
-                    <div class="d-none">{{form.post}}</div>
-                    <div class="d-none">{{form.user}}</div>
-                    <div class=" " >{{form.body|as_crispy_field}}</div>
-                    <div class=" ">
-                        <input class="btn btn-info btn-block" type="submit" value="Submit">
+                    <div>
+                        <button class="btn"><i class="far fa-comment-dots" onclick="commentReplyToggle('{{ comment.id }}')"></i></button>
                     </div>
-                </form>
-            </div>
-            <!-- End of Replay Comment Box -->
-        
-            {% for child_comment in comment.children %}
-            <div class="row mt-3 mb-5" style="margin-left: 2rem;">
-                <div class="col-md-5 col-sm-12 border-bottom">
-                    <small>
-                        
-                        <strong>
-                            @{{child_comment.user}}
-                        </strong>
 
-                        &nbsp; 
-
-                        <span>{{child_comment.date_create}}</span> 
-
-                    </small>
-                        &nbsp;
-                            <a class="trash" href="{% url 'delete-comment' child_comment.id post.id%}" ><i class="bi bi-trash"></i></a>
-                            <br>
-                        
-                        {{child_comment.body}}
                 </div>
-            </div>
+
+                <!-- Replay Comment Box -->
+                <div class="d-none mt-3" id="{{comment.id}}" >
+                    <form action="{% url 'comment-reply' post.pk comment.pk %}" method="post">
+                        {% csrf_token %}
+                        <div class="d-none">{{form.post}}</div>
+                        <div class="d-none">{{form.user}}</div>
+                        <div class=" " >{{form.body|as_crispy_field}}</div>
+                        <div class=" ">
+                            <input class="btn btn-info btn-block" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+                <!-- End of Replay Comment Box -->
             
-            {% endfor %}
-        {% endif %}
+                {% for child_comment in comment.children %}
+                <div class="row mt-3 mb-5" style="margin-left: 2rem;">
+                    <div class="col-md-5 col-sm-12 border-bottom">
+                        <small>
+                            
+                            <strong>
+                                @{{child_comment.user}}
+                            </strong>
+
+                            &nbsp; 
+
+                            <span>{{child_comment.date_create}}</span> 
+
+                        </small>
+                            &nbsp;
+                                <a class="trash" href="{% url 'delete-comment' child_comment.id post.id%}" ><i class="bi bi-trash"></i></a>
+                                <br>
+                            
+                            <p>{{child_comment.body}}</p>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            {% endif %}
         {% endfor %}
+        </div>
+
+        
 
         <br>
+        </div>
+        
 
     </div>
 

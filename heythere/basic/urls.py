@@ -30,6 +30,7 @@ urlpatterns = [
     path('circle/<str:circle>', views.circle, name='circle'),
     path('create-circle-post/<str:circle>', views.createCirclePost, name='create-circle-post'),
     # path('join-circle/<str:circle>', views.joinCircle, name='join-circle'),
+    path('all-circle/', views.allCircle, name='all-circle'),
     path('join/', views.join, name='join'),
     path('circle-chat/<str:circle>', views.circleChat, name='circle-chat'),
     path('private-chat/<str:friend>', views.privateChat, name='private-chat'),

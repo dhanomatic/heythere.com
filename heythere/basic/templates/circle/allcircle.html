@@ -1,0 +1,48 @@
+{% extends 'basic/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row home-container container" >
+    <div class="col col-lg-2 col-sm-12">
+        {% include 'basic/sidebar.html' %}
+    </div>
+
+    <div class="col col-lg-10 col-sm-12">
+        
+        <div class="all-circle" style="margin-right: -10rem;" >
+          <div class="all-circle-title shadow"> 
+            <h3 class="card-body" >Cricles Near You</h3>
+          </div>
+            {% for i in circles %}
+            {% if forloop.first %}
+            <div class="row mx-auto">
+            {% endif %}
+                <div class="col-lg-4 col-md-4 col-12">
+                    
+
+                    <div class="all-circle-card card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                          <div class="col-md-4">
+                            <img src="{{i.imageURL}}" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{i.name}}</h5>
+                              <p class="description card-text">{{i.description}}</p>
+                              <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block">View Circle</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                </div>
+            {% if forloop.counter|divisibleby:3 %} 
+            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
