@@ -32,47 +32,17 @@
 
     <div class="col-lg-7 previewpost">
 
-        <div class="preview-post-card card" style="width: 43rem;">
+        <div class="preview-post-card card" >
             {% if request.user.username == post.creator|safe %}
             <div style="local-upandde;">
-                <a class="update-link float-right" href="{% url 'update-post' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                &nbsp;&nbsp;
-                <a class="trash float-right" href="{% url 'delete-post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+                <a class="trash float-right" style="color: white; margin-left: 1rem;" href="{% url 'delete-post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+                <a class="update-link float-right" style="color: white; " href="{% url 'update-post' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
             {% endif %}
-            <div>
-                <b><span><a class="previewpost-creatorname" href="/peopleprofile/{{post.creator}}">@{{post.creator}}</a></span></b> 
-                <small>{{post.date_create}}</small>
-            </div>
 
             <img src="{{post.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
-              <!-- Like and comment block -->
-            <div class="preview-like-comment">
-                <div style="" class="preview-like-element">
-                    <form action="{% url 'like-previewpost' %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value="{{post.id}}">
-                        {% if request.user not in post.likes.all %}
-                            <button type="submit" class="btn btn-lg btn-custom">
-                                <i class="far fa-thumbs-up"> {{post.likes.all.count}}</i></button>
-                        {% else %}
-                            <button type="submit" class="btn btn-lg btn-custom">
-                                <i class="far fa-solid fa-thumbs-up" style="color:rgb(159, 30, 30)"> {{post.likes.all.count}}</i></button>
-                        {% endif %}
-                        
-                    </form>
-                </div>
-                
-                <div class="preview-comment-element">
-                    <a href="{% url 'previewpost' post.id %}" type="submit" class="btn btn-lg btn-custom" ><i class="far fa-comment-dots"> {{post.comments.all.count}}</i></a>
-                </div>
-            </div>
-            
-            <!-- end of Like and comment block -->
-              <!-- Post caption -->
-            <p class="previewpost-caption card-text" style=""> &nbsp; - {{post.caption}}</p>
-            <!-- end of Post caption -->
+           
             </div>
         </div>
 
@@ -84,17 +54,46 @@
     <div class="col-lg-5 preview-comment-section">
 
         <div class="comment-section-card card">
-            <!-- Comment Box -->
-        <form action="" method="post" >
-            {% csrf_token %}
-            <div class="d-none">{{form.post}}</div>
-            <div class="d-none">{{form.user}}</div>
-            <div class="col-lg-12" >{{form.body|as_crispy_field}}</div>
-            <div class="col-lg-12">
-                <input class="btn btn-info btn-block" type="submit" value="Submit">
+
+            <div>
+                <div class=" image-cropper-previewpost" style="float: left;" >
+                    <a href="{% url 'userprofile' post.creator %}"><img src="{{post.creator.imageURL}}"  alt=""></a>
+                </div>
+                <b><span><a style="float: left;" class="previewpost-creatorname" href="{% url 'userprofile' post.creator %}">@{{post.creator}}</a></span></b> 
+                {% if post.circle %}
+                <b><span class="previewpost-circlename"><a href="{% url 'circle' post.circle %}">{{post.circle}}</a></span></b>
+                {% endif %}
+                <br>
+                <small style="float: left; margin-top: 0rem; margin-left: 0.5rem;">{{post.date_create}}</small>
             </div>
-        </form>
-        <!-- End of Comment Box -->
+
+            <!-- Post caption -->
+            <p class="previewpost-caption card-text" style="">{{post.caption}}</p>
+            <!-- end of Post caption -->
+            <hr>
+
+             <!-- Like and comment block -->
+             <div class="preview-like-comment">
+                <div style="" class="preview-like-element">
+                    <form action="{% url 'like-previewpost' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{post.id}}">
+                        {% if request.user not in post.likes.all %}
+                            <button type="submit" class="btn btn-info btn-custom">
+                                <i class="far fa-thumbs-up"> {{post.likes.all.count}}</i></button>
+                        {% else %}
+                            <button type="submit" class="btn btn-info btn-custom">
+                                <i class="far fa-solid fa-thumbs-up" style="color:rgb(255, 255, 255)"> {{post.likes.all.count}}</i></button>
+                        {% endif %}
+                        
+                    </form>
+                </div>
+                
+                <div class="preview-comment-element">
+                    <a href="{% url 'previewpost' post.id %}" type="submit" class="btn btn-secondary btn-custom" ><i class="far fa-comment-dots"> {{post.comments.all.count}}</i></a>
+                </div>
+            </div>
+            <!-- end of Like and comment block -->
 
         <hr>
 
@@ -178,6 +177,21 @@
         {% endfor %}
         </div>
 
+        <br><br><br><br><br>
+        
+        <!-- Comment Box -->
+        <div class="comment-box">
+            <form action="" method="post" >
+                {% csrf_token %}
+                <div class="d-none">{{form.post}}</div>
+                <div class="d-none">{{form.user}}</div>
+                <div class="col-lg-12" >{{form.body|as_crispy_field}}</div>
+                <div class="col-lg-12">
+                    <input class="btn btn-info btn-block" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <!-- End of Comment Box -->
         
 
         <br>
