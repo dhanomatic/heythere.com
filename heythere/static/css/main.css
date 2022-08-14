@@ -27,6 +27,14 @@ a{
   width: 10rem;
 }
 
+/* create post  */
+
+.caption{
+  width: 1000px !important;
+}
+
+/* end of create post */
+
 .username-localfeed{
   background-color: aqua;
   border-radius: 1rem 1rem 1rem 1rem;
@@ -246,21 +254,21 @@ a{
 }
 
 .preview-post-card{
-  width: 50rem;
-  height: 35.1rem;
+  width: 51rem;
+  height: 36.9rem;
   background-color: black;
-  margin-left: 1rem;
-  margin-top: 1rem;
+  margin-left: 0rem;
+  margin-top: 0rem;
   padding: 1rem;
   border-radius: 0;
 }
 
 .previewpost img{
-  width: 47rem !important;
+  width: 49rem !important;
   height: 33rem;
   object-fit: contain;
   margin-left: -0.1rem !important;
-  margin-top: -1rem;
+  margin-top: 0rem;
   margin-bottom: -2rem;
 }
 
@@ -321,11 +329,11 @@ a{
 }
 
 .comment-section-card{
-  height: 35.1rem;
+  height: 37rem;
   overflow-y: scroll;
-  margin-left: 3rem;
-  margin-top: -2.01rem;
-  margin-right: 1rem;
+  margin-left: 3.3rem;
+  margin-top: -3.1rem;
+  margin-right: 0rem;
   padding: 1rem;
   border-radius: 0;
 }

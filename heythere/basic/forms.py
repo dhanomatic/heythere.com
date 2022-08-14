@@ -1,8 +1,3 @@
-from dataclasses import fields
-from logging import PlaceHolder
-from tkinter import Widget
-from turtle import width
-from urllib import request
 from django import forms
 from . models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -14,6 +9,12 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
+        Widgets = {
+            'caption' : forms.Textarea(attrs={'rows':6, 'cols':4}),
+            'image' : forms.FileInput(attrs={'class':'form-control'}),
+            'local_visibility' : forms.Select(attrs={'class':'form-control'}),
+            'global_visibility' : forms.Select(attrs={'class':'form-control'}),
+        }
         # fields = ['creator','caption', 'image', 'local_visibility', 'global_visibility']
 
 class CreateUserForm(UserCreationForm):

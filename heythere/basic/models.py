@@ -1,5 +1,5 @@
 from datetime import date
-from tkinter import CASCADE
+from tkinter import CASCADE, Widget
 from django.db import models
 from django.contrib.auth.models import User
 from phone_field import PhoneField

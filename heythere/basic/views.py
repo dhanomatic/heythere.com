@@ -164,7 +164,7 @@ def createPost(request, pk):
         form = PostForm(initial={'creator':username})
 
     context={
-        'form':form
+        'form':form,
     }
     return render(request, 'home/createpost.html', context)
 

@@ -1,33 +1,55 @@
 {% extends 'basic/main.html' %}
 
 {% block content %}
+{%load crispy_forms_tags %} 
 
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
 
-    <label for="">caption :</label>
-    <div class="">{{form.caption}}</div>
-    <br>
-    <label for="">image :</label>
-    <div class="">{{form.image}}</div>
-    <br>
-    <label for="">local visibility :</label>
-    <div class="">{{form.local_visibility}}</div>
-    <br>
-    <label for="">global visibility :</label>
-    <div class="">{{form.global_visibility}}</div>
-    <br>
-    <label for="">circle :</label>
-    <div class="">{{form.circle}}</div>
-    <br>
-    <label for="">circle visibility :</label>
-    <div class="">{{form.circle_visibility}}</div>
 
-    <div class="d-none">{{form.creator}}</div>
-    <div class="d-none">{{form.likes}}</div>
-    <div class="d-none">{{form.commets}}</div>
+<div class="card" style="width: 40rem; margin-left: 18rem;margin-top: 2rem; padding: 1rem;">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <input type="submit" value="Submit">
-</form>
+        <!-- {{form|crispy}} -->
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="">{{form.caption|as_crispy_field}}</div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="">{{form.image|as_crispy_field}}</div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="">{{form.local_visibility|as_crispy_field}}</div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="">{{form.global_visibility|as_crispy_field}}</div>
+            </div>
+
+        </div>
+        
+
+
+        <div class="d-none">{{form.circle|as_crispy_field}}</div>
+        <div class="d-none">{{form.creator}}</div>
+        <div class="d-none">{{form.likes}}</div>
+        <div class="d-none">{{form.commets}}</div>
+    
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+
 
 {% endblock content %}
