@@ -1,14 +1,26 @@
 {% extends 'basic/main.html' %}
+{%load crispy_forms_tags %} 
 
 {% block content %}
 
-<h4>Create Circle</h4>
+<div style="margin-top: 2.5rem !important;">
+    <p class="home-global-title-card shadow-lg display-4" style="font-size: 2.2rem; font-weight: 300; background-color: white; width: 45rem;height: 4rem; margin-left: 18rem; padding-top: 0.6rem; text-align: center; background-image: linear-gradient(135deg, #43CBFF 10%, #9708CC 100%); border-radius: 1rem 1rem 0 0;">Create Circle!</span></p>
+</div>
 
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    {{form.as_p}}
-    <input type="submit" value="Submit">
+    <div class="card shadow-lg" style="width: 45rem;margin-left: 18rem;margin-top: 0rem; padding: 1rem; padding-top: 0; border-radius: 0 0 1rem 1rem;">
+        <div style="margin-top: 1rem;">{{form.name|as_crispy_field}}</div>
+        <div>{{form.description|as_crispy_field}}</div>
+        <div class="input disabled">{{form.circle_creator|as_crispy_field}}</div>
+        <div>{{form.image|as_crispy_field}}</div>
+        <div class="d-none">{{form.date_create}}</div>
+        <div class="">{{form.neighbourhood|as_crispy_field}}</div>
+        <div class="d-none">{{form.members}}</div>
+
+        <input type="submit" value="Submit">
+    </div>
 </form>
 
 {% endblock content %}

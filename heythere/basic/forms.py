@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = '__all__'
         Widgets = {
-            'caption' : forms.Textarea(attrs={'rows':6, 'cols':4}),
+            'caption' : forms.Textarea(attrs={'placeholder':'caption'}),
             'image' : forms.FileInput(attrs={'class':'form-control'}),
             'local_visibility' : forms.Select(attrs={'class':'form-control'}),
             'global_visibility' : forms.Select(attrs={'class':'form-control'}),
@@ -51,6 +51,23 @@ class CommentForm(forms.ModelForm):
 
 
 class CircleForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Enter Circle Title...'}))
+    circle_creator = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','disabled':True}))
+    neighbourhood = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','disabled':True}))
+    description = forms.CharField(widget=forms.Textarea(attrs={"rows":3, 'placeholder': 'circle description...'}))
+
     class Meta:
         model = Circle
-        fields = '__all__'
+        fields = ['name','description','circle_creator','image','neighbourhood','members']
+
+        Widgets = {
+            'circle_creator' : forms.TextInput(attrs={'class':'input disabled'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CircleForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = False
+        self.fields['description'].label = False
+
+
+    

@@ -527,7 +527,7 @@ def createCirclePost(request, circle):
     context = {
         'form':form,
     }
-    return render(request, 'circle/createcircle.html', context)
+    return render(request, 'circle/createcirclepost.html', context)
 
 # def joinCircle(request, circle):
 #     username = request.user.userregister
