@@ -25,7 +25,7 @@
 
             <div>
                 <div class="global-creator-and-date">
-                    <b><span class="username-globalfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> &nbsp; <small>{{i.date_create}}</small>
+                    <b><span class="username-globalfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> &nbsp; <small style="color: grey;">{{i.date_create}}</small>
                 </div>
                 <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top globalfeed-img" alt="..."></a>
             </div>
@@ -37,16 +37,16 @@
                 {% csrf_token %}
                 <input type="hidden" name="post_id" value="{{i.id}}">
                 {% if request.user not in i.likes.all %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                    <button type="submit" class="btn  btn-sm btn-like shadow-sm" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
                 {% else %}
-                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                    <button type="submit" style="color: rgb(204, 52, 52);" class="btn  btn-sm btn-unlike shadow-sm" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
                 {% endif %}
                 
             </form>
             
 
-            <a id="comment-global" class="btn btn-info btn-sm comment-global" href="{% url 'previewpost' i.id %}">
-                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+            <a id="comment-global" class="btn  btn-sm comment-global shadow-sm" href="{% url 'previewpost' i.id %}">
+                <i class="fa-regular fa-comment"></i> {{i.comments.all.count}}</a>
             
             <div class="caption-global">
                 <div class="card-body">

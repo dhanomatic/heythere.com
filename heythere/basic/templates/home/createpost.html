@@ -9,12 +9,12 @@
     }
 </style>
 
-<div style="margin-top: 1.3rem !important;">
-    <p class="home-global-title-card shadow-lg display-4" style="font-size: 2.2rem; font-weight: 300; background-color: white; width: 45rem;height: 4rem; margin-left: 18rem; padding-top: 0.6rem; text-align: center; background-image: linear-gradient(135deg, #43CBFF 10%, #9708CC 100%); border-radius: 1rem 1rem 0 0;">Whats on your mind, <span>{{request.user.userregister}} ?</span></p>
+<div class="create-post">
+    <p class="title shadow-lg display-4">Whats on your mind, <span>{{request.user.userregister}} ?</span></p>
 </div>
 
 
-<div class="card shadow-lg" style="width: 45rem;margin-left: 18rem;margin-top: 0rem; padding: 1rem; padding-top: 0; border-radius: 0 0 1rem 1rem;">
+<div class="post-card card shadow-lg">
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -30,13 +30,18 @@
 
         <div class="row">
 
-            <div class="col-lg-12">
-                <div class="" style="border: solid; border-color: gray;margin-bottom: 0.4rem; padding-left: 1rem;">{{form.image|as_crispy_field}}</div>
+            <div class="image-div col-lg-12">
+                <div class="">{{form.image|as_crispy_field}}</div>
+
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Image Preview" class="image-preview__image">
+                    <span class="image-preview__default-text">Image Preview</span>
+                </div>
             </div>
 
         </div>
 
-        <div class="row">
+        <div class="visibility row">
 
             <div class="col-lg-6">
                 <div class="">{{form.local_visibility|as_crispy_field}}</div>
@@ -55,10 +60,15 @@
         <div class="d-none">{{form.likes}}</div>
         <div class="d-none">{{form.commets}}</div>
     
-        <input type="submit" value="Submit">
+        <input class="btn btn-info btn-block" type="submit" value="Submit">
     </form>
 </div>
 
+
+
+<!-- <script>
+    
+</script> -->
 
 
 {% endblock content %}

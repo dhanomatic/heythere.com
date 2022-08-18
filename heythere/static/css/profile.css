@@ -86,16 +86,25 @@
   }
   
   .like-profile{
-    margin-left: 30.4rem;
+    margin-left: 29.1rem;
     margin-top: -7.5rem;
-    width: 2.8rem !important;
-  
+    width: 4rem!important;
+    padding-right: 1rem !important;
+    z-index: 1;
   }
 
+  .like-profile button{
+    background-color: #fff6f6;
+    font-size: medium;
+  }
+  
   .comment-profile{
-    margin-left: 30.4rem !important;
+    margin-left: 29.1rem !important;   
     margin-top: 0.5rem;
-    width: 2.8rem !important;
+    width: 4rem !important;
+    z-index: 1;
+    background-color: #fff6f6;
+    font-size: medium;
   }
   
   
@@ -107,7 +116,7 @@
   
   .profile-upandde{
     position: relative;
-    z-index: 10;
+    z-index: 1;
     margin: 0.5rem;
     margin-bottom: -1.5rem;
   }
@@ -117,12 +126,14 @@
   }
   
   .caption-profile p{
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: -0.5rem !important;
     text-align: justify;
     font-family: 'Nunito', sans-serif !important;
     font-size: medium;
     font-weight: 400;
+    max-height: 8rem;
+    overflow-y: scroll;
   }
   
   .card-profile{
@@ -193,6 +204,9 @@
   margin-left: 0.5rem;
 }
 
+.viewprofile-elements p:hover{
+  color: black;
+}
 
 .viewprofile-join-btn-div{
  margin-top: 0.4rem;
@@ -205,7 +219,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
   color: white !important;
-  background-color: #009dd1;
+  background-color: #3bb2be;
+}
+
+.view-profile-btn:hover{
+  background-color: #2897a9;
 }
 
 .viewprofile-showmore{
@@ -221,7 +239,7 @@
   overflow: hidden;
   border-radius: 50%;
   border: solid;
-  border-color: #0087b4;
+  border-color: #3bb2be;
 }
 
 .image-cropper-viewprofile img {

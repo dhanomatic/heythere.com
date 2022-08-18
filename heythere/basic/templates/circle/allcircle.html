@@ -12,9 +12,13 @@
     <div class="col col-lg-10 col-sm-12">
         
         <div class="all-circle" style="margin-right: -10rem;" >
-          <div class="all-circle-title shadow"> 
+
+          <div class="page-header-circle shadow"> 
             <h3 class="card-body" >Cricles Near You</h3>
           </div>
+
+          <div class="page-card-circle">
+
             {% for i in circles %}
             {% if forloop.first %}
             <div class="row mx-auto">
@@ -22,7 +26,7 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     
 
-                    <div class="all-circle-card card mb-3" style="max-width: 540px;">
+                    <div class="all-circle-card card mb-3 shadow" style="max-width: 540px;">
                         <div class="row no-gutters">
                           <div class="col-md-4">
                             <img src="{{i.imageURL}}" alt="...">
@@ -42,6 +46,7 @@
             {% if forloop.counter|divisibleby:3 %} 
             </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
             {% endfor %}
+          </div>
         </div>
     </div>
 </div>

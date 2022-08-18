@@ -9,32 +9,35 @@
 
     <div class="col col-lg-10 col-sm-12">
 
-        <div class="friend-request-page-title shadow"> 
+        <div class="page-header shadow"> 
             <h3 class="card-body" >Friend Requests</h3>
         </div>
 
-        {% for i in requests %}
+        <div class="page-card">
 
-        {% if forloop.first %}
-        <div class="row mx-auto">
-        {% endif %}
-            <div class="friend-request-page col-lg-3 col-md-4 col-12">
+            {% for i in requests %}
 
-                <div class="friend-request-page-card card">
-                    <img src="{{i.sender.imageURL}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">@{{i.sender}}</h5>
-                      <p class="card-text">{{i.sender.bio}}</p>
-                      <a href="{% url 'accept-request' i.sender False %}" class="btn btn-info btn-sm btn-block">Accept</a>
-                        <a href="{% url 'decline-request' i.sender False %}" class="btn btn-secondary btn-sm btn-block">Decline</a>
+            {% if forloop.first %}
+            <div class="row mx-auto card-body">
+            {% endif %}
+                <div class="friend-request-page col-lg-3 col-md-4 col-12">
+
+                    <div class="friend-request-page-card card shadow-sm">
+                        <a href="{% url 'userprofile' i.sender %}"><img src="{{i.sender.imageURL}}" class="card-img-top" alt="..."></a> 
+                        <div class="card-body">
+                        <h5 class="card-title">@{{i.sender}}</h5>
+                        <p class="card-text">{{i.sender.bio}}</p>
+                        <a href="{% url 'accept-request' i.sender False %}" class="btn btn-info btn-sm btn-block">Accept</a>
+                            <a href="{% url 'decline-request' i.sender False %}" class="btn btn-secondary btn-sm btn-block">Decline</a>
+                        </div>
                     </div>
-                  </div>
 
-            </div>
-        {% if forloop.counter|divisibleby:4 %} 
-        </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+                </div>
+            {% if forloop.counter|divisibleby:4 %} 
+            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 

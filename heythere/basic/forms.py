@@ -6,6 +6,9 @@ from crispy_forms.helper import FormHelper
 
 
 class PostForm(forms.ModelForm):
+    caption = forms.CharField(widget=forms.Textarea(attrs={"rows":5, 'placeholder': 'whats on your mind...'}))
+    image = forms.FileField(widget=forms.FileInput(attrs={'name':'inpFile', 'id':'inpFile'}))
+
     class Meta:
         model = Post
         fields = '__all__'
@@ -15,6 +18,11 @@ class PostForm(forms.ModelForm):
             'local_visibility' : forms.Select(attrs={'class':'form-control'}),
             'global_visibility' : forms.Select(attrs={'class':'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['caption'].label = False
+        self.fields['image'].label = False
         # fields = ['creator','caption', 'image', 'local_visibility', 'global_visibility']
 
 class CreateUserForm(UserCreationForm):
@@ -51,10 +59,11 @@ class CommentForm(forms.ModelForm):
 
 
 class CircleForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Enter Circle Title...'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Circle title...'}))
     circle_creator = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','disabled':True}))
     neighbourhood = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','disabled':True}))
-    description = forms.CharField(widget=forms.Textarea(attrs={"rows":3, 'placeholder': 'circle description...'}))
+    image = forms.FileField(widget=forms.FileInput(attrs={'name':'inpFile', 'id':'inpFile'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={"rows":3, 'placeholder': 'Circle description...'}))
 
     class Meta:
         model = Circle
@@ -68,6 +77,7 @@ class CircleForm(forms.ModelForm):
         super(CircleForm, self).__init__(*args, **kwargs)
         self.fields['name'].label = False
         self.fields['description'].label = False
+        self.fields['image'].label = False
 
 
     

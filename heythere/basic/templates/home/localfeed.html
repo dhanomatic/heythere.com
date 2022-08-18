@@ -15,7 +15,7 @@
                     <img src="{{request.user.userregister.imageURL}}" alt=""> &nbsp; &nbsp;
                     <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="{% translate 'Create Post' %}" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
                     <div class="input-group-append">
-                      <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
+                      <a href="{% url 'create-post' user.id %}" class="btn ml-1" style="background-color: white; font-size: larger;" type="" id="button-addon2"><i class="bi bi-image"></i></a>
                     </div>
                 </div>
             </div>
@@ -73,16 +73,16 @@
                         <input type="hidden" name="post_id" value="{{i.id}}">
                         <input type="hidden" name="flag" value="0">
                         {% if request.user not in i.likes.all %}
-                            <button style="width: 4rem;" type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                            <button style="width: 4rem;" type="submit" class="btn  btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
                         {% else %}
-                            <button style="width: 4rem;" type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                            <button style="width: 4rem; color: rgb(204, 52, 52);" type="submit" class="btn  btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
                         {% endif %}
                         
                     </form>
                     
 
-                    <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
-                        <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                    <a id="comment-local" class="btn btn-sm comment-local" href="{% url 'previewpost' i.id %}">
+                        <i class="fa-regular fa-comment"></i> {{i.comments.all.count}}</a>
                     
                     <div class="caption-local">
                         <div class="card-body">
@@ -132,22 +132,21 @@
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{i.id}}">
                         {% if request.user not in i.likes.all %}
-                            <button style="width: 4rem;" type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                            <button style="width: 4rem;" type="submit" class="btn  btn-sm btn-like shadow-sm" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
                         {% else %}
-                            <button style="width: 4rem;" type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                            <button style="width: 4rem; color: rgb(204, 52, 52);" type="submit" class="btn  btn-sm btn-unlike shadow-sm" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
                         {% endif %}
                         
                     </form>
                     
 
-                    <a id="comment-local" class="btn btn-info btn-sm comment-local" href="{% url 'previewpost' i.id %}">
-                        <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                    <a id="comment-local" class="btn  btn-sm comment-local shadow-sm" href="{% url 'previewpost' i.id %}">
+                        <i class="fa-regular fa-comment"></i> {{i.comments.all.count}}</a>
                     
                     <div class="caption-local">
                         <div class="card-body">
                             <p class="card-text caption-local" >{{i.caption}}</p>
                         </div>
-            
                     </div>
             
                 </div>

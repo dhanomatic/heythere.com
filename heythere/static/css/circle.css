@@ -1,3 +1,20 @@
+.create-circle-title{
+    margin-top: 2.5rem !important;
+}
+
+.create-circle-title p{
+    font-size: 2.2rem; 
+    font-weight: 300; 
+    width: 45rem;
+    height: 4rem; 
+    margin-left: 18rem; 
+    padding-top: 0.7rem; 
+    text-align: center; 
+    color: white;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    border-radius: 1rem 1rem 0 0 !important;
+}
+
 .circle-card{
     width: 36rem;
     height: 17.5rem;
@@ -37,7 +54,7 @@
 }
 
 .circle-join-btn-div button{
-    background-color: #009dd1;
+    background-color: #3bb2be;
     color: whitesmoke;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 600;
@@ -47,8 +64,8 @@
     border-radius: 1rem;
 }
 
-.circle-join-btn-div a:hover{
-    background-color: #0087b4;
+.circle-join-btn-div button:hover{
+    background-color: #2897a9;
     color: whitesmoke;
     font-weight: 600;
     margin-left: 0rem;
@@ -65,7 +82,7 @@
 }
 
 .circlepage-join-btn-div button{
-    background-color: #16a0b6;
+    background-color: #3bb2be;
     color: whitesmoke;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 600;
@@ -74,11 +91,11 @@
     margin-left: 0rem;
     border-radius: 0rem 0.5rem 0.5rem 0rem ;
     position: relative;
-    z-index: 10;
+    z-index: 1;
 }
 
 .circlepage-join-btn-div button:hover{
-    background-color: #0087b4;
+    background-color: #2897a9;
     color: whitesmoke;
     font-weight: 600;
     margin-left: 0rem;
@@ -89,7 +106,7 @@
     width: 6rem;
     height: 2.3rem;
     margin-right: 0.5rem;
-    background-color: #16a0b6;
+    background-color: #3bb2be;
     color: whitesmoke;
     font-family: 'Noto Sans', sans-serif;
     font-weight: 600;
@@ -98,11 +115,11 @@
     margin-left: 0rem;
     border-radius: 0.5rem 0rem 0rem 0.5rem ;
     position: relative;
-    z-index: 10;
+    z-index: 1;
 }
 
 .circlepage-join-btn-div a:hover{
-    background-color: #0087b4;
+    background-color: #2897a9;
     color: whitesmoke;
     font-weight: 600;
     margin-left: 0rem;
@@ -125,7 +142,7 @@
     overflow: hidden;
     border-radius: 50%;
     border: solid;
-    border-color: #0087b4;
+    border-color: #3bb2be;
   }
 
 .image-cropper-circle img {
@@ -140,7 +157,7 @@
 .circle-showmore-btn{
     border-radius: 0rem 0rem 0rem 0rem;
     font-weight:600;
-    color: #16a0b6 !important; 
+    color: #3bb2be !important; 
 }
 
 .profile-image-div-cricle{
@@ -197,7 +214,7 @@
     overflow: hidden;
     border-radius: 50%;
     border: solid;
-    border-color: #16a0b6;
+    border-color: #3bb2be;
   }
 
 .image-cropper-member-circle img {
@@ -252,3 +269,29 @@
     color: white;
     width: 11.5rem;
   }
+
+
+  .page-header-circle{
+    background-color: white;
+    width: 100%;
+    height: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -2rem;
+    border-radius: 1rem;
+  }
+
+  .page-header-circle h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 1rem;
+  }
+
+  .page-card-circle{
+    background-color: white; 
+    padding: 1rem;
+    margin-right: 2rem; 
+    margin-left: -2rem;
+    border-radius: 1rem;
+
+}

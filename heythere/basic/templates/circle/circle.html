@@ -111,16 +111,16 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{i.id}}">
                                 {% if request.user not in i.likes.all %}
-                                    <button type="submit" class="btn btn-danger btn-sm btn-like" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                                    <button style="width: 4rem;" type="submit" class="btn btn-sm btn-like shadow-sm" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
                                 {% else %}
-                                    <button type="submit" class="btn btn-danger btn-sm btn-unlike" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                                    <button style="width: 4rem; color: rgb(204, 52, 52);" type="submit" class="btn  btn-sm btn-unlike shadow-sm" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
                                 {% endif %}
                                 
                             </form>
                             
         
-                            <a id="comment-profile" class="btn btn-info btn-sm comment-profile" href="{% url 'previewpost' i.id %}">
-                                <i class="fa-solid fa-comment"></i> {{i.comments.all.count}}</a>
+                            <a id="comment-profile" class="btn  btn-sm comment-profile shadow-sm" href="{% url 'previewpost' i.id %}">
+                                <i class="fa-regular fa-comment"></i> {{i.comments.all.count}}</a>
                             {% else %}
 
                             <p style="margin-top: -3rem;"></p>
