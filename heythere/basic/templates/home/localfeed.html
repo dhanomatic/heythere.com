@@ -68,7 +68,7 @@
             
 
 
-                    <form class="like-local" action="{% url 'like-post' %}" method="post">
+                    <form class="like-local" action="{% url 'like-post' 'h' 'home' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{i.id}}">
                         <input type="hidden" name="flag" value="0">
@@ -128,7 +128,7 @@
             
 
 
-                    <form class="like-local" action="{% url 'like-post' %}" method="post">
+                    <form class="like-local" action="{% url 'like-post' 'h' 'home' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{i.id}}">
                         {% if request.user not in i.likes.all %}

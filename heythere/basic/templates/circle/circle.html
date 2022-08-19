@@ -107,7 +107,7 @@
         
                             {% if flag == True %}
 
-                            <form class="like-profile" action="{% url 'like-post' %}" method="post">
+                            <form class="like-profile" action="{% url 'like-post' 'c' circle.name %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{i.id}}">
                                 {% if request.user not in i.likes.all %}

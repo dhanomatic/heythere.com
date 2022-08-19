@@ -219,7 +219,7 @@ def deletePost(request, pk):
 
 @login_required(login_url='login')
 
-def like_post(request):
+def like_post(request, check, name):
     user = request.user
     if request.method=='POST':
         post_id=request.POST.get('post_id')
@@ -239,7 +239,13 @@ def like_post(request):
                 like.value = 'Like'
 
         like.save()
-    return redirect('home')
+
+    if check=='h':
+        return redirect('home')
+    elif check=='c':
+        return redirect('circle', name)
+    elif check=='p':
+        return redirect('userprofile', name)
 
 
 
@@ -453,6 +459,7 @@ def updateprofile(request, username):
         form = UserRegisterForm2(instance=user)
     context={
         'form':form,
+        'user':user,
     }
     return render(request, 'profile/updateprofile.html', context)
 

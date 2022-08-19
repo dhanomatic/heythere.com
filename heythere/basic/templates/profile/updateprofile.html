@@ -1,13 +1,74 @@
 {% extends 'basic/main.html' %}
 
 {% block content %}
+{%load crispy_forms_tags %} 
 
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    {{form.as_p}}
+    <div class="container">
 
-    <input type="submit" value="Submit">
+        <div class="row">
+            <div class="col-6">
+                <div class="image-cropper">
+                    <img src="{{user.imageURL}}" alt="">
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <div>{{form.username|as_crispy_field}}</div>
+                <div>{{form.image|as_crispy_field}}</div>
+            </div>  
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div>{{form.fname|as_crispy_field}}</div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>{{form.lname|as_crispy_field}}</div>
+            </div>
+        </div>
+
+        <div>{{form.neighbourhood|as_crispy_field}}</div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div>{{form.email|as_crispy_field}}</div>
+            </div>
+
+            <div class="col-lg-6">
+                <div>{{form.phonenumber|as_crispy_field}}</div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div>{{form.gender|as_crispy_field}}</div>
+            </div>
+
+            <div class="col-lg-4">
+                <div>{{form.dob|as_crispy_field}}</div>
+            </div>
+
+            <div class="col-lg-4">
+                <div>{{form.age|as_crispy_field}}</div>
+            </div>
+        </div>
+        
+
+        <div>{{form.bio|as_crispy_field}}</div>
+
+
+        <div>{{form.cover_photo|as_crispy_field}}</div>
+
+        <div class="d-none">{{form.friends|as_crispy_field}}</div>
+
+        <input type="submit" value="Submit">
+    </div>
+
 </form>
 
 {% endblock content %}

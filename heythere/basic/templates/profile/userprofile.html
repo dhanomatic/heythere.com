@@ -16,7 +16,11 @@
         <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
-                  <img src="{% static 'images/hero/banner-img2.jpg' %}" class="d-block w-100" alt="...">
+                    {% if user.cover_photo %}
+                  <img src="user.cover_photo" class="d-block w-100" alt="...">
+                    {% else %}
+                  <img src="{% static 'images/hero/default-cover.gif' %}" class="d-block w-100" alt="...">
+                    {% endif %}
               </div>
             </div>
         </div>
@@ -124,7 +128,7 @@
                     
         
         
-                            <form class="like-profile" action="{% url 'like-post' %}" method="post">
+                            <form class="like-profile" action="{% url 'like-post' 'p' user.username %}" method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{i.id}}">
                                 {% if request.user not in i.likes.all %}
@@ -199,7 +203,7 @@
                             <div class="container card-body text-dark">
                                 
                                 {% if user.username == request.user.userregister.username %}
-                                    <a href="{% url 'updateprofile' user.username %}">updateprofile</a>
+                                    <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'updateprofile' user.username %}">updateprofile</a>
                                 {% endif %}
                                 <br>
                                 <p>Neighbourhood : <strong>{{user.neighbourhood}}</strong></p>
