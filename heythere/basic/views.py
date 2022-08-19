@@ -427,6 +427,8 @@ def userProfile(request, username):
     addfriend = Friend.objects.filter(Q(sender=request.user.userregister, receiver=user)|Q(sender=user, receiver=request.user.userregister))
     if addfriend.exists():
         flag=True
+
+    friends = UserRegister.objects.filter(friends__username=username)
     
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
@@ -442,6 +444,7 @@ def userProfile(request, username):
         'flag':flag,
         'delta':delta,
         'alpha':alpha,
+        'friends':friends,
 
     }
     return render(request, 'profile/userprofile.html', context)

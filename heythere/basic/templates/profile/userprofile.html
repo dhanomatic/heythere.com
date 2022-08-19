@@ -167,7 +167,11 @@
                     <div class="profile-image-div">
                         <div class="card" style="width: 18rem;">
                             <div class="image-cropper">
-                                <img src="{{user.imageURL }}" class="card-img-top" alt="...">
+                                {% if user.image %}
+                                <a href="{{user.imageURL}}"><img src="{{user.imageURL}}" class="card-img-top" alt="..."></a>
+                                {% else %}
+                                <img src="{% static 'images/hero/default-profile.png' %}" class="card-img-top" alt="...">
+                                {% endif %}
                             </div>
                             <div class="card-body">
                             </div>
@@ -225,6 +229,38 @@
                                 <p>Age : <strong>{{user.age}}</strong></p>
                             </div>
                           </div>
+                    </div>
+
+                    <div class="members">
+                        <div class="card members-card">
+                            <div class="">
+                                <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Friends</h6>
+                            </div>
+                    
+                            {% for member in friends %}
+                            {% if forloop.first %}
+                            <div class="row mx-auto card-body members-local-body">
+                            {% endif %}
+                                <div class="col-lg-2 members-elements">
+                                    <div class="image-cropper-member-circle" >
+                                        {% if member.image %}
+                                        <a href="{% url 'userprofile' member.username %}"><img src="{{member.imageURL}}"  alt=""></a>
+                                        {% else %}
+                                        <a href="{% url 'userprofile' member.username %}"><img src="{% static 'images/hero/default-profile.png' %}"  alt=""></a>
+                                        {% endif %}
+                                    </div>
+                                    <p class="card-text">{{member.username}}</p>
+                                </div>
+                            {% if forloop.counter|divisibleby:5 %} 
+                            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+                            {% endfor %}
+                    
+                            <div >
+                                <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
+                            </div>
+                            
+                            
+                        </div>
                     </div>
                 </div>
         

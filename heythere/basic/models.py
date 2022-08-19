@@ -1,4 +1,5 @@
 from datetime import date
+from distutils.command.upload import upload
 from email.policy import default
 from tkinter import CASCADE, Widget
 from django.db import models
@@ -34,7 +35,7 @@ class UserRegister(models.Model):
     dob = models.DateField(max_length=8, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True) 
     image = models.ImageField(null=True, blank=True)
-    cover_photo = models.ImageField(null=True, blank=True)
+    cover_photo = models.ImageField(upload_to ='',null=True, blank=True)
     friends =  models.ManyToManyField('self', related_name='friends', blank=True)
 
     def get_friends(self):
