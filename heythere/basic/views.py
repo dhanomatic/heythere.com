@@ -429,6 +429,8 @@ def userProfile(request, username):
         flag=True
 
     friends = UserRegister.objects.filter(friends__username=username)
+    f=friends.count()
+    print(f)
     
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
@@ -445,6 +447,7 @@ def userProfile(request, username):
         'delta':delta,
         'alpha':alpha,
         'friends':friends,
+        'f':f,
 
     }
     return render(request, 'profile/userprofile.html', context)

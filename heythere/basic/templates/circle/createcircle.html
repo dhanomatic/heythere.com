@@ -19,13 +19,15 @@
         <div style="margin-top: 1rem;">{{form.name|as_crispy_field}}</div>
         <div>{{form.description|as_crispy_field}}</div>
         <div class="input disabled">{{form.circle_creator|as_crispy_field}}</div>
-        <div style="margin-bottom: -1rem;">{{form.image|as_crispy_field}}</div>
 
+        <div style="margin-bottom: -1rem;">{{form.image|as_crispy_field}}</div>
         <div class="image-preview" id="imagePreview">
             <img src="" alt="Image Preview" class="image-preview__image">
             <span class="image-preview__default-text">Image Preview</span>
         </div>
-
+        <br>
+        <div style="margin-bottom: -1rem;">{{form.cover_photo|as_crispy_field}}</div>
+        <br>
         <div class="d-none">{{form.date_create}}</div>
         <div class="">{{form.neighbourhood|as_crispy_field}}</div>
         <div class="d-none">{{form.members}}</div>

@@ -57,7 +57,11 @@
 
             <div>
                 <div class=" image-cropper-previewpost" style="float: left;" >
+                    {% if post.creator.image %}
                     <a href="{% url 'userprofile' post.creator %}"><img src="{{post.creator.imageURL}}"  alt=""></a>
+                    {% else %}
+                    <a href="{% url 'userprofile' post.creator %}"><img src="{% static 'images/hero/default-profile.png' %}"  alt=""></a>
+                    {% endif %}
                 </div>
                 <b><span><a style="float: left;" class="previewpost-creatorname" href="{% url 'userprofile' post.creator %}">@{{post.creator}}</a></span></b> 
                 {% if post.circle %}

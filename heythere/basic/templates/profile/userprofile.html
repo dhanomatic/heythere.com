@@ -17,7 +17,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active banner">
                     {% if user.cover_photo %}
-                  <img src="user.cover_photo" class="d-block w-100" alt="...">
+                  <img src="{{user.cover_photo.url}}" class="d-block w-100" alt="...">
                     {% else %}
                   <img src="{% static 'images/hero/default-cover.gif' %}" class="d-block w-100" alt="...">
                     {% endif %}
@@ -72,7 +72,7 @@
 
             <div class="col-lg-6 col-md-5 col-12">
 
-                {% if user.neighbourhood is None %}
+                {% if request.user.userregister.neighbourhood is None %}
         
                     <div class="alert alert-warning Neighbourhood-warning" role="alert">
                     Welcome {{request.user}}, <br> Add your neighbourhood on your profile to create and view posts in your locality. <a href="{% url 'userprofile' request.user %}" class="alert-link">click here</a> to add your neighbourhood.
@@ -178,7 +178,7 @@
                         </div>
                     </div>
 
-                    {% if user.neighbourhood is None %}
+                    {% if request.user.userregister.neighbourhood is None %}
             
                     <div class="neighbourhood-submit">
                         <div class="card border-info mb-3">
@@ -236,29 +236,35 @@
                             <div class="">
                                 <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Friends</h6>
                             </div>
+
+                            {% if friends %}
                     
-                            {% for member in friends %}
-                            {% if forloop.first %}
-                            <div class="row mx-auto card-body members-local-body">
-                            {% endif %}
-                                <div class="col-lg-2 members-elements">
-                                    <div class="image-cropper-member-circle" >
-                                        {% if member.image %}
-                                        <a href="{% url 'userprofile' member.username %}"><img src="{{member.imageURL}}"  alt=""></a>
-                                        {% else %}
-                                        <a href="{% url 'userprofile' member.username %}"><img src="{% static 'images/hero/default-profile.png' %}"  alt=""></a>
-                                        {% endif %}
+                                {% for member in friends %}
+                                {% if forloop.first %}
+                                <div class="row mx-auto card-body members-local-body">
+                                {% endif %}
+                                    <div class="col-lg-2 members-elements">
+                                        <div class="image-cropper-member-circle" >
+                                            {% if member.image %}
+                                            <a href="{% url 'userprofile' member.username %}"><img src="{{member.imageURL}}"  alt=""></a>
+                                            {% else %}
+                                            <a href="{% url 'userprofile' member.username %}"><img src="{% static 'images/hero/default-profile.png' %}"  alt=""></a>
+                                            {% endif %}
+                                        </div>
+                                        <p class="card-text">{{member.username}}</p>
                                     </div>
-                                    <p class="card-text">{{member.username}}</p>
+                                {% if forloop.counter|divisibleby:5 %} 
+                                </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+                                {% endfor %}
+
+
+                                {% if f >= 10 %}
+                                <div >
+                                    <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
                                 </div>
-                            {% if forloop.counter|divisibleby:5 %} 
-                            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
-                            {% endfor %}
-                    
-                            <div >
-                                <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
-                            </div>
+                                {% endif %}
                             
+                            {% endif %}
                             
                         </div>
                     </div>

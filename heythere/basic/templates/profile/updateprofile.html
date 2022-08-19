@@ -6,7 +6,7 @@
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <div class="container">
+    <div class="container card" style="padding: 2rem;">
 
         <div class="row">
             <div class="col-6">
@@ -65,8 +65,10 @@
         <div>{{form.cover_photo|as_crispy_field}}</div>
 
         <div class="d-none">{{form.friends|as_crispy_field}}</div>
+        <div class="d-none">{{form.user|as_crispy_field}}</div>
 
         <input type="submit" value="Submit">
+        
     </div>
 
 </form>

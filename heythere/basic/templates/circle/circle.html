@@ -16,7 +16,11 @@
         <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
-                  <img src="{% static 'images/Wallpaper_20.jpg' %}" class="d-block w-100" alt="...">
+                {% if circle.cover_photo %}
+                  <img src="{{circle.cover_photo.url}}" class="d-block w-100" alt="...">
+                {% else %}
+                  <img src="{% static 'images/hero/default-circle-cover.png' %}" class="d-block w-100" alt="...">
+                {% endif %}
               </div>
             </div>
         </div>
@@ -65,7 +69,13 @@
                     <div class="card create-post-card" style="width: 33rem;">
                         <div class="card-body input-group mb-3">
                             <div class="input-group create-post-card-body">
+
+                                {% if request.user.userregister.image %}
                                 <img src="{{request.user.userregister.imageURL}}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                                {% else %}
+                                <img src="{% static 'images/hero/default-profile.png' %}" width="40rem" style="border-radius: 50%;" alt=""> &nbsp; &nbsp;
+                                {% endif %}
+
                                 <a style="width: 24rem;" href="{% url 'create-circle-post' circle.name %}"><input type="text" class="form-control" placeholder="Create Post" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
                                 <div class="input-group-append">
                                   <button class="btn" type="button" id="button-addon2"><i class="bi bi-image"></i></button>
@@ -152,7 +162,11 @@
                     <div class="profile-image-div-cricle">
                         <div class="" style="width: 18rem; border-radius: 50%;">
                             <div class="image-cropper">
+                                {% if circle.image %}
                                 <img src="{{circle.imageURL }}" class="card-img-top" alt="...">
+                                {% else %}
+                                <img src="{% static 'images/hero/default-circle-profile.jpg' %}" class="card-img-top" alt="...">
+                                {% endif %}
                             </div>
                             <div class="card-body">
                             </div>
@@ -185,26 +199,35 @@
                     <div class="members">
                         <div class="card members-card">
                             <div class="">
-                                <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Your Neighbourhood Circles</h6>
+                                <h6 class="" style="margin: 0.5rem; color: gray; text-align: center;">Circle Members</h6>
                             </div>
+
+                            {% if members %}
                     
-                            {% for member in members %}
-                            {% if forloop.first %}
-                            <div class="row mx-auto card-body members-local-body">
-                            {% endif %}
-                                <div class="col-lg-2 members-elements">
-                                    <div class="image-cropper-member-circle" >
-                                        <a href="#"><img src="{{member.imageURL}}"  alt=""></a>
+                                {% for member in members %}
+                                {% if forloop.first %}
+                                <div class="row mx-auto card-body members-local-body">
+                                {% endif %}
+                                    <div class="col-lg-2 members-elements">
+                                        <div class="image-cropper-member-circle" >
+                                            {% if member.image %}
+                                            <a href="{% url 'userprofile' member.username %}"><img src="{{member.imageURL}}"  alt=""></a>
+                                            {% else %}
+                                            <a href="{% url 'userprofile' member.username %}"><img src="{% static 'images/hero/default-profile.png' %}"  alt=""></a>
+                                            {% endif %}
+                                        </div>
+                                        <p class="card-text">{{member.username}}</p>
                                     </div>
-                                    <p class="card-text">{{member.username}}</p>
+                                {% if forloop.counter|divisibleby:5 %} 
+                                </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+                                {% endfor %}
+                                
+                                {% if members.count >= 10 %}
+                                <div >
+                                    <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
                                 </div>
-                            {% if forloop.counter|divisibleby:5 %} 
-                            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
-                            {% endfor %}
-                    
-                            <div >
-                                <a href="http://" class="btn btn-light btn-block  circle-showmore-btn">show more</a>
-                            </div>
+                                {% endif %}
+                            {% endif %}
                             
                             
                         </div>

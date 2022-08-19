@@ -35,7 +35,7 @@ class UserRegister(models.Model):
     dob = models.DateField(max_length=8, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True) 
     image = models.ImageField(null=True, blank=True)
-    cover_photo = models.ImageField(upload_to ='',null=True, blank=True)
+    cover_photo = models.ImageField(null=True, blank=True)
     friends =  models.ManyToManyField('self', related_name='friends', blank=True)
 
     def get_friends(self):
@@ -88,6 +88,7 @@ class Circle(models.Model):
     description = models.TextField(max_length=1000, null=True, blank=True)
     circle_creator = models.ForeignKey(UserRegister, on_delete=models.DO_NOTHING, related_name='circle_creator', null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    cover_photo = models.ImageField(null=True, blank=True)
     date_create = models.DateTimeField(auto_now_add=True)
     neighbourhood = models.CharField(max_length=100, null=True, blank=True)
     members = models.ManyToManyField(UserRegister, related_name='members', null=True, blank=True)

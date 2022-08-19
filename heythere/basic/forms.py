@@ -67,7 +67,7 @@ class CircleForm(forms.ModelForm):
 
     class Meta:
         model = Circle
-        fields = ['name','description','circle_creator','image','neighbourhood','members']
+        fields = ['name','description','circle_creator','image','neighbourhood','members','cover_photo']
 
         Widgets = {
             'circle_creator' : forms.TextInput(attrs={'class':'input disabled'}),
@@ -77,7 +77,6 @@ class CircleForm(forms.ModelForm):
         super(CircleForm, self).__init__(*args, **kwargs)
         self.fields['name'].label = False
         self.fields['description'].label = False
-        self.fields['image'].label = False
 
 
     
