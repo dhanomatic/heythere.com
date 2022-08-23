@@ -12,8 +12,8 @@
     </div>
 
     
-    <div class="col-lg-10">
-        <div id="carouselExampleSlidesOnly" style="margin-right: -10rem; margin-left: -2rem;" class="carousel slide" data-ride="carousel">
+    <div class="col-lg-10 col-12">
+        <div id="carouselExampleSlidesOnly" style="" class="carousel slide profile-carousal" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active banner">
                     {% if user.cover_photo %}
@@ -25,8 +25,28 @@
             </div>
         </div>
 
+        <!-- only for mobile view profile picture -->
+
+            <div class="desktop-view-hidden">
+                <div class="profile-image-div">
+                    <div class="card" style="width: 18rem;">
+                        <div class="image-cropper">
+                            {% if user.image %}
+                            <a href="{{user.imageURL}}"><img src="{{user.imageURL}}" class="card-img-top" alt="..."></a>
+                            {% else %}
+                            <img src="{% static 'images/hero/default-profile.png' %}" class="card-img-top" alt="...">
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- end of mobile view profile picture -->
+
         <div class="bio">
-            <div class="card">
+            <div class="card bio-card">
                 <div class="card-header">
                   Featured
                 </div>
@@ -40,25 +60,25 @@
                   <div class="add-friend" style="float: right;">
                     <!-- <a href="http://" class="btn btn-info">Message</a> -->
                     {% if flag is False %}
-                        <a href="{% url 'addfriend' user.username %}" class="btn btn-info">Add Friend</a>
+                        <a href="{% url 'addfriend' user.username %}" class="btn add-friend-btn">Add Friend</a>
                     {% endif %}
 
                     {% for i in friend %}
                         
                         {% if i.status == 'send'%}
-                            <a href="{% url 'cancel-request' user.username %}" class="btn btn-info">Cancel Request</a>
+                            <a href="{% url 'cancel-request' user.username %}" class="btn cancel-request-btn">Cancel Request</a>
                         {% endif %}
 
                     {% endfor %}
 
                     {% if alpha == True %}
-                        <a href="{% url 'accept-request' user True %}" class="btn btn-info" >Accept</a>
-                        <a href="{% url 'decline-request' user True %}" class="btn btn-info" >Decline</a>
+                        <a href="{% url 'accept-request' user True %}" class="btn accept-request-btn">Accept</a>
+                        <a href="{% url 'decline-request' user True %}" class="btn decline-request-btn" >Decline</a>
                     {% endif %}
 
                     {% if delta == True %}
-                            <a href="{% url 'unfriend' user.username %}" class="btn btn-info">Friends</a>
-                            <a href="{% url 'private-chat' user.username %}" class="btn btn-info">Message</a>
+                            <a href="{% url 'unfriend' user.username %}" class="btn friends-btn"></a>
+                            <a href="{% url 'private-chat' user.username %}" class="btn Message-btn">Message</a>
 
                     {% endif %}
 

@@ -30,6 +30,18 @@
         </div>
     </div>
 
+    <!-- only for mobile -->
+
+            <div class="create-post">
+                <div class="">
+                    <div class="">
+                        <a href="{% url 'create-post' user.id %}" class="create-post-element"  type="" id=""><i class="bi bi-plus-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+
+    <!-- end of mobile create post -->
+
     <div>
 
         {% include 'circle/localdisplay.html' %}
@@ -165,3 +177,5 @@
     </div>
 
 {% endif %}
+
+

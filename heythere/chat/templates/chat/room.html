@@ -14,13 +14,13 @@ body {
 
 #display{
   height: 30rem;
-  overflow:scroll;
+  overflow-y:scroll;
   width: 50rem;
 }
 
 .container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
+  border: 2px solid #e1f0f2;
+  background-color: #dcf0f3;
   border-radius: 5px;
   padding: 10px;
   margin: 5px 0;
@@ -29,13 +29,13 @@ body {
 }
 
 .darker{
-  border-color: #ccc;
-  background-color: #ddd;
+  border-color: #e1f0f2;
+  background-color: rgb(250, 250, 250);
   
 }
 
 .darker-message{
-  border-color: rgb(244, 251, 255);
+  /* border-color: rgb(244, 251, 255); */
   background-color: rgb(255, 255, 255);
   max-height: auto;
   padding: 1rem;
@@ -45,8 +45,8 @@ body {
 
 
 .darker-activeusers {
-  border-color: #ccc;
-  background-color: #ddd;
+  /* border-color: rgb(247, 247, 247); */
+  background-color: rgb(243, 242, 242);
   
 }
 
@@ -148,7 +148,7 @@ body {
     margin-bottom: -0.6rem;
     border-radius: 1rem;
     border-color: #ccc;
-    background-color: #ddd;
+    background-color: #ffffff;
     height: 2rem;
   }
 
@@ -189,7 +189,7 @@ body {
       margin-left: -1rem;
       padding-top: 0rem;
       background-color: rgb(255, 255, 255);
-      overflow: scroll;
+      overflow-y: scroll;
     }
 
     .active-users-h3{
@@ -243,7 +243,7 @@ body {
 
     #display{
       height: 21.5rem;
-      overflow:scroll;
+      overflow-y:scroll;
     }
   
 }
@@ -252,25 +252,27 @@ body {
 
 
 
-<div>
-  <h2>{{display_name}} - heythere</h2>
+<div style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); 
+height: 3rem; color: white;margin-top: -1rem; border-radius: 1rem 1rem 0 0;">
+ <h2 class="di" style="padding: 0.6rem; padding-left: 2rem;">{{display_name}} - Heythere</h2>
 </div>
     
 
 
-<div class="row container home-container">
+<div class="row container home-container" style="border-radius: 0 0 1rem 1rem;">
 
       <div class="col-lg-6 col-md-12 col-12 rooms-available">
         <center>
           <h3>Rooms available </h3>
+          <img src="{{friend.username}}" alt="">
         </center>
 
-        <div class="rooms" style="overflow: scroll; height: 30rem;">
+        <div class="rooms" style="overflow-y: scroll; height: 30rem;">
           {% for room in display_rooms %}
             {% for i in circle %}
               {% if room.name == i|safe %}
                 <ul>
-                  <a style="text-decoration: none;" href="{% url 'room' room.name room.name %}"><li class="dark">{{room.name}}</li></a>
+                  <a style="text-decoration: none; color: black;" href="{% url 'room' room.name room.name %}"><li class="dark" style="font-weight: bold;">{{room.name}}</li></a>
                 </ul>
               {% endif %}
             {% endfor %}
@@ -309,7 +311,7 @@ body {
           <h3 class="active-users-h3">Active Users </h3>
         </center>
 
-        <div id="active" class="col-lg-6" style="overflow: scroll; height: 27rem;">
+        <div id="active" class="col-lg-6" style="overflow-y: scroll; height: 27rem;">
         
     
 

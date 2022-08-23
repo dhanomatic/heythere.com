@@ -93,11 +93,11 @@
     background-color: #45a049;
     }
 
-    div {
+    /* div {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    }
+    } */
 
     @media (max-width:780px){
       .box{
@@ -132,20 +132,23 @@
     </style>
 
 
-<div align="center">
-  <h2>heythere</h2>
+
+
+<div class="container box" align="center" style="background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  border: 0; border-radius: 1rem 1rem 0 0;width: 100%; color: white; margin-top: 3rem;">
+    <h2 style="padding: 0.5rem;">Let's Chat</h2>
 </div>
 
-
 <div class="row container box">
-
+  
 
   <div class="col-lg-6 col-md-12 col-12 rooms-available">
     <center>
       <h5>Rooms available </h5>
     </center>
 
-    <div class="rooms">
+    <div class="rooms" style="margin-top: 2rem;">
       {% for room in rooms %}
         {% for i in circle %}
           {% if room.name == i|safe %}

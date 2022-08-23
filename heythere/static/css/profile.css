@@ -250,3 +250,195 @@
   object-fit: cover;
   object-position: center;
 }
+
+.add-friend-btn{
+  width: 6rem;
+    height: 2.3rem;
+    background-color: #3bb2be;
+    color: white !important;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 0.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.add-friend-btn:hover{
+  background-color: #2897a9;
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius: 0.2rem;
+}
+
+.cancel-request-btn{
+  width: 8rem;
+  height: 2.3rem;
+  margin-right: 0.5rem;
+  background-color: slategrey;
+  color: white !important;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+  font-size: small;
+  text-align: center;
+  margin-left: 0rem;
+  border-radius: 0.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cancel-request-btn:hover{
+  background-color: rgb(95, 108, 120);
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius:0.2rem;
+}
+
+.accept-request-btn{
+    width: 6rem;
+    height: 2.3rem;
+    background-color: #3bb2be;
+    color: white !important;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 0.5rem 0rem 0rem 0.5rem ;
+    position: relative;
+    z-index: 1;
+}
+
+.accept-request-btn:hover{
+  background-color: #2897a9;
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius: 0.5rem 0rem 0rem 0.5rem ;
+}
+
+.decline-request-btn{
+  width: 6rem;
+  height: 2.3rem;
+  margin-right: 0.5rem;
+  background-color: slategrey;
+  color: white !important;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+  font-size: small;
+  text-align: center;
+  margin-left: 0rem;
+  border-radius: 0rem 0.5rem 0.5rem 0rem ;
+  position: relative;
+  z-index: 1;
+}
+
+.decline-request-btn:hover{
+  background-color: rgb(95, 108, 120);
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius: 0rem 0.5rem 0.5rem 0rem ;
+}
+
+.friends-btn{
+  width: 6rem;
+    height: 2.3rem;
+    background-color: #3bb2be;
+    color: white !important;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    text-align: center;
+    margin-left: 0rem;
+    border-radius: 0.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.friends-btn:hover{
+  background-color: #a93128;
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius: 0.2rem;
+}
+
+.friends-btn::after{
+  content: 'Friend';
+}
+
+.friends-btn:hover::after{
+  content: 'Unfriend';
+}
+
+.Message-btn{
+  width: 6rem;
+  height: 2.3rem;
+  margin-right: 0.5rem;
+  background-color: slategrey;
+  color: white !important;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+  font-size: small;
+  text-align: center;
+  margin-left: 0rem;
+  border-radius: 0.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.Message-btn:hover{
+  background-color: rgb(95, 108, 120);
+  color: white;
+  font-weight: 600;
+  margin-left: 0rem;
+  border-radius:0.2rem;
+}
+
+.profile-carousal{
+  margin-right: -10rem; 
+  margin-left: -2rem;
+}
+
+.bio{
+
+}
+
+@media (max-width:780px){
+
+  .banner{
+    width: 100% !important;
+    margin-left: 0rem;
+    margin-top: 3rem;
+  }
+
+  
+  .bio{
+    width: 150% !important;
+    margin-left: -1rem;
+    margin-top: -7rem;
+  }
+
+  .profile-details{
+    display: none;
+  }
+
+  .profile-image-div{
+    margin-top: -15rem;
+    margin-left: 15rem;
+    z-index: 6;
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .image-cropper{
+    margin-left: -1rem;
+    margin-top: -0.1rem;
+  }
+
+}
