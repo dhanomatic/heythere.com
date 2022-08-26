@@ -40,6 +40,8 @@ urlpatterns = [
     path('decline-request/<str:username>/<str:check>', views.declineRequest, name='decline-request'),
     path('cancel-request/<str:username>', views.cancelRequest, name='cancel-request'),
     path('unfriend/<str:username>', views.unFriend, name='unfriend'),
+    path('searchbar/', views.searchBar, name='searchbar'),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="" href="{% static 'css/circle.css' %}">
     <link rel="stylesheet" type="" href="{% static 'css/friends.css' %}">
     <link rel="stylesheet" type="" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" type="" href="{% static 'css/search.css' %}">
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -28,9 +29,14 @@
 <body class="" style="overflow-x: hidden;">
 
     <div class="navigation-top shadow-sm">
+
         <a href="{% url 'home' %}"><img src="{% static 'images/hero/logo-1.2.png' %}" width="140rem" style="margin-left: 1rem; margin-top: -0.1rem;" alt=""></a>
+
+        
         
         <h6 style="">@{{request.user}}</h6>
+
+        
 
         <div style="float: right;" class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -50,6 +56,14 @@
                 {% endfor %}
             </div>
         </div>
+
+        <div class="search-bar">
+            <form action="{% url 'searchbar' %}" method="get">
+                <input class="form-control" placeholder="Search heythere..!" type="text" name="search" id="">
+                <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        
     </div>
     <br>
     <hr>

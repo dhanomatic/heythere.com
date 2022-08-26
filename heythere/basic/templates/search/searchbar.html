@@ -1,0 +1,173 @@
+{% extends 'basic/main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+    <div class="col col-lg-2 col-sm-12">
+        {% include 'basic/sidebar.html' %}
+    </div>
+
+    <div class="col col-lg-10 col-sm-12">
+
+        <!-- peoples -->
+
+        {% if users %}
+
+        <div class="page-header shadow" style="border-radius: 1rem 1rem 0 0;">  
+            <h3 class="card-body" >People</h3>
+        </div>
+
+        <div class="people-search-page-card">
+
+            {% for i in users %}
+
+            {% if forloop.first %}
+            <div class="row mx-auto card-body">
+            {% endif %}
+                <div class="people-search-page col-lg-2 col-md-4 col-12">
+
+                    <div class="people-search-card card shadow-sm">
+                        {% if i.image %}
+                            <a href="{% url 'userprofile' i.username %}"><img src="{{i.imageURL}}" class="card-img-top" alt="..."></a> 
+                        {% else %}
+                            <img src="{% static 'images/hero/default-profile.png' %}" class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                        <h5 class="card-title">@{{i.username}}</h5>
+                        <p class="card-text">{{i.bio}}</p>
+                        <a href="{% url 'userprofile' i.username %}" class="btn btn-info btn-sm btn-block">View Profile</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% if forloop.counter|divisibleby:6 %} 
+            </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+
+            {% endfor %}
+        </div>
+
+        {% else%}
+
+            <br>
+            <b>No people named {{search}}</b>
+
+        {% endif %}
+
+        <!-- circles -->
+
+        {% if circles %}
+
+        <div class="circle">
+
+            <div class="circle-search-header shadow"> 
+              <h3 class="card-body" >Cricles</h3>
+            </div>
+  
+            <div class="circle-search">
+  
+              {% for i in circles %}
+              {% if forloop.first %}
+              <div class="row mx-auto">
+              {% endif %}
+                  <div class="col-lg-4 col-md-4 col-12">
+                      
+  
+                      <div class="circle-search-card card mb-3 shadow" style="max-width: 540px;">
+                          <div class="row no-gutters">
+                            <div class="col-md-4 col-4">
+                                <img src="{{i.imageURL}}" alt="...">
+                            </div>
+                            <div class="col-md-8 col-8 ">
+                              <div class="card-body circle-search-name-des">
+                                <h5 class="card-title">{{i.name}}</h5>
+                                <p class="description card-text">{{i.description}}</p>
+                                <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">View Circle</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+  
+                  </div>
+              {% if forloop.counter|divisibleby:3 %} 
+              </div> <div class="row mx-auto">{% endif %} {% if forloop.last %}</div> {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          {% else %}
+            <br>
+            <b>No circles named {{search}}</b>
+
+          {% endif %}
+
+          <!-- posts -->
+
+          {% if posts %}
+
+          {% for i in posts %}
+
+            <div class="card card-local shadow-sm">
+
+                {% if request.user.username == i.creator|safe %}
+                <div class="local-upandde">
+                    <a class="trash float-right" href="{% url 'delete-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-trash"></i></a>
+                    
+                    <a class="update-link float-right" href="{% url 'update-post' i.id %}" style="margin-right: 1rem;"><i class="fa-solid fa-pen-to-square"></i></a>
+                    
+                </div>
+                {% endif %}
+                <div>
+                    <div class="local-creator-and-date">
+                        <b><span class="username-localfeed"><a href="{% url 'userprofile' i.creator %}">@{{i.creator}}</a></span></b> <small style="color: grey;">{{i.date_create}}</small>
+                    </div>
+
+                    {% if i.image.url is not None %}
+                    
+                        <a href="{% url 'previewpost' i.id %}" ><img src="{{i.imageURL}}" class="card-img-top localfeed-img" alt="..."></a>
+                    {% else %}
+                    
+                        
+
+                    {% endif %}
+                </div>
+                
+        
+
+
+                <form class="like-local" action="{% url 'like-post' 'h' 'home' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{i.id}}">
+                    {% if request.user not in i.likes.all %}
+                        <button style="width: 4rem;" type="submit" class="btn  btn-sm btn-like shadow-sm" id=""><i class="bi bi-hand-thumbs-up"></i> {{i.likes.all.count}}</button>
+                    {% else %}
+                        <button style="width: 4rem; color: rgb(204, 52, 52);" type="submit" class="btn  btn-sm btn-unlike shadow-sm" id=""><i class="bi bi-hand-thumbs-up-fill "></i> {{i.likes.all.count}}</button>
+                    {% endif %}
+                    
+                </form>
+                
+
+                <a id="comment-local" class="btn  btn-sm comment-local shadow-sm" href="{% url 'previewpost' i.id %}">
+                    <i class="fa-regular fa-comment"></i> {{i.comments.all.count}}</a>
+                
+                <div class="caption-local">
+                    <div class="card-body">
+                        <p class="card-text caption-local" >{{i.caption}}</p>
+                    </div>
+                </div>
+        
+            </div>
+           {% endfor %}
+          
+           {% else %}
+                <br>
+                <b>No posts named {{search}}</b>
+            
+            {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

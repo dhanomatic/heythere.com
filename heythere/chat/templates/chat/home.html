@@ -68,29 +68,29 @@
 
 
     <style>
-    input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    .post-form input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
 
-    input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    .post-form input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
-    input[type=submit]:hover {
-    background-color: #45a049;
+    .post-form input[type=submit]:hover {
+      background-color: #45a049;
     }
 
     /* div {
@@ -167,7 +167,7 @@
     <center>
       <h5>Create Room</h5>
     </center>
-    <form id="post-form" method="POST" action="{% url 'checkview' %}">
+    <form id="post-form" class="post-form" method="POST" action="{% url 'checkview' %}">
       {% csrf_token %}
       <label>Room Name</label>
       <input type="text" name="room_name" id="room_name" width="100px" />

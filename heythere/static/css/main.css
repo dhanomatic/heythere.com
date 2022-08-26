@@ -376,15 +376,6 @@ a{
   overflow-y: scroll;
 }
 
-.comment-section-card{
-  height: 37rem;
-  overflow-y: scroll;
-  margin-left: 3.3rem;
-  margin-top: -3.1rem;
-  margin-right: 0rem;
-  padding: 1rem;
-  border-radius: 0;
-}
 
 .image-cropper-previewpost {
   margin-top: 0.3rem;
@@ -408,26 +399,34 @@ a{
   object-position: center;
 }
 
+.comment-section-card{
+  height: 37rem;
+  overflow-y: scroll;
+  margin-left: 3.3rem;
+  margin-top: -3.1rem;
+  margin-right: 0rem;
+  padding: 1rem;
+  border-radius: 0;
+}
+
+
 .comment-box{
   background-color: white;
   width: 28.6rem;
   height: 8.9rem;
-  position: fixed;
   margin-left: -1rem;
-  margin-top: 25rem;
 }
 
 .comment-and-replay{
   margin-left: 1rem;
 }
 
+
 .comment-and-replay p{
   margin-left: 1rem;
 }
 
-.local-feed{
 
-}
 
 .Neighbourhood-warning{
 
@@ -441,16 +440,17 @@ a{
 }
 
 .global-page{
-  margin-left: 8rem;
+  margin-left: 5rem;
+  margin-right: 3rem;
 } 
 
 .global-page-title{
   background-color: white;
-  width: 36rem;
+  width: 40rem;
   height: 3.4rem;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
-  margin-left: -2rem;
+  margin-left: 0rem;
 }
 
 .global-page-title h3{
@@ -459,8 +459,45 @@ a{
   padding-top: 0.8rem;
 }
 
+.card-globalpage{
+  width:40rem;
+  margin-bottom: 1rem;
+}
+
+.global-post-page-img{
+
+  width:39.8rem;
+  margin-top:0.5rem;
+  max-height: 36rem!important;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+
+}
+
 .global-page-post-comment a{
   
+}
+
+.like-global-page{
+  margin-left: 35rem;
+  margin-top: -7.5rem;
+  padding-right: 1rem !important;
+}
+
+.like-global-page button{
+  background-color: #fff6f6;
+  font-size: medium;
+  width: 5rem!important;
+}
+
+.comment-global-page{
+  margin-left: 35rem;
+  margin-top: 0.5rem;
+  width: 5rem !important;
+  background-color: #fff6f6;
+  font-size: medium;
 }
 
 .global-post-caption{
@@ -664,6 +701,31 @@ a{
     margin-bottom: -1rem;
   }
 
+  .card-globalpage{
+    border-radius: 1rem;
+    margin: 0rem;
+    width: 33.5rem; 
+    margin-top: 3rem; 
+    margin-bottom: -1rem;
+    overflow-x: hidden;
+  }
+
+  .card-globalpage img{
+    width: 33.3rem;
+    overflow-x: hidden;
+  }
+
+  .like-global-page{
+    margin-left: 28.4rem;
+    margin-top: -6.3rem;
+    margin-bottom: 0.2rem;
+  }
+.comment-global-page{
+    margin-left: 28.4rem;
+    margin-top: 0.5rem;
+    width: 5rem !important;
+  } 
+
   .circle-card{
     display: none;
   }
@@ -677,6 +739,7 @@ a{
     background-color: rgb(255, 255, 255);
     width: 100%;
   }
+
   
 }
 
@@ -734,10 +797,6 @@ a{
 
   
 }
-
-
-
-
 
 
 

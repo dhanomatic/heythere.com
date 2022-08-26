@@ -28,14 +28,14 @@
 
                     <div class="all-circle-card card mb-3 shadow" style="max-width: 540px;">
                         <div class="row no-gutters">
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-4">
                             <img src="{{i.imageURL}}" alt="...">
                           </div>
-                          <div class="col-md-8">
-                            <div class="card-body">
+                          <div class="col-md-8 col-8 ">
+                            <div class="card-body all-circle-name-des">
                               <h5 class="card-title">{{i.name}}</h5>
                               <p class="description card-text">{{i.description}}</p>
-                              <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block">View Circle</a>
+                              <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">View Circle</a>
                             </div>
                           </div>
                         </div>

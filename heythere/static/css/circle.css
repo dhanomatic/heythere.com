@@ -21,6 +21,7 @@
     margin-left: -2rem;
     border-radius: 1rem;
     border: 0;
+    margin-top: -1.8rem;
 }
 
 .circle-card a{
@@ -294,4 +295,33 @@
     margin-left: -2rem;
     border-radius: 1rem;
 
+}
+
+
+
+@media (max-width:780px){
+    .all-circle{
+        margin-top: 4rem;
+    }
+
+    .page-header-circle{
+        margin: 0;
+        margin-bottom: 1rem;
+        margin-right: -1rem;
+        min-width: 29rem;
+    }
+
+    .page-card-circle{
+        margin-left: 0rem;
+        min-width: 29rem;
+    }
+
+    .all-circle-name-des{
+
+    }
+
+    .all-circle-view-circle{
+        margin-top: 1.5rem !important;
+        min-width: 7.5rem !important;
+    }
 }

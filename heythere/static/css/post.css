@@ -62,3 +62,57 @@
 .visibility{
     margin: 1rem;
 }
+
+
+
+@media (max-width:780px){
+
+  .preview-post-card{
+    width: fit-content;
+  }
+
+  .preview-post-card img{
+    width: 29rem !important;
+  }
+
+  .comment-section-card{
+    margin-top: 0rem;
+    margin-left: -2rem;
+    width: 31rem !important;
+    height: 49rem;
+    overflow-x: hidden;
+  }
+
+  .preview-like-comment{
+    
+  }
+
+  .preview-like-element{
+    margin-top: -12.1rem !important;
+    margin-left: -1rem;
+    background-color: white !important;
+  }
+
+  .preview-like-element button{
+    width: 15rem;
+  }
+
+  .previewpost-caption{
+    font-size: large;
+    padding: 1rem;
+    margin-left: -1.2rem;
+  }
+
+  .preview-comment-element a{
+    margin-top: -0.2rem;
+    width: 15rem;
+  }
+
+  .comment-box{
+    width: 33rem;
+    margin-top: 1rem;
+    margin-left: -2rem;
+    padding: 1rem;
+    background-color: white;
+  }
+}

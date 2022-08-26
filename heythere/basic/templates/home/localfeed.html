@@ -20,7 +20,7 @@
                     <img src="{% static 'images/hero/default-profile.png' %}" alt=""> &nbsp; &nbsp;
                     {% endif %}
 
-                    <a style="width: 27rem;" href="{% url 'create-post' user.id %}"><input type="text" class="form-control" placeholder="{% translate 'Create Post' %}" aria-label="Recipient's username" aria-describedby="button-addon2"></a>
+                    <a href="{% url 'create-post' user.id %}"><input type="text" style="width: 27rem; border: 0.5px solid rgb(231, 231, 231); margin-top: 0.1rem;" class="form-control" placeholder="{% translate 'Create post' %}"></a>
                     <div class="input-group-append">
                       <a href="{% url 'create-post' user.id %}" class="btn ml-1" style="background-color: white; font-size: larger;" type="" id="button-addon2"><i class="bi bi-image"></i></a>
                     </div>

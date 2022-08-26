@@ -405,23 +405,33 @@
   margin-left: -2rem;
 }
 
-.bio{
-
-}
 
 @media (max-width:780px){
 
+  .profile-user{
+    
+  }
+
   .banner{
     width: 100% !important;
-    margin-left: 0rem;
+    margin-left: 1rem;
+    margin-right: 2rem;
     margin-top: 3rem;
   }
 
   
-  .bio{
-    width: 150% !important;
-    margin-left: -1rem;
-    margin-top: -7rem;
+  .bio-card{
+    width: 10% !important;
+    margin-left: 1rem;
+    margin-top: -5rem;
+  }
+
+  .accept-request-btn{
+    width: 5rem;
+  }
+
+  .cancel-request-btn{
+    width: 5rem;
   }
 
   .profile-details{
@@ -432,13 +442,37 @@
     margin-top: -15rem;
     margin-left: 15rem;
     z-index: 6;
-    width: 15rem;
-    height: 15rem;
+    width: 13rem;
+    height: 13rem;
   }
 
   .image-cropper{
-    margin-left: -1rem;
+    margin-left: -2rem;
     margin-top: -0.1rem;
   }
 
+  .card-profile{
+    margin-left: -0.5rem;
+    min-width: 10rem;
+    max-width: 30rem;
+  }
+
+  .card-profile img{
+    min-width: 10rem;
+    max-width: 30rem;
+    border: 0;
+  }
+
+  .like-profile{
+    margin-left: 25rem;
+  }
+
+  .comment-profile{
+    margin-left: 25rem !important;
+    width: 5rem !important;
+  }
+
+  
+
 }
+

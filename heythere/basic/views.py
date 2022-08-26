@@ -246,6 +246,8 @@ def like_post(request, check, name):
         return redirect('circle', name)
     elif check=='p':
         return redirect('userprofile', name)
+    elif check=='g':
+        return redirect('globalpage')
 
 
 
@@ -415,7 +417,6 @@ def userProfile(request, username):
         delta=True
 
     friend = Friend.objects.filter(sender=request.user.userregister, receiver=user)
-    print(friend)
 
     frec = Friend.objects.filter(sender=user, receiver=request.user.userregister, status='send')
     alpha=False
@@ -430,7 +431,6 @@ def userProfile(request, username):
 
     friends = UserRegister.objects.filter(friends__username=username)
     f=friends.count()
-    print(f)
     
     if request.method=='POST':
         form = UserRegisterForm(request.POST, instance=user)
@@ -680,8 +680,17 @@ def unFriend(request, username):
 
     return redirect('userprofile', username)
 
+def searchBar(request):
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        users = UserRegister.objects.filter(Q(username__startswith = search)|Q(fname__startswith = search)|Q(lname__startswith = search) )
+        circles = Circle.objects.filter(name__startswith = search)
+        posts = Post.objects.filter(caption__contains = search)
+        context = {
+            'users':users,
+            'circles':circles,
+            'posts':posts,
+            'search':search,
+        }
 
-
-
-
-    
+        return render(request, 'search/searchbar.html', context)
