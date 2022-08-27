@@ -1,5 +1,6 @@
 {% extends 'basic/main.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -14,7 +15,7 @@
         <div class="all-circle" style="margin-right: -10rem;" >
 
           <div class="page-header-circle shadow"> 
-            <h3 class="card-body" >Cricles Near You</h3>
+            <h3 class="card-body" >{% translate 'Cricles Near You' %}</h3>
           </div>
 
           <div class="page-card-circle">
@@ -35,7 +36,7 @@
                             <div class="card-body all-circle-name-des">
                               <h5 class="card-title">{{i.name}}</h5>
                               <p class="description card-text">{{i.description}}</p>
-                              <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">View Circle</a>
+                              <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">{% translate 'View Circle' %}</a>
                             </div>
                           </div>
                         </div>

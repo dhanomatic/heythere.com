@@ -1,6 +1,6 @@
 {% extends 'basic/main.html' %}
 {%load crispy_forms_tags %} 
-
+{% load i18n %}
 {% block content %}
 <style>
     body{
@@ -9,7 +9,7 @@
 </style>
 
 <div class="create-circle-title">
-    <p class="shadow-lg display-4" style="">Create Circle!</span></p>
+    <p class="shadow-lg display-4" style="">{% translate 'Create Circle' %}!</span></p>
 </div>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
         <div class="">{{form.neighbourhood|as_crispy_field}}</div>
         <div class="d-none">{{form.members}}</div>
 
-        <input class="btn btn-info btn-block" type="submit" value="Submit">
+        <input class="btn btn-info btn-block" type="submit" value="{% translate 'Submit' %}">
     </div>
 </form>
 

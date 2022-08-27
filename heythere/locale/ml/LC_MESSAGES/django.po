@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-10 00:32+0530\n"
+"POT-Creation-Date: 2022-08-28 01:13+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\basic\templates\circle\localdisplay.html:5 .\basic\views.py:147
-msgid "Your Neighbourhood Circles"
-msgstr "നിങ്ങളുടെ അയൽപക്ക സർക്കിളുകൾ"
+#: .\basic\templates\basic\main.html:62
+msgid "Search heythere"
+msgstr "ഇവിടെ തിരയുക"
 
+#: .\basic\templates\circle\allcircle.html:18
+msgid "Cricles Near You"
+msgstr "നിങ്ങൾക്ക് സമീപമുള്ള സർക്കിളുകൾ"
+
+#: .\basic\templates\circle\allcircle.html:39
+#: .\basic\templates\search\searchbar.html:86
+msgid "View Circle"
+msgstr "കാണുക"
+
+#: .\basic\templates\circle\circle.html:33
+msgid "created by"
+msgstr "സർക്കിൾ സൃഷ്ടിച്ചത്"
+
+#: .\basic\templates\circle\circle.html:48
 #: .\basic\templates\circle\localdisplay.html:32
 msgid "Join"
 msgstr "ചേരുക"
 
+#: .\basic\templates\circle\circle.html:50
 #: .\basic\templates\circle\localdisplay.html:34
 msgid "Leave"
-msgstr "പുറത്തുകടക്കുക"
+msgstr "ഉപേക്ഷിക്കുക"
+
+#: .\basic\templates\circle\circle.html:56
+msgid "Chat"
+msgstr "ചാറ്റ്"
+
+#: .\basic\templates\circle\circle.html:81
+#: .\basic\templates\profile\userprofile.html:111
+msgid "Create Post"
+msgstr "പോസ്റ്റ് സൃഷ്ടിക്കുക"
+
+#: .\basic\templates\circle\circle.html:187
+#: .\basic\templates\profile\userprofile.html:213
+#: .\basic\templates\profile\userprofile.html:235
+msgid "Neighbourhood"
+msgstr "അയൽപ്പക്കം"
+
+#: .\basic\templates\circle\circle.html:189
+msgid "Name"
+msgstr "പേരിന്റെ അവസാന ഭാഗം"
+
+#: .\basic\templates\circle\circle.html:191
+msgid "Description"
+msgstr "വിവരണം"
+
+#: .\basic\templates\circle\circle.html:193
+#: .\basic\templates\profile\userprofile.html:241
+msgid "Email"
+msgstr "ഇമെയിൽ"
+
+#: .\basic\templates\circle\circle.html:195
+#: .\basic\templates\profile\userprofile.html:243
+msgid "Phone Number"
+msgstr "ഫോൺ നമ്പർ"
+
+#: .\basic\templates\circle\circle.html:204
+msgid "Circle Members"
+msgstr "സർക്കിൾ അംഗങ്ങൾ"
+
+#: .\basic\templates\circle\createcircle.html:12
+msgid "Create Circle"
+msgstr "സർക്കിൾ സൃഷ്ടിക്കുക"
+
+#: .\basic\templates\circle\createcircle.html:35
+#: .\basic\templates\home\createpost.html:64
+#: .\basic\templates\post\previewpost.html:111
+#: .\basic\templates\profile\userprofile.html:215
+msgid "Submit"
+msgstr "സമർപ്പിക്കൂ"
+
+#: .\basic\templates\circle\localdisplay.html:5 .\basic\views.py:147
+msgid "Your Neighbourhood Circles"
+msgstr "നിങ്ങളുടെ അയൽപക്ക സർക്കിളുകൾ"
 
 #: .\basic\templates\circle\localdisplay.html:52
 #: .\basic\templates\home\suggestions.html:41
@@ -39,8 +106,51 @@ msgstr "കൂടുതൽ കാണുക"
 msgid "create circle"
 msgstr "സർക്കിൾ സൃഷ്ടിക്കുക"
 
-#: .\basic\templates\home\localfeed.html:16
-msgid "Create Post"
+#: .\basic\templates\friendrequests\friendrequests.html:14
+msgid "Friend Requests"
+msgstr "സൗഹൃദ അഭ്യർത്ഥനകൾ"
+
+#: .\basic\templates\friendrequests\friendrequests.html:31
+#: .\basic\templates\profile\userprofile.html:73
+msgid "Accept"
+msgstr "സ്വീകരിക്കുക"
+
+#: .\basic\templates\friendrequests\friendrequests.html:32
+#: .\basic\templates\profile\userprofile.html:74
+msgid "Decline"
+msgstr "നിരസിക്കുക"
+
+#: .\basic\templates\global\globalpost.html:5
+msgid "Global Posts"
+msgstr "ഗ്ലോബൽ പോസ്റ്റുകൾ"
+
+#: .\basic\templates\home\createpost.html:14
+msgid "Whats on your mind"
+msgstr "നിങ്ങളുടെ മനസ്സിൽ എന്താണ്"
+
+#: .\basic\templates\home\localfeed.html:7
+#: .\basic\templates\profile\userprofile.html:96
+msgid "Welcome"
+msgstr "സ്വാഗതം"
+
+#: .\basic\templates\home\localfeed.html:7
+msgid ""
+"Add your neighbourhood on your profile to create and view posts in your "
+"locality"
+msgstr ""
+"നിങ്ങളുടെ പ്രദേശത്ത് പോസ്റ്റുകൾ സൃഷ്‌ടിക്കുന്നതിനും കാണുന്നതിനും നിങ്ങളുടെ പ്രൊഫൈലിൽ നിങ്ങളുടെ "
+"സമീപസ്ഥലം ചേർക്കുക"
+
+#: .\basic\templates\home\localfeed.html:7
+msgid "click here"
+msgstr "ഇവിടെ ക്ലിക്ക് ചെയ്യുക"
+
+#: .\basic\templates\home\localfeed.html:7
+msgid "to add your neighbourhood"
+msgstr "നിങ്ങളുടെ അയൽപക്കം ചേർക്കാൻ"
+
+#: .\basic\templates\home\localfeed.html:23
+msgid "Create post"
 msgstr "പോസ്റ്റ് സൃഷ്ടിക്കുക"
 
 #: .\basic\templates\home\suggestions.html:6
@@ -48,8 +158,97 @@ msgid "Friend requests"
 msgstr "സൗഹൃദ അഭ്യർത്ഥനകൾ"
 
 #: .\basic\templates\home\suggestions.html:28
+#: .\basic\templates\search\searchbar.html:40
 msgid "View Profile"
 msgstr "കാണുക"
+
+#: .\basic\templates\profile\userprofile.html:61
+msgid "Add Friend"
+msgstr "സുഹൃത്തിനെ ചേർക്കുക"
+
+#: .\basic\templates\profile\userprofile.html:67
+msgid "Cancel Request"
+msgstr "അഭ്യർത്ഥന റദ്ദാക്കുക"
+
+#: .\basic\templates\profile\userprofile.html:79
+msgid "Message"
+msgstr "മെസ്സേജ്"
+
+#: .\basic\templates\profile\userprofile.html:96
+msgid "Add your neighbourhood here"
+msgstr "നിങ്ങളുടെ സമീപസ്ഥലം ഇവിടെ ചേർക്കുക"
+
+#: .\basic\templates\profile\userprofile.html:207
+msgid "Enter your neighbourhood"
+msgstr "നിങ്ങളുടെ സമീപസ്ഥലം നൽകുക"
+
+#: .\basic\templates\profile\userprofile.html:232
+msgid "Update Profile"
+msgstr "പ്രൊഫൈൽ അപ്ഡേറ്റ് ചെയ്യുക"
+
+#: .\basic\templates\profile\userprofile.html:237
+msgid "First Name"
+msgstr "പേരിന്റെ ആദ്യഭാഗം"
+
+#: .\basic\templates\profile\userprofile.html:239
+msgid "Last Name"
+msgstr "പേരിന്റെ അവസാന ഭാഗം"
+
+#: .\basic\templates\profile\userprofile.html:245
+msgid "Gender"
+msgstr "ജെൻഡർ"
+
+#: .\basic\templates\profile\userprofile.html:247
+msgid "Bio"
+msgstr "ബയോ"
+
+#: .\basic\templates\profile\userprofile.html:249
+msgid "Date of Birth"
+msgstr "ജനനത്തീയതി"
+
+#: .\basic\templates\profile\userprofile.html:251
+msgid "Age"
+msgstr "വയസ്സ്"
+
+#: .\basic\templates\profile\userprofile.html:259
+msgid "Friends"
+msgstr "സുഹൃത്തുക്കൾ"
+
+#: .\basic\templates\search\searchbar.html:19
+msgid "People"
+msgstr "ആളുകൾ"
+
+#: .\basic\templates\search\searchbar.html:54
+msgid "No people named"
+msgstr "ആളുകളെയൊന്നും കണ്ടെത്തിയില്ല"
+
+#: .\basic\templates\search\searchbar.html:65
+msgid "Circles"
+msgstr "സർക്കിളുകൾ"
+
+#: .\basic\templates\search\searchbar.html:102
+msgid "No circles named"
+msgstr "സർക്കിളുകളൊന്നും കണ്ടെത്തിയില്ല"
+
+#: .\basic\templates\search\searchbar.html:166
+msgid "No posts named"
+msgstr "പോസ്റ്റുകളൊന്നും കണ്ടെത്തിയില്ല"
+
+#: .\chat\templates\chat\home.html:141
+msgid "Let's Chat"
+msgstr "ചാറ്റ് ചെയ്യാം"
+
+#: .\chat\templates\chat\home.html:149
+msgid "Rooms available"
+msgstr "ലഭ്യമായ മുറികൾ"
+
+#: .\chat\templates\chat\home.html:169 .\chat\templates\chat\home.html:177
+msgid "Create Room"
+msgstr "റൂം സൃഷ്ടിക്കുക"
+
+#: .\chat\templates\chat\home.html:173
+msgid "Room Name"
+msgstr "മുറിയുടെ പേര്"
 
 #: .\heythere\settings.py:157
 msgid "English"

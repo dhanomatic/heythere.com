@@ -1,7 +1,8 @@
+{% load i18n %}
 
 <div class="global-page" >
     <div class="global-page-title shadow"> 
-        <h3 class="card-body" >Global Posts</h3>
+        <h3 class="card-body" >{% translate 'Global Posts' %}</h3>
     </div>
 
     {% for i in post %}

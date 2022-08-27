@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-10 00:32+0530\n"
+"POT-Creation-Date: 2022-08-28 01:13+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\basic\templates\circle\localdisplay.html:5 .\basic\views.py:147
-msgid "Your Neighbourhood Circles"
+#: .\basic\templates\basic\main.html:62
+msgid "Search heythere"
 msgstr ""
 
+#: .\basic\templates\circle\allcircle.html:18
+msgid "Cricles Near You"
+msgstr ""
+
+#: .\basic\templates\circle\allcircle.html:39
+#: .\basic\templates\search\searchbar.html:86
+msgid "View Circle"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:33
+msgid "created by"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:48
 #: .\basic\templates\circle\localdisplay.html:32
 msgid "Join"
 msgstr ""
 
+#: .\basic\templates\circle\circle.html:50
 #: .\basic\templates\circle\localdisplay.html:34
 msgid "Leave"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:56
+msgid "Chat"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:81
+#: .\basic\templates\profile\userprofile.html:111
+msgid "Create Post"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:187
+#: .\basic\templates\profile\userprofile.html:213
+#: .\basic\templates\profile\userprofile.html:235
+msgid "Neighbourhood"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:189
+msgid "Name"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:191
+msgid "Description"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:193
+#: .\basic\templates\profile\userprofile.html:241
+msgid "Email"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:195
+#: .\basic\templates\profile\userprofile.html:243
+msgid "Phone Number"
+msgstr ""
+
+#: .\basic\templates\circle\circle.html:204
+msgid "Circle Members"
+msgstr ""
+
+#: .\basic\templates\circle\createcircle.html:12
+msgid "Create Circle"
+msgstr ""
+
+#: .\basic\templates\circle\createcircle.html:35
+#: .\basic\templates\home\createpost.html:64
+#: .\basic\templates\post\previewpost.html:111
+#: .\basic\templates\profile\userprofile.html:215
+msgid "Submit"
+msgstr ""
+
+#: .\basic\templates\circle\localdisplay.html:5 .\basic\views.py:147
+msgid "Your Neighbourhood Circles"
 msgstr ""
 
 #: .\basic\templates\circle\localdisplay.html:52
@@ -39,8 +106,49 @@ msgstr ""
 msgid "create circle"
 msgstr ""
 
-#: .\basic\templates\home\localfeed.html:16
-msgid "Create Post"
+#: .\basic\templates\friendrequests\friendrequests.html:14
+msgid "Friend Requests"
+msgstr ""
+
+#: .\basic\templates\friendrequests\friendrequests.html:31
+#: .\basic\templates\profile\userprofile.html:73
+msgid "Accept"
+msgstr ""
+
+#: .\basic\templates\friendrequests\friendrequests.html:32
+#: .\basic\templates\profile\userprofile.html:74
+msgid "Decline"
+msgstr ""
+
+#: .\basic\templates\global\globalpost.html:5
+msgid "Global Posts"
+msgstr ""
+
+#: .\basic\templates\home\createpost.html:14
+msgid "Whats on your mind"
+msgstr ""
+
+#: .\basic\templates\home\localfeed.html:7
+#: .\basic\templates\profile\userprofile.html:96
+msgid "Welcome"
+msgstr ""
+
+#: .\basic\templates\home\localfeed.html:7
+msgid ""
+"Add your neighbourhood on your profile to create and view posts in your "
+"locality"
+msgstr ""
+
+#: .\basic\templates\home\localfeed.html:7
+msgid "click here"
+msgstr ""
+
+#: .\basic\templates\home\localfeed.html:7
+msgid "to add your neighbourhood"
+msgstr ""
+
+#: .\basic\templates\home\localfeed.html:23
+msgid "Create post"
 msgstr ""
 
 #: .\basic\templates\home\suggestions.html:6
@@ -48,7 +156,96 @@ msgid "Friend requests"
 msgstr ""
 
 #: .\basic\templates\home\suggestions.html:28
+#: .\basic\templates\search\searchbar.html:40
 msgid "View Profile"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:61
+msgid "Add Friend"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:67
+msgid "Cancel Request"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:79
+msgid "Message"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:96
+msgid "Add your neighbourhood here"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:207
+msgid "Enter your neighbourhood"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:232
+msgid "Update Profile"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:237
+msgid "First Name"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:239
+msgid "Last Name"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:245
+msgid "Gender"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:247
+msgid "Bio"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:249
+msgid "Date of Birth"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:251
+msgid "Age"
+msgstr ""
+
+#: .\basic\templates\profile\userprofile.html:259
+msgid "Friends"
+msgstr ""
+
+#: .\basic\templates\search\searchbar.html:19
+msgid "People"
+msgstr ""
+
+#: .\basic\templates\search\searchbar.html:54
+msgid "No people named"
+msgstr ""
+
+#: .\basic\templates\search\searchbar.html:65
+msgid "Circles"
+msgstr ""
+
+#: .\basic\templates\search\searchbar.html:102
+msgid "No circles named"
+msgstr ""
+
+#: .\basic\templates\search\searchbar.html:166
+msgid "No posts named"
+msgstr ""
+
+#: .\chat\templates\chat\home.html:141
+msgid "Let's Chat"
+msgstr ""
+
+#: .\chat\templates\chat\home.html:149
+msgid "Rooms available"
+msgstr ""
+
+#: .\chat\templates\chat\home.html:169 .\chat\templates\chat\home.html:177
+msgid "Create Room"
+msgstr ""
+
+#: .\chat\templates\chat\home.html:173
+msgid "Room Name"
 msgstr ""
 
 #: .\heythere\settings.py:157

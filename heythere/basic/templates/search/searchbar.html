@@ -1,7 +1,7 @@
 {% extends 'basic/main.html' %}
 
 {% block content %}
-
+{% load i18n %}
 {% load static %}
 
 <div class="row">
@@ -16,7 +16,7 @@
         {% if users %}
 
         <div class="page-header shadow" style="border-radius: 1rem 1rem 0 0;">  
-            <h3 class="card-body" >People</h3>
+            <h3 class="card-body" >{% translate 'People' %}</h3>
         </div>
 
         <div class="people-search-page-card">
@@ -37,7 +37,7 @@
                         <div class="card-body">
                         <h5 class="card-title">@{{i.username}}</h5>
                         <p class="card-text">{{i.bio}}</p>
-                        <a href="{% url 'userprofile' i.username %}" class="btn btn-info btn-sm btn-block">View Profile</a>
+                        <a href="{% url 'userprofile' i.username %}" class="btn btn-info btn-sm btn-block">{% translate 'View Profile' %}</a>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
         {% else%}
 
             <br>
-            <b>No people named {{search}}</b>
+            <b>{% translate 'No people named' %} {{search}}</b>
 
         {% endif %}
 
@@ -62,7 +62,7 @@
         <div class="circle">
 
             <div class="circle-search-header shadow"> 
-              <h3 class="card-body" >Cricles</h3>
+              <h3 class="card-body" >{% translate 'Circles' %}</h3>
             </div>
   
             <div class="circle-search">
@@ -83,7 +83,7 @@
                               <div class="card-body circle-search-name-des">
                                 <h5 class="card-title">{{i.name}}</h5>
                                 <p class="description card-text">{{i.description}}</p>
-                                <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">View Circle</a>
+                                <a href="{% url 'circle' i.name %}" style="margin-top: 1.4rem; border-radius: 0 0 0.5rem 0" class="btn btn-info btn-sm btn-block all-circle-view-circle">{% translate 'View Circle' %}</a>
                               </div>
                             </div>
                           </div>
@@ -99,7 +99,7 @@
 
           {% else %}
             <br>
-            <b>No circles named {{search}}</b>
+            <b>{% translate 'No circles named' %} {{search}}</b>
 
           {% endif %}
 
@@ -163,7 +163,7 @@
           
            {% else %}
                 <br>
-                <b>No posts named {{search}}</b>
+                <b>{% translate 'No posts named' %} {{search}}</b>
             
             {% endif %}
     </div>

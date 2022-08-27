@@ -6,7 +6,7 @@ from crispy_forms.helper import FormHelper
 
 
 class PostForm(forms.ModelForm):
-    caption = forms.CharField(widget=forms.Textarea(attrs={"rows":5, 'placeholder': 'whats on your mind...'}))
+    caption = forms.CharField(widget=forms.Textarea(attrs={"rows":5, 'placeholder': 'Whats on your mind..?'}))
     image = forms.FileField(widget=forms.FileInput(attrs={'name':'inpFile', 'id':'inpFile'}))
 
     class Meta:
@@ -26,11 +26,11 @@ class PostForm(forms.ModelForm):
         # fields = ['creator','caption', 'image', 'local_visibility', 'global_visibility']
 
 class CreateUserForm(UserCreationForm):
-    neighbourhood = forms.ModelMultipleChoiceField(queryset=Neighbourhood.objects.all())
+    # neighbourhood = forms.ModelMultipleChoiceField(queryset=Neighbourhood.objects.all())
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2','neighbourhood']
+        fields = ['username', 'email', 'password1', 'password2']
 
 class UserRegisterForm(forms.ModelForm):
     class Meta:

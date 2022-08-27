@@ -1,6 +1,6 @@
 {% extends 'basic/main.html' %}
 {% load static %}
-
+{% load i18n %}
 {%load crispy_forms_tags %}
 
 {% block content %}
@@ -108,7 +108,7 @@
                         <div class="d-none">{{form.user}}</div>
                         <div class="col-lg-12" >{{form.body|as_crispy_field}}</div>
                         <div class="col-lg-12">
-                            <input class="btn btn-info btn-block" type="submit" value="Submit">
+                            <input class="btn btn-info btn-block" type="submit" value="{% translate 'Submit' %}">
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,7 @@
 {% extends '../basic/main.html' %}
 
 {% block content %}
+{% load i18n %}
 
 
 <style>
@@ -137,7 +138,7 @@
 <div class="container box" align="center" style="background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
   border: 0; border-radius: 1rem 1rem 0 0;width: 100%; color: white; margin-top: 3rem;">
-    <h2 style="padding: 0.5rem;">Let's Chat</h2>
+    <h2 style="padding: 0.5rem;">{% translate "Let's Chat" %}</h2>
 </div>
 
 <div class="row container box">
@@ -145,7 +146,7 @@
 
   <div class="col-lg-6 col-md-12 col-12 rooms-available">
     <center>
-      <h5>Rooms available </h5>
+      <h5>{% translate 'Rooms available' %} </h5>
     </center>
 
     <div class="rooms" style="margin-top: 2rem;">
@@ -165,15 +166,15 @@
 
   <div class="col-lg-6 col-md-12 col-12 create-room">
     <center>
-      <h5>Create Room</h5>
+      <h5>{% translate 'Create Room' %}</h5>
     </center>
     <form id="post-form" class="post-form" method="POST" action="{% url 'checkview' %}">
       {% csrf_token %}
-      <label>Room Name</label>
+      <label>{% translate 'Room Name' %}</label>
       <input type="text" name="room_name" id="room_name" width="100px" />
       <!-- <label>Username</label>
       <input type="text" name="username" id="username" width="100px" /> -->
-      <input type="submit" value="Create Room">
+      <input type="submit" value="{% translate 'Create Room' %}">
     </form>
   </div>
     

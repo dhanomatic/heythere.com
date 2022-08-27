@@ -1,7 +1,8 @@
 {% extends 'basic/main.html' %}
 
 {% block content %}
-{%load crispy_forms_tags %} 
+{% load i18n %}
+{% load crispy_forms_tags %} 
 
 <style>
     body{
@@ -10,7 +11,7 @@
 </style>
 
 <div class="create-post">
-    <p class="title shadow-lg display-4">Whats on your mind, <span>{{request.user.userregister}} ?</span></p>
+    <p class="title shadow-lg display-4">{% translate 'Whats on your mind' %}, <span>{{request.user.userregister}} ?</span></p>
 </div>
 
 
@@ -60,7 +61,7 @@
         <div class="d-none">{{form.likes}}</div>
         <div class="d-none">{{form.commets}}</div>
     
-        <input class="btn btn-info btn-block" type="submit" value="Submit">
+        <input class="btn btn-info btn-block" type="submit" value="{% translate 'Submit' %}">
     </form>
 </div>
 

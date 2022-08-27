@@ -4,7 +4,7 @@
 {% load static %}
 
     <div class="alert alert-warning Neighbourhood-warning" role="alert">
-       Welcome {{request.user}}, <br> Add your neighbourhood on your profile to create and view posts in your locality. <a href="{% url 'userprofile' request.user %}" class="alert-link">click here</a> to add your neighbourhood.
+       {% translate 'Welcome' %} {{request.user}}, <br>{% translate 'Add your neighbourhood on your profile to create and view posts in your locality' %} . <a href="{% url 'userprofile' request.user %}" class="alert-link">{% translate 'click here' %}</a> {% translate 'to add your neighbourhood' %}.
     </div>         
 
 {% else %}

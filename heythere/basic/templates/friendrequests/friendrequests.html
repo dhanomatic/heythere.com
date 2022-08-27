@@ -1,4 +1,5 @@
 {% extends 'basic/main.html' %}
+{% load i18n %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
     <div class="col col-lg-10 col-sm-12">
 
         <div class="page-header shadow"> 
-            <h3 class="card-body" >Friend Requests</h3>
+            <h3 class="card-body" >{% translate 'Friend Requests' %}</h3>
         </div>
 
         <div class="page-card">
@@ -27,8 +28,8 @@
                         <div class="card-body">
                         <h5 class="card-title">@{{i.sender}}</h5>
                         <p class="card-text">{{i.sender.bio}}</p>
-                        <a href="{% url 'accept-request' i.sender False %}" class="btn btn-info btn-sm btn-block">Accept</a>
-                            <a href="{% url 'decline-request' i.sender False %}" class="btn btn-secondary btn-sm btn-block">Decline</a>
+                        <a href="{% url 'accept-request' i.sender False %}" class="btn btn-info btn-sm btn-block">{% translate 'Accept' %}</a>
+                            <a href="{% url 'decline-request' i.sender False %}" class="btn btn-secondary btn-sm btn-block">{% translate 'Decline' %}</a>
                         </div>
                     </div>
 

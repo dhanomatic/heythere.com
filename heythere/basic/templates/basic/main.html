@@ -59,7 +59,7 @@
 
         <div class="search-bar">
             <form action="{% url 'searchbar' %}" method="get">
-                <input class="form-control" placeholder="Search heythere..!" type="text" name="search" id="">
+                <input class="form-control" placeholder="{% translate 'Search heythere' %}..!" type="text" name="search" id="">
                 <button class="btn" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>

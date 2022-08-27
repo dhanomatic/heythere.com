@@ -8,7 +8,7 @@
     width: 30rem;
     height: 2.2rem;
     float: left;
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(237, 237, 237);
     border: 0 solid gray;
     border-radius: 0.5rem;
 }
@@ -16,6 +16,7 @@
 .search-bar button{
     float: right;
     margin-top:  -0.3rem;
+    font-size: large;
 }
 
 .people-search-page-card{
