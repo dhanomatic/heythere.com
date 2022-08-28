@@ -1,0 +1,135 @@
+.search-bar{
+    float: right; 
+    margin-right: 14rem;
+    margin-top: 0.1rem;
+}
+
+.search-bar input{
+    width: 30rem;
+    height: 2.2rem;
+    float: left;
+    background-color: rgb(237, 237, 237);
+    border: 0 solid gray;
+    border-radius: 0.5rem;
+}
+
+.search-bar button{
+    float: right;
+    margin-top:  -0.3rem;
+    font-size: large;
+}
+
+.people-search-page-card{
+    background-color: white; 
+    padding-left: 2rem; 
+    padding-top: 0.5rem;
+    margin-right: 2rem; 
+    margin-left: -2rem;
+    margin-top: -0.5rem;
+    max-height: 25rem; 
+    overflow-x: scroll;
+    border-radius: 0 0 1rem 1rem;
+}
+
+
+
+.people-search-card{
+    width: 10rem;
+    margin-left: -2rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-radius: 1rem;
+}
+
+.people-search-card img{
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: -0.5rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.people-search-card h5, p{
+    margin: 0.1rem;
+}
+
+.people-search-card h5{
+    font-size: 18px;
+}
+
+.people-search-card a{
+    font-weight: 600;
+    color: white;
+}
+
+
+.circle-search-header{
+    background-color: white;
+    width: 100%;
+    height: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-left: -2rem;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .circle-search-header h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 1rem;
+  }
+
+  .circle-search{
+    background-color: white; 
+    padding: 1rem;
+    margin-right: 2rem; 
+    margin-left: -2rem;
+    border-radius: 1rem;
+    max-height: 20rem;
+    overflow-x: hidden;
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0;
+
+}
+
+.circle-search-title{
+    background-color: white;
+    width: 60%;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .circle-search-title h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 0.4rem;
+  }
+
+  .circle-search-card{
+    max-height: 10rem;
+    border-radius: 1rem;
+    border: 0;
+  }
+
+  .circle-search-card img{
+    height: 10rem !important;
+    width: 7.5rem;
+    object-fit: cover;
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .circle-search-card p{
+    font-size: small;
+    font-weight: 600;
+    color: gray;
+    height: 2.5rem !important;
+    overflow: hidden;
+  }
+
+  .circle-search-card a{
+    font-weight: 600;
+    color: white;
+    width: 11.5rem;
+  }
