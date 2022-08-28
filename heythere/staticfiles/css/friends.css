@@ -1,0 +1,59 @@
+.friend-request-page{
+}
+
+.page-header{
+    background-color: white;
+    width: 100%;
+    height: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -2rem;
+    border-radius: 1rem;
+  }
+
+.page-header h3{
+    font-weight: 500;
+    font-size: 22px;
+    padding-top: 1rem;
+  }
+
+.page-card{
+    background-color: white; 
+    padding-left: 2rem; 
+    padding-top: 0.5rem;
+    margin-right: 2rem; 
+    margin-left: -2rem;
+    border-radius: 1rem;
+}
+
+.friend-request-page-card{
+    width: 15rem;
+    margin-left: -2rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-radius: 1rem;
+}
+
+.friend-request-page-card img{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: -0.5rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.friend-request-page-card h5, p{
+    margin: 0.1rem;
+}
+
+.friend-request-page-card h5{
+    font-size: 18px;
+}
+
+.friend-request-page-card a{
+    font-weight: 600;
+    color: white;
+}
+
+
+
